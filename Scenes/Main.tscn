@@ -1,0 +1,398 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Tilesets/BiomeTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Tilesets/VegetationTileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Scripts/BiomeMap.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/WorldGen.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/PreviewContainer.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/TempMap.gd" type="Script" id=7]
+[ext_resource path="res://Tilesets/TempTileset.tres" type="TileSet" id=8]
+[ext_resource path="res://Scripts/BiomeSelector.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/MoistureMap.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Tile Overlays/very_dry.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Tile Overlays/dry.png" type="Texture" id=14]
+[ext_resource path="res://Fonts/Quicksand/Quicksand.tres" type="DynamicFont" id=15]
+[ext_resource path="res://Scripts/Tools.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/Cities.gd" type="Script" id=17]
+[ext_resource path="res://Tilesets/CityTileset.tres" type="TileSet" id=18]
+[ext_resource path="res://Scripts/CityLabel.gd" type="Script" id=19]
+[ext_resource path="res://Fonts/Quicksand/QuicksandBold.tres" type="DynamicFont" id=20]
+[ext_resource path="res://Scripts/CityMenu.gd" type="Script" id=21]
+[ext_resource path="res://Scripts/MarketMenu.gd" type="Script" id=22]
+[ext_resource path="res://Assets/UI/market_screen.png" type="Texture" id=23]
+[ext_resource path="res://Assets/UI/Buttons/x_regular.png" type="Texture" id=24]
+[ext_resource path="res://Assets/UI/Buttons/x_hover.png" type="Texture" id=25]
+[ext_resource path="res://Assets/UI/city_menu_pane.png" type="Texture" id=26]
+[ext_resource path="res://Assets/UI/Buttons/market_regular.png" type="Texture" id=27]
+[ext_resource path="res://Assets/UI/Buttons/market_hover.png" type="Texture" id=28]
+[ext_resource path="res://Assets/UI/Buttons/back_regular.png" type="Texture" id=29]
+[ext_resource path="res://Assets/UI/Buttons/back_hover.png" type="Texture" id=30]
+[ext_resource path="res://Assets/UI/Buttons/arrow_up_hover.png" type="Texture" id=31]
+[ext_resource path="res://Assets/UI/Buttons/arrow_down_hover.png" type="Texture" id=32]
+[ext_resource path="res://Assets/UI/Buttons/arrow_up_regular.png" type="Texture" id=33]
+[ext_resource path="res://Assets/UI/Buttons/arrow_down_regular.png" type="Texture" id=34]
+[ext_resource path="res://Scripts/Artikels.gd" type="Script" id=35]
+
+[sub_resource type="TileSet" id=1]
+0/name = "very_dry.png 0"
+0/texture = ExtResource( 12 )
+0/tex_offset = Vector2( 0, -58 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 128, 128, 128 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "dry.png 1"
+1/texture = ExtResource( 14 )
+1/tex_offset = Vector2( 0, -58 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 128, 128, 128 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "wet.png 2"
+2/texture = ExtResource( 13 )
+2/tex_offset = Vector2( 0, -58 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 128, 128, 128 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "very_wet.png 3"
+3/texture = ExtResource( 11 )
+3/tex_offset = Vector2( 0, -58 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 128, 128, 128 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+
+[node name="Main" type="Node"]
+
+[node name="Tools" type="Node2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="Artikels" type="Node2D" parent="."]
+script = ExtResource( 35 )
+
+[node name="WorldGen" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="BiomeMap" type="TileMap" parent="WorldGen"]
+mode = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 64 )
+collision_bounce = 0.1
+format = 1
+tile_data = PoolIntArray( 131081, 11, 0, 131082, 11, 0, 196617, 11, 0, 196618, 11, 0, 262153, 11, 0, 262154, 11, 0 )
+script = ExtResource( 4 )
+
+[node name="VegetationMap" type="TileMap" parent="WorldGen"]
+mode = 1
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 128, 64 )
+format = 1
+
+[node name="TempMap" type="TileMap" parent="WorldGen"]
+visible = false
+mode = 1
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 128, 64 )
+format = 1
+script = ExtResource( 7 )
+
+[node name="MoistureMap" type="TileMap" parent="WorldGen"]
+visible = false
+mode = 1
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 64 )
+format = 1
+script = ExtResource( 10 )
+
+[node name="PreviewContainer" type="Node2D" parent="WorldGen"]
+script = ExtResource( 6 )
+
+[node name="BiomeSelector" type="Node2D" parent="WorldGen"]
+script = ExtResource( 9 )
+
+[node name="Cities" type="Node2D" parent="."]
+script = ExtResource( 17 )
+
+[node name="CityMap" type="TileMap" parent="Cities"]
+mode = 1
+tile_set = ExtResource( 18 )
+cell_size = Vector2( 128, 64 )
+format = 1
+
+[node name="Ship" parent="." instance=ExtResource( 1 )]
+position = Vector2( 444, 271 )
+
+[node name="Camera2D" type="Camera2D" parent="Ship"]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="UILayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -480.0
+margin_top = -270.0
+margin_right = 480.0
+margin_bottom = -248.0
+color = Color( 0, 0, 0, 0.607843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UILayer/ColorRect"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 176.0
+margin_bottom = 70.0
+custom_fonts/font = ExtResource( 15 )
+text = "Date  ~  April 27, 1628"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CityLabel" type="Label" parent="UILayer"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 200.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 15 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "~~~~~~~~~~~~~~~"
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CityMenu" type="PopupMenu" parent="UILayer"]
+pause_mode = 2
+margin_right = 480.0
+margin_bottom = 300.0
+hint_tooltip = "This is a city menu"
+popup_exclusive = true
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/CityMenu"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CityName" type="Label" parent="UILayer/CityMenu"]
+margin_left = 245.0
+margin_top = 20.0
+margin_right = 421.0
+margin_bottom = 119.0
+custom_fonts/font = ExtResource( 20 )
+text = "City Name Here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XButton" type="TextureButton" parent="UILayer/CityMenu"]
+margin_left = 455.0
+margin_top = 4.0
+margin_right = 475.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 25 )
+
+[node name="MarketButton" type="TextureButton" parent="UILayer/CityMenu"]
+margin_left = 8.0
+margin_top = 143.0
+margin_right = 78.0
+margin_bottom = 173.0
+texture_normal = ExtResource( 27 )
+texture_pressed = ExtResource( 28 )
+texture_hover = ExtResource( 28 )
+
+[node name="MarketMenu" type="PopupMenu" parent="UILayer"]
+pause_mode = 2
+margin_right = 500.0
+margin_bottom = 500.0
+popup_exclusive = true
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/MarketMenu"]
+margin_right = 500.0
+margin_bottom = 500.0
+texture = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarketArtikels" type="HBoxContainer" parent="UILayer/MarketMenu"]
+margin_left = 34.0
+margin_top = 58.0
+margin_right = 245.0
+margin_bottom = 405.0
+custom_constants/separation = 170
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/MarketMenu/MarketArtikels"]
+margin_bottom = 347.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/MarketMenu/MarketArtikels"]
+margin_left = 170.0
+margin_right = 170.0
+margin_bottom = 347.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipArtikels" type="HBoxContainer" parent="UILayer/MarketMenu"]
+margin_left = 250.0
+margin_top = 58.0
+margin_right = 466.0
+margin_bottom = 405.0
+custom_constants/separation = 170
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/MarketMenu/ShipArtikels"]
+margin_bottom = 347.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/MarketMenu/ShipArtikels"]
+margin_left = 170.0
+margin_right = 170.0
+margin_bottom = 347.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CityName" type="Label" parent="UILayer/MarketMenu"]
+margin_left = 127.0
+margin_top = 11.0
+margin_right = 368.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 20 )
+text = "City Market"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CargoLabel" type="Label" parent="UILayer/MarketMenu"]
+margin_left = 314.0
+margin_top = 447.0
+margin_right = 368.0
+margin_bottom = 471.0
+text = "15 / 50"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XButton" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 475.0
+margin_top = 4.0
+margin_right = 495.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 25 )
+
+[node name="MarketUp" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 14.0
+margin_top = 58.0
+margin_right = 34.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 31 )
+texture_hover = ExtResource( 31 )
+
+[node name="MarketDown" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 14.0
+margin_top = 385.0
+margin_right = 34.0
+margin_bottom = 405.0
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 32 )
+texture_hover = ExtResource( 32 )
+
+[node name="ShipUp" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 466.0
+margin_top = 58.0
+margin_right = 486.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 31 )
+texture_hover = ExtResource( 31 )
+
+[node name="ShipDown" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 466.0
+margin_top = 385.0
+margin_right = 486.0
+margin_bottom = 405.0
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 32 )
+texture_hover = ExtResource( 32 )
+
+[node name="BackButton" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 29 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 30 )
+[connection signal="pressed" from="UILayer/CityMenu/XButton" to="UILayer/CityMenu" method="_on_XButton_pressed"]
+[connection signal="pressed" from="UILayer/CityMenu/MarketButton" to="UILayer/MarketMenu" method="_on_MarketButton_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/XButton" to="UILayer/MarketMenu" method="_on_XButton_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/BackButton" to="UILayer/MarketMenu" method="_on_BackButton_pressed"]

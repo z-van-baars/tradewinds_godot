@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://City/City.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Cities/city_1.png" type="Texture" id=2]
+
+[node name="City" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1, -58 )
+texture = ExtResource( 2 )
+
+[node name="BBox" type="Area2D" parent="."]
+
+[node name="Borders" type="CollisionPolygon2D" parent="BBox"]
+position = Vector2( 1, -56 )
+polygon = PoolVector2Array( -1, 59, 49, 88, -1, 118, -50, 89 )
+[connection signal="input_event" from="BBox" to="." method="_on_BBox_input_event"]
+[connection signal="mouse_entered" from="BBox" to="." method="_on_BBox_mouse_entered"]
+[connection signal="mouse_exited" from="BBox" to="." method="_on_BBox_mouse_exited"]
