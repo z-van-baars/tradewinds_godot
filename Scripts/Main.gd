@@ -8,4 +8,4 @@ func load_game():
 
 func new_game():
 	$WorldGen.gen_new()
-	$Ship.randomize_start($Cities)
+	$Player/Ship.randomize_start($Cities)
