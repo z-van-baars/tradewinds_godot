@@ -18,6 +18,13 @@ enum biomes {
 	TAIGA,
 	TUNDRA}
 
+var water_biomes = [
+	"ocean",
+	"lake",
+	"shallows",
+	"sea"
+]
+
 var biome_strings = {
 	"very cold": {
 		"very dry": "tundra",

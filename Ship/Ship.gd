@@ -5,8 +5,10 @@ var last_direction = Vector2(0, 1)
 var direction : Vector2
 var target : Vector2
 var camera
+var tools
 
 func _ready():
+	tools = get_tree().root.get_node("Main/Tools")
 	camera = $Camera2D
 
 func _physics_process(delta):
@@ -17,7 +19,15 @@ func _physics_process(delta):
 		move_and_collide(movement)
 	animates_ship(direction)
 
-
+func randomize_start(cities):
+	var r_city = tools.r_choice(cities.get_children())
+	var neighbor_tiles = tools.get_neighbor_tiles(
+		Vector2(r_city.tile_x,
+				r_city.tile_y))
+	# filter tiles around a random start city for water only
+	var f_neighbor_tiles = tools.filter_tiles(neighbor_tiles, true)
+	var r_start = tools.r_choice(neighbor_tiles)
+	position = get_tree().root.get_node("Main/WorldGen/BiomeMap").map_to_world(r_start)
 func zero_target():
 	target = position
 

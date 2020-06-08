@@ -21,7 +21,7 @@ func _ready():
 	noise.octaves = 4
 	noise.period = 20.0
 	noise.persistence = 0.8
-	gen_new()
+
 
 func gen_new():
 	tools.set_map_parameters(width, height)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Ship/Ship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/BiomeTileset.tres" type="TileSet" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://Assets/UI/Buttons/arrow_up_regular.png" type="Texture" id=33]
 [ext_resource path="res://Assets/UI/Buttons/arrow_down_regular.png" type="Texture" id=34]
 [ext_resource path="res://Scripts/Artikels.gd" type="Script" id=35]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=36]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -95,6 +96,7 @@
 3/z_index = 0
 
 [node name="Main" type="Node"]
+script = ExtResource( 36 )
 
 [node name="Tools" type="Node2D" parent="."]
 script = ExtResource( 16 )
@@ -136,6 +138,12 @@ cell_size = Vector2( 128, 64 )
 format = 1
 script = ExtResource( 10 )
 
+[node name="CityMap" type="TileMap" parent="WorldGen"]
+mode = 1
+tile_set = ExtResource( 18 )
+cell_size = Vector2( 128, 64 )
+format = 1
+
 [node name="PreviewContainer" type="Node2D" parent="WorldGen"]
 script = ExtResource( 6 )
 
@@ -144,12 +152,6 @@ script = ExtResource( 9 )
 
 [node name="Cities" type="Node2D" parent="."]
 script = ExtResource( 17 )
-
-[node name="CityMap" type="TileMap" parent="Cities"]
-mode = 1
-tile_set = ExtResource( 18 )
-cell_size = Vector2( 128, 64 )
-format = 1
 
 [node name="Ship" parent="." instance=ExtResource( 1 )]
 position = Vector2( 444, 271 )

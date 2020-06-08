@@ -55,7 +55,7 @@ func pick_cities(l_coastal_tiles):
 			get_tree().root.get_node("Main/UILayer/CityLabel"),
 			get_tree().root.get_node("Main/UILayer/CityMenu"),
 			get_tree().root.get_node("Main/UILayer/MarketMenu"))
-		$CityMap.set_cell(
+		get_tree().root.get_node("Main/WorldGen/CityMap").set_cell(
 			new_city.tile_x,
 			new_city.tile_y,
 			tools.r_choice(city_tiles))

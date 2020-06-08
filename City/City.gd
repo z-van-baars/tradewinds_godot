@@ -29,7 +29,7 @@ func set_random_supply():
 		artikel_supply[r_artikel] += randi()%10+1
 
 func set_bounding_box():
-	city_tilemap = get_tree().root.get_node("Main/Cities/CityMap")
+	city_tilemap = get_tree().root.get_node("Main/WorldGen/CityMap")
 	$BBox.position = city_tilemap.map_to_world(Vector2(tile_x, tile_y))
 
 func load_city_names(filename):

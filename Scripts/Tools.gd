@@ -9,6 +9,21 @@ func set_map_parameters(map_width, map_height):
 func r_choice(some_array):
 	return some_array[randi() % some_array.size()]
 
+func filter_tiles(tile_list, water=false):
+	var water_tiles = []
+	var land_tiles = []
+	var biome_map = get_tree().root.get_node("Main/WorldGen/BiomeMap")
+	var water_biomes = get_tree().root.get_node("Main/WorldGen/BiomeSelector").water_biomes
+	var filtered_tiles = []
+	for tile in tile_list:
+		if biome_map.get_cellv(Vector2(tile.x, tile.y)) in water_biomes:
+			water_tiles.append(tile)
+		else:
+			land_tiles.append(tile)
+	if water:
+		return water_tiles
+	else:
+		return land_tiles
 func get_neighbor_tiles(tile_address):
 	var x1 = tile_address.x
 	var y1 = tile_address.y
