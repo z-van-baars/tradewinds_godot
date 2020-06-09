@@ -2,6 +2,7 @@ extends Node2D
 
 var camera
 var tools
+var silver = 100
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")

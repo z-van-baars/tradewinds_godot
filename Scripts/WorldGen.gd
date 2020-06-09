@@ -46,6 +46,7 @@ func gen_new():
 	cities.gen_cities()
 	# $PreviewContainer.set_dims(width, height)
 	# $PreviewContainer.heightmap_preview(heightmap)
+	get_tree().root.get_node("Main/UILayer/LoadSplash").hide()
 
 
 func get_noise(nx, ny):

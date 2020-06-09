@@ -8,6 +8,7 @@ var city_tilemap
 var name_array = []
 var artikels
 var artikel_supply = {}
+var portrait_id = randi()%3+0
 signal hovered
 signal unhovered
 signal clicked
