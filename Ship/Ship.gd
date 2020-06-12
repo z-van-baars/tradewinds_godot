@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 500
+export var speed = 100
 var last_direction = Vector2(0, 1)
 var direction : Vector2
 var target : Vector2

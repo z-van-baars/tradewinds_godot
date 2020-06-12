@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -67,6 +67,7 @@
 [ext_resource path="res://Assets/UI/Buttons/min_regular.png" type="Texture" id=65]
 [ext_resource path="res://Scripts/BuySellMenu.gd" type="Script" id=66]
 [ext_resource path="res://Assets/UI/icons/coin_20.png" type="Texture" id=67]
+[ext_resource path="res://Scripts/Calendar.gd" type="Script" id=68]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -134,6 +135,11 @@ script = ExtResource( 33 )
 
 [node name="Artikels" type="Node2D" parent="."]
 script = ExtResource( 22 )
+
+[node name="Calendar" type="Node2D" parent="."]
+script = ExtResource( 68 )
+
+[node name="Timer" type="Timer" parent="Calendar"]
 
 [node name="WorldGen" type="Node" parent="."]
 script = ExtResource( 36 )
@@ -233,9 +239,9 @@ __meta__ = {
 [node name="DateLabel" type="Label" parent="UILayer/DateBar"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 1069.0
+margin_left = 998.0
 margin_top = -6.0
-margin_right = 1237.0
+margin_right = 1255.0
 margin_bottom = 10.0
 custom_fonts/font = ExtResource( 29 )
 text = "Date  ~  April 27, 1528"
@@ -777,8 +783,10 @@ margin_bottom = 103.0
 texture_normal = ExtResource( 64 )
 texture_pressed = ExtResource( 55 )
 texture_hover = ExtResource( 55 )
-[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="date_changed" from="Calendar" to="UILayer/DateBar" method="_on_Calendar_date_changed"]
+[connection signal="timeout" from="Calendar/Timer" to="Calendar" method="_on_Timer_timeout"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]

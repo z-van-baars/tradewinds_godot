@@ -6,3 +6,7 @@ func _ready():
 
 func _process(delta):
 	$SilverLabel.text = str(player.silver)
+
+
+func _on_Calendar_date_changed(date_string):
+	$DateLabel.text = "Date ~ " + date_string

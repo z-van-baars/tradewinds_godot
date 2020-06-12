@@ -15,7 +15,7 @@ func _process(delta):
 	#go negative at the midpoint
 	var x2 = position1.x * (
 		 minimap_width / background_width) * 1.333 + minimap_width / 2
-	# 1.3 is a magic number to scale the position
+	# 1.333 is a magic number to scale the position
 	# since the minimap is a perfect square but the tilemap is not
 	var y2 = position1.y * (
 		minimap_height / background_height) * 1.333

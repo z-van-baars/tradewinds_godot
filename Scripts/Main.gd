@@ -12,6 +12,8 @@ func new_game():
 	$UILayer/MapWidget.setup_references($WorldGen.biomemap)
 	$UILayer/MapWidget.redraw_minimaps($WorldGen.biomemap)
 	$Player/Ship.randomize_start($Cities)
+	$Calendar.set_start_date()
+	$Calendar/Timer.start()
 
 
 func _on_NewGameButton_pressed():
