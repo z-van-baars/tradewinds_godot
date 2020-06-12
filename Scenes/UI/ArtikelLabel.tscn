@@ -1,15 +1,33 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/Quicksand/Quicksand.tres" type="DynamicFont" id=1]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 85, 9 )
+[ext_resource path="res://Scripts/ArtikelLabel.gd" type="Script" id=2]
 
 [node name="ArtikelLabel" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -790.0
-margin_bottom = -524.0
+margin_right = -1110.0
+margin_bottom = -703.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectionBox" type="ColorRect" parent="."]
+visible = false
+margin_top = -1.0
+margin_right = 170.0
+margin_bottom = 17.0
+color = Color( 0.470588, 0.337255, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = -1.0
+margin_right = 170.0
+margin_bottom = 19.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -22,9 +40,4 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 85, 8 )
-shape = SubResource( 1 )
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

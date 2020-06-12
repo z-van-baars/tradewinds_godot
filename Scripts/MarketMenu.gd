@@ -1,17 +1,30 @@
 extends TextureRect
 
+var artikels
 var open_city
+var player
 var city_menu
 var artikel_label_scene = preload("res://Scenes/UI/ArtikelLabel.tscn")
 var quantity_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")
-var artikels_column
-var quantities_column
+var artikel_to_sell = 0
+var artikel_to_buy = 0
+var city_artikels_list = []
+var player_artikels_list = []
+var market_artikels_column
+var market_quantities_column
+var player_artikels_column
+var player_quantities_column
 var dragging = false
 var drag_offset = Vector2(0, 0)
 
+
 func _ready():
-	artikels_column = $MarketArtikels/ArtikelsVbox
-	quantities_column = $MarketArtikels/QuantitiesVbox
+	artikels = get_tree().root.get_node("Main/Artikels")
+	market_artikels_column = $MarketArtikels/ArtikelsVbox
+	market_quantities_column = $MarketArtikels/QuantitiesVbox
+	player_artikels_column = $PlayerArtikels/ArtikelsVbox
+	player_quantities_column = $PlayerArtikels/QuantitiesVbox
+	player = get_tree().root.get_node("Main/Player")
 	clear_all()
 
 
@@ -30,33 +43,61 @@ func clear_all():
 	var y = get_viewport().size.y / 2 - rect_size.y / 2
 	rect_position = Vector2(x, y)
 	$CityName.text = "City Market"
+	city_artikels_list = []
+	player_artikels_list = []
 	for t_column in [
-		artikels_column,
-		quantities_column]:
+		market_artikels_column,
+		market_quantities_column]:
+		for child in t_column.get_children():
+			child.queue_free()
+	for t_column in [
+		player_artikels_column,
+		player_quantities_column]:
 		for child in t_column.get_children():
 			child.queue_free()
 
 
 func set_all():
+	clear_all()
 	city_menu = get_tree().root.get_node("Main/UILayer/CityMenu")
 	$CityName.text = str(open_city.city_name) + " Market"
+	$SilverLabel.text = "Silver: " + str(player.silver)
 	create_market_labels()
+	create_player_labels()
+	# bug! this next line should turn on visibility but it doesn't!
+	# not really a huge deal but I'd like to know why it doesn't work
+	$MarketArtikels/ArtikelsVbox.get_children()[0].set_box_visible(true)
 
 func create_market_labels():
 	var list_count = 0
+	for artikel in artikels.artikel_list:
+		if open_city.artikel_supply[artikel] > 0:
+			city_artikels_list.append(artikel)
+			var alabel = artikel_label_scene.instance()
+			var qlabel = quantity_label_scene.instance()
+			alabel.get_node("Label").text = str(artikel) + "  $" + str(open_city.get_price(artikel))
+			alabel.artikel_list_index = list_count
+			alabel.connect_box(self)
+			qlabel.get_node("Label").text = str(open_city.artikel_supply[artikel])
+			market_artikels_column.add_child(alabel)
+			market_quantities_column.add_child(qlabel)
+			list_count += 1
 
-	for artikel in open_city.artikel_supply.keys():
-		var alabel = artikel_label_scene.instance()
-		var qlabel = quantity_label_scene.instance()
-		alabel.get_node("Label").text = str(artikel)
-		qlabel.get_node("Label").text = str(open_city.artikel_supply[artikel])
-#		label.rect_position.y = list_count * 22
-		artikels_column.add_child(alabel)
-		quantities_column.add_child(qlabel)
-		list_count += 1
-
-func create_ship_labels():
-	pass
+func create_player_labels():
+	var list_count = 0
+	for artikel in artikels.artikel_list:
+		if player.get_cargo_quantity(artikel) > 0:
+			player_artikels_list.append(artikel)
+			var alabel = artikel_label_scene.instance()
+			var qlabel = quantity_label_scene.instance()
+			alabel.get_node("Label").text = str(artikel) + "  $" + str(open_city.get_price(artikel))
+			alabel.artikel_list_index = list_count
+			alabel.sell = true
+			alabel.connect_box(self)
+			qlabel.get_node("Label").text = str(player.get_cargo_quantity(artikel))
+			player_artikels_column.add_child(alabel)
+			player_quantities_column.add_child(qlabel)
+			list_count += 1
 
 func _on_XButton_pressed():
 	get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").hide()
@@ -65,7 +106,6 @@ func _on_XButton_pressed():
 	hide()
 
 func _on_MarketButton_pressed():
-	print("marketo")
 	city_menu.hide()
 	show()
 
@@ -73,6 +113,16 @@ func _on_City_clicked(city_to_open):
 	open_city = city_to_open
 	set_all()
 
+func _on_Artikel_clicked(artikel_list_id, sell):
+	if sell:
+		$PlayerArtikels/ArtikelsVbox.get_children()[artikel_to_sell].set_box_visible(false)
+		artikel_to_sell = artikel_list_id
+		$PlayerArtikels/ArtikelsVbox.get_children()[artikel_to_sell].set_box_visible(true)
+	elif not sell:
+		$MarketArtikels/ArtikelsVbox.get_children()[artikel_to_buy].set_box_visible(false)
+		artikel_to_buy = artikel_list_id
+		$MarketArtikels/ArtikelsVbox.get_children()[artikel_to_buy].set_box_visible(true)
+	print(artikel_to_buy)
 func _on_BackButton_pressed():
 	hide()
 	city_menu.show()
@@ -83,10 +133,10 @@ func _on_MarketUp_pressed():
 func _on_MarketDown_pressed():
 	pass # Replace with function body.
 
-func _on_ShipUp_pressed():
+func _on_PlayerUp_pressed():
 	pass # Replace with function body.
 
-func _on_ShipDown_pressed():
+func _on_PlayerDown_pressed():
 	pass # Replace with function body.
 
 func _on_MarketMenu_visibility_changed():
@@ -100,3 +150,37 @@ func _on_DragButton_button_down():
 func _on_DragButton_button_up():
 	dragging = false
 	drag_offset = rect_position - get_global_mouse_position()
+
+
+func _on_Buy_pressed():
+	var artikel_str = city_artikels_list[artikel_to_buy]
+	get_tree().root.get_node("Main/UILayer/BuySellMenu").set_all(
+		artikel_str,
+		open_city.artikel_supply[artikel_str],
+		-open_city.get_price(artikel_str),
+		player.silver)
+	get_tree().root.get_node("Main/UILayer/BuySellMenu").show()
+
+
+func _on_Sell_pressed():
+	var artikel_str = player_artikels_list[artikel_to_sell]
+	get_tree().root.get_node("Main/UILayer/BuySellMenu").set_all(
+		artikel_str,
+		player.get_cargo_quantity(artikel_str),
+		open_city.get_price(artikel_str))
+	get_tree().root.get_node("Main/UILayer/BuySellMenu").show()
+
+
+func _on_BuySellMenu_purchase(artikel_str, quantity):
+	print(quantity)
+	player.increment_cargo(artikel_str, quantity)
+	player.increment_silver(quantity * -open_city.get_price(artikel_str))
+	open_city.increment_supply(artikel_str, -quantity)
+	set_all()
+
+func _on_BuySellMenu_sale(artikel_str, quantity):
+	player.increment_cargo(artikel_str, -quantity)
+	player.increment_silver(quantity * open_city.get_price(artikel_str))
+	open_city.increment_supply(artikel_str, quantity)
+	set_all()
+	

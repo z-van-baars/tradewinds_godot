@@ -3,11 +3,26 @@ extends Node2D
 var camera
 var tools
 var silver = 100
+var artikels
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")
+	artikels = get_tree().root.get_node("Main/Artikels")
 	camera = $Ship/Camera2D
+	for _artikel in artikels.artikel_list:
+		$Ship.cargo[_artikel] = 0
+	$Ship.cargo["Salted Beef"] = 3
+	$Ship.cargo["Rum"] = 2
+	$Ship.cargo["Bread"] = 5
 
+func get_cargo_quantity(artikel_name):
+	return $Ship.cargo[artikel_name]
+
+func increment_cargo(artikel_name, quantity):
+	$Ship.cargo[artikel_name] += quantity
+
+func increment_silver(quantity):
+	silver += quantity
 
 func _input(event):
 	if event is InputEventScreenTouch and event.pressed:
@@ -15,10 +30,6 @@ func _input(event):
 		$Ship.target = get_viewport().get_canvas_transform().xform_inv(event.position)
 		$Ship.target = $Ship.target * camera.zoom * camera.zoom
 		$Ship.direction = ($Ship.target - $Ship.position).normalized()
-		print("Event position: " + str(event.position))
-		print("Ship Target: " + str($Ship.target))
-		print("Ship position: " + str($Ship.position))
-		print("Player position: " + str(position))
 #	elif event is InputEventMouseButton:
 #		if event.is_pressed():
 #			# zoom in

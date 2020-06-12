@@ -28,21 +28,6 @@ animations = [ {
 "name": "sail_downright",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "sail_upright",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "sail_up",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "sail_upleft",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "sail_downleft",
@@ -61,6 +46,21 @@ animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "sail_right",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "sail_upright",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "sail_up",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "sail_upleft",
 "speed": 1.0
 } ]
 

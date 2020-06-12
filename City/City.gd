@@ -8,6 +8,7 @@ var city_tilemap
 var name_array = []
 var artikels
 var artikel_supply = {}
+var artikel_price = {}
 var portrait_id = randi()%3+0
 signal hovered
 signal unhovered
@@ -21,13 +22,27 @@ func initialize():
 	artikels = get_tree().root.get_node("Main/Artikels")
 	set_bounding_box()
 	set_random_supply()
+	set_random_prices()
+
+func increment_supply(artikel_name, quantity):
+	artikel_supply[artikel_name] += quantity
 
 func set_random_supply():
 	for _artikel in artikels.artikel_list:
 		artikel_supply[_artikel] = 0
-	for i in range(5):
+	for i in range(15):
 		var r_artikel = tools.r_choice(artikels.artikel_list)
 		artikel_supply[r_artikel] += randi()%10+1
+
+func set_random_prices():
+	for _artikel in artikels.artikel_list:
+		var random_modifier = float(100 - ((randi()%10+1) - 5)) / 100.00
+		print("randmod: " + str(random_modifier))
+		artikel_price[_artikel] = int(artikels.base_price[_artikel] * random_modifier)
+	print(artikel_price)
+
+func get_price(qartikel):
+	return artikel_price[qartikel]
 
 func set_bounding_box():
 	city_tilemap = get_tree().root.get_node("Main/WorldGen/CityMap")

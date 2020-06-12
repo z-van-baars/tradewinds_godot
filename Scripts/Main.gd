@@ -9,6 +9,8 @@ func load_game():
 
 func new_game():
 	$WorldGen.gen_new()
+	$UILayer/MapWidget.setup_references($WorldGen.biomemap)
+	$UILayer/MapWidget.redraw_minimaps($WorldGen.biomemap)
 	$Player/Ship.randomize_start($Cities)
 
 

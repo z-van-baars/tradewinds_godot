@@ -5,6 +5,7 @@ var last_direction = Vector2(0, 1)
 var direction : Vector2
 var target : Vector2
 var tools
+var cargo = {}
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")

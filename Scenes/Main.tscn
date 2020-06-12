@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -46,6 +46,27 @@
 [ext_resource path="res://Assets/UI/Buttons/new_game_regular.png" type="Texture" id=44]
 [ext_resource path="res://Assets/UI/Buttons/new_game_hovered.png" type="Texture" id=45]
 [ext_resource path="res://Assets/UI/load_screen_splash.png" type="Texture" id=46]
+[ext_resource path="res://Assets/UI/mini_map_bg.png" type="Texture" id=47]
+[ext_resource path="res://Assets/UI/Buttons/recenter_regular.png" type="Texture" id=48]
+[ext_resource path="res://Assets/UI/Buttons/recenter_hover.png" type="Texture" id=49]
+[ext_resource path="res://Scripts/MapWidget.gd" type="Script" id=50]
+[ext_resource path="res://Scripts/ShipIcon.gd" type="Script" id=51]
+[ext_resource path="res://Ship/down_right.png" type="Texture" id=52]
+[ext_resource path="res://Assets/UI/quantity_popup.png" type="Texture" id=53]
+[ext_resource path="res://Assets/UI/Buttons/done_regular.png" type="Texture" id=54]
+[ext_resource path="res://Assets/UI/Buttons/max_hover.png" type="Texture" id=55]
+[ext_resource path="res://Assets/UI/Buttons/cancel_hover.png" type="Texture" id=56]
+[ext_resource path="res://Assets/UI/Buttons/arrow_right_regular.png" type="Texture" id=57]
+[ext_resource path="res://Assets/UI/Buttons/cancel_regular.png" type="Texture" id=58]
+[ext_resource path="res://Assets/UI/Buttons/arrow_left_hover.png" type="Texture" id=59]
+[ext_resource path="res://Assets/UI/Buttons/arrow_left_regular.png" type="Texture" id=60]
+[ext_resource path="res://Assets/UI/Buttons/min_hover.png" type="Texture" id=61]
+[ext_resource path="res://Assets/UI/Buttons/arrow_right_hover.png" type="Texture" id=62]
+[ext_resource path="res://Assets/UI/Buttons/done_hover.png" type="Texture" id=63]
+[ext_resource path="res://Assets/UI/Buttons/max_regular.png" type="Texture" id=64]
+[ext_resource path="res://Assets/UI/Buttons/min_regular.png" type="Texture" id=65]
+[ext_resource path="res://Scripts/BuySellMenu.gd" type="Script" id=66]
+[ext_resource path="res://Assets/UI/icons/coin_20.png" type="Texture" id=67]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -176,15 +197,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DateLabel" type="Label" parent="UILayer/DateBar"]
+[node name="SilverLabel" type="Label" parent="UILayer/DateBar"]
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 20.0
-margin_top = -8.0
-margin_right = 168.0
-margin_bottom = 8.0
+margin_left = -1234.0
+margin_top = -6.0
+margin_right = -1034.0
+margin_bottom = 10.0
 custom_fonts/font = ExtResource( 29 )
-text = "Date  ~  April 27, 1528"
+text = "0"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -206,22 +230,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SilverLabel" type="Label" parent="UILayer/DateBar"]
-anchor_left = 1.0
+[node name="DateLabel" type="Label" parent="UILayer/DateBar"]
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -220.0
-margin_top = -8.0
-margin_right = -20.0
-margin_bottom = 8.0
+margin_left = 1069.0
+margin_top = -6.0
+margin_right = 1237.0
+margin_bottom = 10.0
 custom_fonts/font = ExtResource( 29 )
-text = "Silver: 0"
+text = "Date  ~  April 27, 1528"
 align = 2
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SilverIcon" type="TextureRect" parent="UILayer/DateBar"]
+margin_left = 22.0
+margin_top = 5.0
+margin_right = 42.0
+margin_bottom = 25.0
+texture = ExtResource( 67 )
 
 [node name="CityLabel" type="Label" parent="UILayer"]
 visible = false
@@ -236,6 +264,61 @@ script = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MapWidget" type="TextureRect" parent="UILayer"]
+margin_left = 1080.0
+margin_top = 521.0
+margin_right = 1280.0
+margin_bottom = 721.0
+texture = ExtResource( 47 )
+script = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipButton" type="TextureButton" parent="UILayer/MapWidget"]
+margin_left = 1.0
+margin_top = 143.0
+margin_right = 57.0
+margin_bottom = 199.0
+texture_normal = ExtResource( 48 )
+texture_pressed = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LandwaterMinimap" type="TextureRect" parent="UILayer/MapWidget"]
+margin_left = 100.0
+margin_top = 2.0
+margin_right = 239.0
+margin_bottom = 141.0
+rect_rotation = 45.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BiomeMinimap" type="TextureRect" parent="UILayer/MapWidget"]
+visible = false
+margin_left = 100.0
+margin_top = 2.0
+margin_right = 239.0
+margin_bottom = 141.0
+rect_rotation = 45.0
+
+[node name="NationMinimap" type="TextureRect" parent="UILayer/MapWidget"]
+visible = false
+margin_left = 100.0
+margin_top = 2.0
+margin_right = 239.0
+margin_bottom = 141.0
+rect_rotation = 45.0
+
+[node name="ShipIcon" type="Sprite" parent="UILayer/MapWidget"]
+position = Vector2( 98, 98 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 52 )
+script = ExtResource( 51 )
 
 [node name="MainMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
@@ -376,7 +459,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShipArtikels" type="HBoxContainer" parent="UILayer/MarketMenu"]
+[node name="PlayerArtikels" type="HBoxContainer" parent="UILayer/MarketMenu"]
 margin_left = 250.0
 margin_top = 58.0
 margin_right = 466.0
@@ -386,16 +469,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/MarketMenu/ShipArtikels"]
+[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
 margin_bottom = 347.0
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/MarketMenu/ShipArtikels"]
+[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
 margin_left = 170.0
 margin_right = 170.0
 margin_bottom = 347.0
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -449,7 +534,7 @@ texture_normal = ExtResource( 6 )
 texture_pressed = ExtResource( 13 )
 texture_hover = ExtResource( 13 )
 
-[node name="ShipUp" type="TextureButton" parent="UILayer/MarketMenu"]
+[node name="PlayerUp" type="TextureButton" parent="UILayer/MarketMenu"]
 margin_left = 466.0
 margin_top = 58.0
 margin_right = 486.0
@@ -458,7 +543,7 @@ texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 16 )
 texture_hover = ExtResource( 16 )
 
-[node name="ShipDown" type="TextureButton" parent="UILayer/MarketMenu"]
+[node name="PlayerDown" type="TextureButton" parent="UILayer/MarketMenu"]
 margin_left = 466.0
 margin_top = 385.0
 margin_right = 486.0
@@ -497,6 +582,22 @@ texture_normal = ExtResource( 42 )
 texture_pressed = ExtResource( 38 )
 texture_hover = ExtResource( 38 )
 
+[node name="SilverLabel" type="Label" parent="UILayer/MarketMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = 221.0
+margin_right = -50.0
+margin_bottom = 237.0
+custom_fonts/font = ExtResource( 29 )
+text = "Silver: 0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="LoadSplash" type="TextureRect" parent="UILayer"]
 visible = false
 anchor_left = 0.5
@@ -511,6 +612,171 @@ texture = ExtResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BuySellMenu" type="TextureRect" parent="UILayer"]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = -80.0
+margin_right = 90.0
+margin_bottom = 80.0
+texture = ExtResource( 53 )
+script = ExtResource( 66 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DragButton" type="Button" parent="UILayer/BuySellMenu"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 180.0
+margin_bottom = 160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SilverIcon" type="TextureRect" parent="UILayer/BuySellMenu"]
+margin_left = 5.0
+margin_top = 105.0
+margin_right = 25.0
+margin_bottom = 125.0
+texture = ExtResource( 67 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="TextureButton" parent="UILayer/BuySellMenu"]
+margin_left = 15.0
+margin_top = 127.0
+margin_right = 85.0
+margin_bottom = 153.0
+texture_normal = ExtResource( 58 )
+texture_pressed = ExtResource( 56 )
+texture_hover = ExtResource( 56 )
+
+[node name="Done" type="TextureButton" parent="UILayer/BuySellMenu"]
+margin_left = 96.0
+margin_top = 127.0
+margin_right = 166.0
+margin_bottom = 153.0
+texture_normal = ExtResource( 54 )
+texture_pressed = ExtResource( 63 )
+texture_hover = ExtResource( 63 )
+
+[node name="QuantityLabel" type="Label" parent="UILayer/BuySellMenu"]
+margin_left = 47.0
+margin_top = 62.0
+margin_right = 132.0
+margin_bottom = 76.0
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuySellLabel" type="Label" parent="UILayer/BuySellMenu"]
+margin_left = 28.0
+margin_top = 34.0
+margin_right = 151.0
+margin_bottom = 48.0
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxLabel" type="Label" parent="UILayer/BuySellMenu"]
+margin_left = 128.0
+margin_top = 62.0
+margin_right = 157.0
+margin_bottom = 76.0
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtikelLabel" type="Label" parent="UILayer/BuySellMenu"]
+margin_left = 10.0
+margin_top = 7.0
+margin_right = 169.0
+margin_bottom = 28.0
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SilverLabel" type="Label" parent="UILayer/BuySellMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = 28.0
+margin_right = -84.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 29 )
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CostLabel" type="Label" parent="UILayer/BuySellMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = 28.0
+margin_right = -12.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 29 )
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftArrow" type="TextureButton" parent="UILayer/BuySellMenu"]
+margin_left = 3.0
+margin_top = 58.0
+margin_right = 23.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 60 )
+texture_pressed = ExtResource( 59 )
+texture_hover = ExtResource( 59 )
+
+[node name="RightArrow" type="TextureButton" parent="UILayer/BuySellMenu"]
+margin_left = 157.0
+margin_top = 58.0
+margin_right = 177.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 57 )
+texture_pressed = ExtResource( 62 )
+texture_hover = ExtResource( 62 )
+
+[node name="Min" type="TextureButton" parent="UILayer/BuySellMenu"]
+margin_left = 3.0
+margin_top = 80.0
+margin_right = 43.0
+margin_bottom = 103.0
+texture_normal = ExtResource( 65 )
+texture_pressed = ExtResource( 61 )
+texture_hover = ExtResource( 61 )
+
+[node name="Max" type="TextureButton" parent="UILayer/BuySellMenu"]
+margin_left = 137.0
+margin_top = 80.0
+margin_right = 177.0
+margin_bottom = 103.0
+texture_normal = ExtResource( 64 )
+texture_pressed = ExtResource( 55 )
+texture_hover = ExtResource( 55 )
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
@@ -524,6 +790,18 @@ __meta__ = {
 [connection signal="pressed" from="UILayer/MarketMenu/XButton" to="UILayer/MarketMenu" method="_on_XButton_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/MarketUp" to="UILayer/MarketMenu" method="_on_MarketUp_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/MarketDown" to="UILayer/MarketMenu" method="_on_MarketDown_pressed"]
-[connection signal="pressed" from="UILayer/MarketMenu/ShipUp" to="UILayer/MarketMenu" method="_on_ShipUp_pressed"]
-[connection signal="pressed" from="UILayer/MarketMenu/ShipDown" to="UILayer/MarketMenu" method="_on_ShipDown_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/PlayerUp" to="UILayer/MarketMenu" method="_on_ShipUp_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/PlayerDown" to="UILayer/MarketMenu" method="_on_ShipDown_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/BackButton" to="UILayer/MarketMenu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/Sell" to="UILayer/MarketMenu" method="_on_Sell_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/Buy" to="UILayer/MarketMenu" method="_on_Buy_pressed"]
+[connection signal="purchase" from="UILayer/BuySellMenu" to="UILayer/MarketMenu" method="_on_BuySellMenu_purchase"]
+[connection signal="sale" from="UILayer/BuySellMenu" to="UILayer/MarketMenu" method="_on_BuySellMenu_sale"]
+[connection signal="button_down" from="UILayer/BuySellMenu/DragButton" to="UILayer/BuySellMenu" method="_on_DragButton_button_down"]
+[connection signal="button_up" from="UILayer/BuySellMenu/DragButton" to="UILayer/BuySellMenu" method="_on_DragButton_button_up"]
+[connection signal="pressed" from="UILayer/BuySellMenu/Cancel" to="UILayer/BuySellMenu" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="UILayer/BuySellMenu/Done" to="UILayer/BuySellMenu" method="_on_Done_pressed"]
+[connection signal="pressed" from="UILayer/BuySellMenu/LeftArrow" to="UILayer/BuySellMenu" method="_on_LeftArrow_pressed"]
+[connection signal="pressed" from="UILayer/BuySellMenu/RightArrow" to="UILayer/BuySellMenu" method="_on_RightArrow_pressed"]
+[connection signal="pressed" from="UILayer/BuySellMenu/Min" to="UILayer/BuySellMenu" method="_on_Min_pressed"]
+[connection signal="pressed" from="UILayer/BuySellMenu/Max" to="UILayer/BuySellMenu" method="_on_Max_pressed"]
