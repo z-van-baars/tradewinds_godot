@@ -1,28 +1,34 @@
 extends Node2D
 
-var tile_x = 0
-var tile_y = 0
-var tools
-var city_name = "~"
-var city_tilemap
-var name_array = []
-var artikels
-var artikel_supply = {}
-var artikel_price = {}
-var portrait_id = randi()%3+0
 signal hovered
 signal unhovered
-signal clicked
+signal left_click
+signal right_click
 
+var tools
+var city_tilemap
+var artikels
+
+var tile_x = 0
+var tile_y = 0
+
+var city_name = "~"
+var portrait_id = randi()%3+0
+var population = (randi()%100+1) * 1000
+var artikel_supply = {}
+var artikel_price = {}
 
 func initialize():
-	load_city_names("C:/Users/Zac/Godot Projects/Tradewinds_v1/City/city_names.txt")
-	city_name = name_array[randi() % name_array.size()]
+	city_name = get_tree().root.get_node("Main/Cities").get_name()
 	tools = get_tree().root.get_node("Main/Tools")
 	artikels = get_tree().root.get_node("Main/Artikels")
 	set_bounding_box()
 	set_random_supply()
 	set_random_prices()
+	set_label()
+
+func set_label():
+	$BBox/Label/NameLabel.text = city_name
 
 func increment_supply(artikel_name, quantity):
 	artikel_supply[artikel_name] += quantity
@@ -37,50 +43,51 @@ func set_random_supply():
 func set_random_prices():
 	for _artikel in artikels.artikel_list:
 		var random_modifier = float(100 - ((randi()%10+1) - 5)) / 100.00
-		print("randmod: " + str(random_modifier))
 		artikel_price[_artikel] = int(artikels.base_price[_artikel] * random_modifier)
-	print(artikel_price)
 
 func get_price(qartikel):
 	return artikel_price[qartikel]
 
+func get_center():
+	return Vector2($BBox.position.x, $BBox.position.y + 32)
+
 func set_bounding_box():
 	city_tilemap = get_tree().root.get_node("Main/WorldGen/CityMap")
 	$BBox.position = city_tilemap.map_to_world(Vector2(tile_x, tile_y))
+	$SelectionBox.position = $BBox.position
 
-func load_city_names(filename):
-	var cn = File.new()
-	cn.open(filename, File.READ)
-	while not cn.eof_reached():
-		var line = cn.get_line()
-		name_array.append(line)
-	cn.close()
 
-func connect_signals(label_node, city_menu_node, market_menu_node):
+
+func connect_signals(player_node, info_card):
+	self.connect(
+		"right_click",
+		player_node,
+		"_on_City_right_click")
 	self.connect(
 		"hovered",
-		label_node,
-		"_on_City_hovered")
+		info_card,
+		"_on_Entity_hovered")
 	self.connect(
 		"unhovered",
-		label_node,
-		"_on_City_unhovered")
-	self.connect(
-		"clicked",
-		city_menu_node,
-		"_on_City_clicked")
-	self.connect(
-		"clicked",
-		market_menu_node,
-		"_on_City_clicked")
+		info_card,
+		"_on_Entity_unhovered"
+	)
 
 func _on_BBox_mouse_entered():
-	emit_signal("hovered", city_name)
+	$SelectionBox.visible = true
+	$BBox/Label.visible = true
+	$BBox/Label/NameLabel.visible = true
+	emit_signal("hovered",
+		0,
+		[city_name,
+		 population])
 
 func _on_BBox_mouse_exited():
+	$SelectionBox.visible = false
+	$BBox/Label.visible = false
+	$BBox/Label/NameLabel.visible = false
 	emit_signal("unhovered")
 
 func _on_BBox_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.is_pressed() and event.button_index == BUTTON_LEFT:
-			emit_signal("clicked", self)
+	if event.is_action_pressed("right_click"):
+		emit_signal("right_click", self)

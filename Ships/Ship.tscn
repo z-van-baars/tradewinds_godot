@@ -1,0 +1,95 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Ships/Ship.gd" type="Script" id=1]
+[ext_resource path="res://Ships/Galleon/sail_down_1.png" type="Texture" id=2]
+[ext_resource path="res://Ships/Galleon/sail_upleft_1.png" type="Texture" id=3]
+[ext_resource path="res://Ships/Galleon/sail_upright_1.png" type="Texture" id=4]
+[ext_resource path="res://Ships/Galleon/down_right.png" type="Texture" id=5]
+[ext_resource path="res://Ships/Galleon/sail_downleft_1.png" type="Texture" id=6]
+[ext_resource path="res://Ships/Galleon/sail_upleft_2.png" type="Texture" id=7]
+[ext_resource path="res://Ships/Galleon/sail_right_2.png" type="Texture" id=8]
+[ext_resource path="res://Ships/Galleon/sail_left_1.png" type="Texture" id=9]
+[ext_resource path="res://Ships/Galleon/sail_right_1.png" type="Texture" id=10]
+[ext_resource path="res://Ships/Galleon/down_right_2.png" type="Texture" id=11]
+[ext_resource path="res://Ships/Galleon/sail_upright_2.png" type="Texture" id=12]
+[ext_resource path="res://Ships/Galleon/sail_up_2.png" type="Texture" id=13]
+[ext_resource path="res://Ships/Galleon/sail_downleft_2.png" type="Texture" id=14]
+[ext_resource path="res://Ships/Galleon/sail_left_2.png" type="Texture" id=15]
+[ext_resource path="res://Ships/Galleon/sail_up_1.png" type="Texture" id=16]
+[ext_resource path="res://Ships/Galleon/sail_down_2.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Unit Overlays/ship_selection_border.png" type="Texture" id=18]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 4.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "sail_downright",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "sail_up",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "sail_upright",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "sail_upleft",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "sail_downleft",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "sail_left",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "sail_right",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "sail_down",
+"speed": 1.0
+} ]
+
+[node name="Ship" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="SelectionBox" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 18 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "sail_right"
+offset = Vector2( 0, -15 )
+
+[node name="BBox" type="Area2D" parent="."]
+
+[node name="Borders" type="CollisionPolygon2D" parent="BBox"]
+polygon = PoolVector2Array( 10, 6, 22, 0, 22, -11, 11, -30, -12, -30, -22, -11, -22, 0, -11, 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+[connection signal="input_event" from="BBox" to="." method="_on_BBox_input_event"]
+[connection signal="mouse_entered" from="BBox" to="." method="_on_BBox_mouse_entered"]
+[connection signal="mouse_exited" from="BBox" to="." method="_on_BBox_mouse_exited"]

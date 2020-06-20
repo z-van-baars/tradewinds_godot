@@ -2,18 +2,49 @@ extends Node2D
 
 var camera
 var tools
-var silver = 100
+
+signal toggle_logistics_menu
+signal open_city_menu
+
 var artikels
+var own_ship_selected = false
+var ship_selected = null
+
+var silver = 100
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")
 	artikels = get_tree().root.get_node("Main/Artikels")
 	camera = $Ship/Camera2D
+	camera.current = true
+	$Ship.initialize_stats("cog")
+	$Ship.connect_signals(
+		self,
+		get_tree().root.get_node("Main/UILayer/InfoCard"))
+	$Ship.connect(
+		"destination_reached",
+		self,
+		"_on_Ship_destination_reached")
+	$Ship.player_ship = true
 	for _artikel in artikels.artikel_list:
 		$Ship.cargo[_artikel] = 0
 	$Ship.cargo["Salted Beef"] = 3
 	$Ship.cargo["Rum"] = 2
 	$Ship.cargo["Bread"] = 5
+	
+
+func randomize_start(cities):
+	var r_city = tools.r_choice(cities.get_children())
+	var neighbor_tiles = tools.get_neighbor_tiles(
+		Vector2(r_city.tile_x,
+				r_city.tile_y))
+	# filter tiles around a random start city for water only
+	var f_neighbor_tiles = tools.filter_tiles(neighbor_tiles, true)
+	var r_start = tools.r_choice(neighbor_tiles)
+	$Ship.position = get_tree().root.get_node("Main/WorldGen/BiomeMap").map_to_world(r_start)
+
+func get_ship_pos():
+	return $Ship.position
 
 func get_cargo_quantity(artikel_name):
 	return $Ship.cargo[artikel_name]
@@ -24,12 +55,39 @@ func increment_cargo(artikel_name, quantity):
 func increment_silver(quantity):
 	silver += quantity
 
-func _input(event):
-	if event is InputEventScreenTouch and event.pressed:
+func _on_City_right_click(city_node):
+	if own_ship_selected == true:
+		$Ship.destination_city = city_node
 
-		$Ship.target = get_viewport().get_canvas_transform().xform_inv(event.position)
-		$Ship.target = $Ship.target * camera.zoom * camera.zoom
-		$Ship.direction = ($Ship.target - $Ship.position).normalized()
+func _on_Ship_left_click(ship_node):
+	ship_selected = ship_node
+	ship_node.select()
+	own_ship_selected = ship_node.player_ship
+
+func _on_Ship_destination_reached(destination_city):
+	emit_signal("open_city_menu", destination_city)
+	$Ship.clear_destination()
+
+func _input(event):
+	if own_ship_selected == true:
+		if event.is_action_pressed("right_click"):
+			$Ship.target = get_viewport().get_canvas_transform().xform_inv(event.position)
+			$Ship.target = $Ship.target * camera.zoom * camera.zoom
+			$Ship.direction = ($Ship.target - $Ship.position).normalized()
+		elif event.is_action_pressed("left_click"):
+			if ship_selected != null:
+				ship_selected.deselect()
+				ship_selected = null
+				own_ship_selected = false
+
+	elif own_ship_selected == false and ship_selected:
+		if event.is_action_pressed("left_click"):
+			if ship_selected != null:
+				ship_selected.deselect()
+				ship_selected = null
+				own_ship_selected = false
+	else:
+		pass
 #	elif event is InputEventMouseButton:
 #		if event.is_pressed():
 #			# zoom in
@@ -61,3 +119,5 @@ func _input(event):
 		elif camera.zoom.x == 8:
 			camera.zoom.x = 1
 			camera.zoom.y = 1
+	elif event.is_action_pressed("logistics_key"):
+		emit_signal("toggle_logistics_menu")

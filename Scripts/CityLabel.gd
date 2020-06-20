@@ -4,8 +4,8 @@ var tools
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")
 
-func _on_City_hovered(city_name):
-	visible = true
+func _on_City_hovered(city_name, city_position):
+	# visible = true
 	text = city_name
 
 func _on_City_unhovered():

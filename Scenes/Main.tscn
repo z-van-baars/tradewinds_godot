@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -24,7 +24,7 @@
 [ext_resource path="res://Scripts/Artikels.gd" type="Script" id=22]
 [ext_resource path="res://Scripts/BiomeMap.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/Cities.gd" type="Script" id=24]
-[ext_resource path="res://Scripts/CityLabel.gd" type="Script" id=25]
+[ext_resource path="res://Scripts/ShipStats.gd" type="Script" id=25]
 [ext_resource path="res://Scripts/BiomeSelector.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/CityMenu.gd" type="Script" id=27]
 [ext_resource path="res://Fonts/Quicksand/QuicksandBold.tres" type="DynamicFont" id=28]
@@ -51,7 +51,7 @@
 [ext_resource path="res://Assets/UI/Buttons/recenter_hover.png" type="Texture" id=49]
 [ext_resource path="res://Scripts/MapWidget.gd" type="Script" id=50]
 [ext_resource path="res://Scripts/ShipIcon.gd" type="Script" id=51]
-[ext_resource path="res://Ship/down_right.png" type="Texture" id=52]
+[ext_resource path="res://Ships/Galleon/down_right.png" type="Texture" id=52]
 [ext_resource path="res://Assets/UI/quantity_popup.png" type="Texture" id=53]
 [ext_resource path="res://Assets/UI/Buttons/done_regular.png" type="Texture" id=54]
 [ext_resource path="res://Assets/UI/Buttons/max_hover.png" type="Texture" id=55]
@@ -68,6 +68,10 @@
 [ext_resource path="res://Scripts/BuySellMenu.gd" type="Script" id=66]
 [ext_resource path="res://Assets/UI/icons/coin_20.png" type="Texture" id=67]
 [ext_resource path="res://Scripts/Calendar.gd" type="Script" id=68]
+[ext_resource path="res://Scripts/ShipMenu.gd" type="Script" id=69]
+[ext_resource path="res://Assets/UI/ship_status.png" type="Texture" id=70]
+[ext_resource path="res://Scripts/InfoCard.gd" type="Script" id=71]
+[ext_resource path="res://Scripts/Ships.gd" type="Script" id=72]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -133,6 +137,9 @@ script = ExtResource( 30 )
 [node name="Tools" type="Node2D" parent="."]
 script = ExtResource( 33 )
 
+[node name="ShipStats" type="Node2D" parent="."]
+script = ExtResource( 25 )
+
 [node name="Artikels" type="Node2D" parent="."]
 script = ExtResource( 22 )
 
@@ -189,6 +196,9 @@ script = ExtResource( 26 )
 
 [node name="Cities" type="Node2D" parent="."]
 script = ExtResource( 24 )
+
+[node name="Ships" type="Node2D" parent="."]
+script = ExtResource( 72 )
 
 [node name="Player" parent="." instance=ExtResource( 21 )]
 
@@ -257,20 +267,6 @@ margin_right = 42.0
 margin_bottom = 25.0
 texture = ExtResource( 67 )
 
-[node name="CityLabel" type="Label" parent="UILayer"]
-visible = false
-modulate = Color( 0, 0, 0, 1 )
-margin_right = 200.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 29 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-text = "~~~~~~~~~~~~~~~"
-script = ExtResource( 25 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="MapWidget" type="TextureRect" parent="UILayer"]
 margin_left = 1080.0
 margin_top = 521.0
@@ -282,13 +278,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShipButton" type="TextureButton" parent="UILayer/MapWidget"]
+[node name="LogisticsButton" type="TextureButton" parent="UILayer/MapWidget"]
 margin_left = 1.0
 margin_top = 143.0
 margin_right = 57.0
 margin_bottom = 199.0
 texture_normal = ExtResource( 48 )
 texture_pressed = ExtResource( 49 )
+texture_hover = ExtResource( 49 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -783,10 +780,172 @@ margin_bottom = 103.0
 texture_normal = ExtResource( 64 )
 texture_pressed = ExtResource( 55 )
 texture_hover = ExtResource( 55 )
+
+[node name="LogisticsMenu" type="TextureRect" parent="UILayer"]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -250.0
+margin_right = 200.0
+margin_bottom = 250.0
+texture = ExtResource( 70 )
+script = ExtResource( 69 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DragButton" type="Button" parent="UILayer/LogisticsMenu"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 400.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XButton" type="TextureButton" parent="UILayer/LogisticsMenu"]
+margin_left = 376.0
+margin_top = 4.0
+margin_right = 396.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipName" type="Label" parent="UILayer/LogisticsMenu"]
+modulate = Color( 1, 0.811765, 0.407843, 1 )
+margin_left = 215.0
+margin_top = 8.0
+margin_right = 370.0
+margin_bottom = 22.0
+text = "Ship Name Here"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HullLabel" type="Label" parent="UILayer/LogisticsMenu"]
+margin_left = 13.0
+margin_top = 37.0
+margin_right = 173.0
+margin_bottom = 51.0
+text = "Ship of the Line"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedLabel" type="Label" parent="UILayer/LogisticsMenu"]
+margin_left = 11.0
+margin_top = 87.0
+margin_right = 56.0
+margin_bottom = 101.0
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerArtikels" type="HBoxContainer" parent="UILayer/LogisticsMenu"]
+margin_left = 10.0
+margin_top = 208.0
+margin_right = 184.0
+margin_bottom = 485.0
+custom_constants/separation = 130
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/LogisticsMenu/PlayerArtikels"]
+margin_bottom = 277.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/LogisticsMenu/PlayerArtikels"]
+margin_left = 130.0
+margin_right = 130.0
+margin_bottom = 277.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipSprite" type="Sprite" parent="UILayer/LogisticsMenu"]
+position = Vector2( 290, 104 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 52 )
+
+[node name="InfoCard" type="Panel" parent="UILayer"]
+visible = false
+modulate = Color( 1, 1, 1, 0.705882 )
+margin_left = 429.0
+margin_top = 224.0
+margin_right = 573.0
+margin_bottom = 338.0
+mouse_filter = 2
+script = ExtResource( 71 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EntityName" type="Label" parent="UILayer/InfoCard"]
+visible = false
+modulate = Color( 1, 0.811765, 0.407843, 1 )
+margin_left = 4.0
+margin_top = 6.0
+margin_right = 140.0
+margin_bottom = 20.0
+text = "City Name Here"
+align = 1
+
+[node name="HullLabel" type="Label" parent="UILayer/InfoCard"]
+visible = false
+margin_left = 11.0
+margin_top = 28.0
+margin_right = 136.0
+margin_bottom = 42.0
+text = "Galleon"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopLabel" type="Label" parent="UILayer/InfoCard"]
+visible = false
+margin_left = 11.0
+margin_top = 28.0
+margin_right = 136.0
+margin_bottom = 42.0
+text = "Pop - 58,000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeedLabel" type="Label" parent="UILayer/InfoCard"]
+visible = false
+margin_left = 11.0
+margin_top = 48.0
+margin_right = 136.0
+margin_bottom = 62.0
+text = "Speed - "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="date_changed" from="Calendar" to="UILayer/DateBar" method="_on_Calendar_date_changed"]
 [connection signal="timeout" from="Calendar/Timer" to="Calendar" method="_on_Timer_timeout"]
-[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
+[connection signal="open_city_menu" from="Player" to="UILayer/CityMenu" method="_on_Player_open_city_menu"]
+[connection signal="toggle_logistics_menu" from="Player" to="UILayer/LogisticsMenu" method="_on_Player_toggle_logistics_menu"]
+[connection signal="pressed" from="UILayer/MapWidget/LogisticsButton" to="UILayer/LogisticsMenu" method="_on_LogisticsButton_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]
@@ -813,3 +972,6 @@ texture_hover = ExtResource( 55 )
 [connection signal="pressed" from="UILayer/BuySellMenu/RightArrow" to="UILayer/BuySellMenu" method="_on_RightArrow_pressed"]
 [connection signal="pressed" from="UILayer/BuySellMenu/Min" to="UILayer/BuySellMenu" method="_on_Min_pressed"]
 [connection signal="pressed" from="UILayer/BuySellMenu/Max" to="UILayer/BuySellMenu" method="_on_Max_pressed"]
+[connection signal="button_down" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_down"]
+[connection signal="button_up" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_up"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/XButton" to="UILayer/LogisticsMenu" method="_on_XButton_pressed"]

@@ -109,10 +109,6 @@ func _on_MarketButton_pressed():
 	city_menu.hide()
 	show()
 
-func _on_City_clicked(city_to_open):
-	open_city = city_to_open
-	set_all()
-
 func _on_Artikel_clicked(artikel_list_id, sell):
 	if sell:
 		$PlayerArtikels/ArtikelsVbox.get_children()[artikel_to_sell].set_box_visible(false)
@@ -123,6 +119,7 @@ func _on_Artikel_clicked(artikel_list_id, sell):
 		artikel_to_buy = artikel_list_id
 		$MarketArtikels/ArtikelsVbox.get_children()[artikel_to_buy].set_box_visible(true)
 	print(artikel_to_buy)
+
 func _on_BackButton_pressed():
 	hide()
 	city_menu.show()

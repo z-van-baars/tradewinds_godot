@@ -1,4 +1,3 @@
-tool
 extends TileMap
 var worldgen
 var biomemap

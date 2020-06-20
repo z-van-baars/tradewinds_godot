@@ -31,8 +31,12 @@ func clear_all():
 func set_all():
 	var root = get_tree().root
 	market_menu = root.get_node("Main/UILayer/MarketMenu")
+	market_menu.open_city = open_city
+	market_menu.set_all()
+
 	$CityName.text = str(open_city.city_name)
 	$CityPortrait.texture = portraits[open_city.portrait_id]
+
 
 func _on_XButton_pressed():
 	get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").hide()
@@ -40,14 +44,6 @@ func _on_XButton_pressed():
 	clear_all()
 	market_menu.clear_all()
 	hide()
-
-func _on_City_clicked(city_to_open):
-	get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").show()
-	get_tree().paused = true
-	open_city = city_to_open
-	set_all()
-	show()
-	# get_tree().paused = true
 
 func _on_CityMenu_visibility_changed():
 	clear_all()
@@ -60,3 +56,10 @@ func _on_DragButton_button_down():
 func _on_DragButton_button_up():
 	dragging = false
 	drag_offset = rect_position - get_global_mouse_position()
+
+func _on_Player_open_city_menu(city_to_open):
+	get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").show()
+	get_tree().paused = true
+	open_city = city_to_open
+	set_all()
+	show()

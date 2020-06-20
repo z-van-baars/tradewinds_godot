@@ -10,6 +10,26 @@ var biomemap = []
 var tools
 var city_scene = preload("res://Scenes/City.tscn")
 var city_tiles = [0, 1]
+var available_names = []
+var taken_names = []
+
+
+func _ready():
+	load_city_names("C:/Users/Zac/Godot Projects/Tradewinds_v1/City/city_names.txt")
+
+func load_city_names(filename):
+	var cn = File.new()
+	cn.open(filename, File.READ)
+	while not cn.eof_reached():
+		var line = cn.get_line()
+		available_names.append(line)
+	cn.close()
+
+func get_name():
+	var r_name = available_names[randi() % available_names.size()]
+	taken_names.append(r_name)
+	available_names.erase(r_name)
+	return r_name
 
 func set_map_parameters(map_width, map_height, maps):
 	width = map_width
@@ -52,9 +72,8 @@ func pick_cities(l_coastal_tiles):
 		add_child(new_city)
 		new_city.initialize()
 		new_city.connect_signals(
-			get_tree().root.get_node("Main/UILayer/CityLabel"),
-			get_tree().root.get_node("Main/UILayer/CityMenu"),
-			get_tree().root.get_node("Main/UILayer/MarketMenu"))
+			get_tree().root.get_node("Main/Player"),
+			get_tree().root.get_node("Main/UILayer/InfoCard"))
 		get_tree().root.get_node("Main/WorldGen/CityMap").set_cell(
 			new_city.tile_x,
 			new_city.tile_y,

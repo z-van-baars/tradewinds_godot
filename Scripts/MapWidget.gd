@@ -10,7 +10,6 @@ func setup_references(biomemap):
 	map_width = biomemap.size()
 	map_height = biomemap.size()
 	tilemap_reference = get_tree().root.get_node("Main/WorldGen/BiomeMap")
-	print(tilemap_reference)
 	player = get_tree().root.get_node("Main/Player")
 
 func redraw_minimaps(biomemap):
