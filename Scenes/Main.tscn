@@ -213,8 +213,8 @@ script = ExtResource( 72 )
 [node name="DateBar" type="ColorRect" parent="UILayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -960.0
-margin_right = 960.0
+margin_left = -640.0
+margin_right = 640.0
 margin_bottom = 27.0
 color = Color( 0, 0, 0, 0.392157 )
 script = ExtResource( 32 )
@@ -922,45 +922,11 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -68.0
-margin_top = -113.5
+margin_top = -109.5
 margin_right = 68.0
-margin_bottom = -92.5
+margin_bottom = -88.5
 custom_fonts/font = ExtResource( 75 )
 text = "City Name Here"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HullLabel" type="Label" parent="UILayer/InfoCard"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -62.5
-margin_top = -60.0
-margin_right = 62.5
-margin_bottom = -39.0
-custom_fonts/font = ExtResource( 75 )
-text = "Galleon"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PopLabel" type="Label" parent="UILayer/InfoCard"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -62.5
-margin_top = -60.0
-margin_right = 62.5
-margin_bottom = -39.0
-custom_fonts/font = ExtResource( 75 )
-text = "Pop - 58,000"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -971,9 +937,9 @@ visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -118.0
-margin_top = 32.0
+margin_top = 40.0
 margin_right = 118.0
-margin_bottom = 53.0
+margin_bottom = 61.0
 custom_fonts/font = ExtResource( 75 )
 text = "Captain - Bartholomew Wiggins"
 align = 1
@@ -988,11 +954,45 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -62.5
-margin_top = -88.0
+margin_top = -80.0
 margin_right = 62.5
-margin_bottom = -67.0
+margin_bottom = -59.0
 custom_fonts/font = ExtResource( 75 )
 text = "Lord - Unknown"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HullLabel" type="Label" parent="UILayer/InfoCard"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -50.0
+margin_right = 63.0
+margin_bottom = -29.0
+custom_fonts/font = ExtResource( 75 )
+text = "Galleon"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopLabel" type="Label" parent="UILayer/InfoCard"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.5
+margin_top = -50.0
+margin_right = 62.5
+margin_bottom = -29.0
+custom_fonts/font = ExtResource( 75 )
+text = "Pop - 58,000"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1005,9 +1005,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -63.13
-margin_top = -36.0
+margin_top = -22.0
 margin_right = 61.87
-margin_bottom = -15.0
+margin_bottom = -1.0
 custom_fonts/font = ExtResource( 75 )
 text = "Speed - "
 align = 1
@@ -1019,8 +1019,8 @@ __meta__ = {
 [connection signal="open_city_menu" from="Player" to="UILayer/CityMenu" method="_on_Player_open_city_menu"]
 [connection signal="toggle_logistics_menu" from="Player" to="UILayer/LogisticsMenu" method="_on_Player_toggle_logistics_menu"]
 [connection signal="pressed" from="UILayer/MapWidget/LogisticsButton" to="UILayer/LogisticsMenu" method="_on_LogisticsButton_pressed"]
-[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]

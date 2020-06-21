@@ -28,7 +28,7 @@ func initialize():
 	set_label()
 
 func set_label():
-	$BBox/Label/NameLabel.text = city_name
+	$BBox/Label/NameLabel.text = city_name.capitalize()
 
 func increment_supply(artikel_name, quantity):
 	artikel_supply[artikel_name] += quantity
