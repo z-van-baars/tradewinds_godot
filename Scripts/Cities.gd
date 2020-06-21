@@ -15,7 +15,7 @@ var taken_names = []
 
 
 func _ready():
-	load_city_names("C:/Users/Zac/Godot Projects/Tradewinds_v1/City/city_names.txt")
+	load_city_names("res://City/city_names.txt")
 
 func load_city_names(filename):
 	var cn = File.new()

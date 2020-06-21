@@ -19,7 +19,7 @@ func set_all(artikel_str, artikel_max, cost, psilver=-1):
 	artikel_cost = cost
 	silver = psilver
 	$ArtikelLabel.text = artikel_str
-	if artikel_cost > 0:
+	if artikel_cost < 0:
 		$BuySellLabel.text = "Buy How Many?"
 	else:
 		$BuySellLabel.text = "Sell How Many?"

@@ -1,6 +1,7 @@
 extends Node
 
 func _ready():
+	print("starting")
 	$UILayer/MainMenu.show()
 	get_tree().paused = true
 

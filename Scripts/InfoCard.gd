@@ -10,11 +10,15 @@ func _on_Entity_hovered(entity_type, stats):
 	if entity_type == 0:
 		$EntityName.text = stats[0].capitalize()
 		$EntityName.visible = true
+		$LordLabel.text = "Lord - Uknown"
+		$LordLabel.visible = true
 		$PopLabel.text = "Pop - " + str(stats[1])
 		$PopLabel.visible = true
 	elif entity_type == 1:
 		$EntityName.text = stats[0].capitalize()
 		$EntityName.visible = true
+		$CaptainLabel.text = "Captain - Unknown"
+		$CaptainLabel.visible = true
 		$HullLabel.text = "Ship Class - " + stats[1].capitalize()
 		$HullLabel.visible = true
 		$SpeedLabel.text = "Speed - " + str(stats[2])

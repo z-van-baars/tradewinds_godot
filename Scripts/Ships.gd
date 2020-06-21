@@ -3,7 +3,7 @@ var available_names = []
 var taken_names = []
 
 func _ready():
-	load_ship_names("C:/Users/Zac/Godot Projects/Tradewinds_v1/Ships/ship_names.txt")
+	load_ship_names("res://Ships/ship_names.txt")
 
 func load_ship_names(filename):
 	var cn = File.new()

@@ -164,7 +164,8 @@ func _on_Sell_pressed():
 	get_tree().root.get_node("Main/UILayer/BuySellMenu").set_all(
 		artikel_str,
 		player.get_cargo_quantity(artikel_str),
-		open_city.get_price(artikel_str))
+		open_city.get_price(artikel_str),
+		player.silver)
 	get_tree().root.get_node("Main/UILayer/BuySellMenu").show()
 
 

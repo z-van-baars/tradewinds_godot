@@ -69,6 +69,38 @@ func _on_Ship_destination_reached(destination_city):
 	$Ship.clear_destination()
 
 func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+	elif event.is_action_pressed("F_11"):
+		OS.window_fullscreen = !OS.window_fullscreen
+	elif event.is_action_pressed("logistics_key"):
+		emit_signal("toggle_logistics_menu")
+	elif event.is_action_pressed("ui_zoom"):
+		if camera.zoom.x == 1:
+			camera.zoom.x = 2
+			camera.zoom.y = 2
+		elif camera.zoom.x == 2:
+			camera.zoom.x = 4
+			camera.zoom.y = 4
+		elif camera.zoom.x == 4:
+			camera.zoom.x = 8
+			camera.zoom.y = 8
+		elif camera.zoom.x == 8:
+			camera.zoom.x = 1
+			camera.zoom.y = 1
+#	elif event.is_action_pressed("scrollwheel_up"):
+#		var zoom_pos = get_global_mouse_position()
+#		camera.zoom.x -= 1
+#		camera.zoom.y -= 1
+#		camera.zoom.x = round(camera.zoom.x)
+#		camera.zoom.y = round(camera.zoom.y)
+#	elif event.is_action_pressed("scrollwheel_down"):
+#		var zoom_pos = get_global_mouse_position()
+#		camera.zoom.x += 1
+#		camera.zoom.y += 1
+#		camera.zoom.x = round(camera.zoom.x)
+#		camera.zoom.y = round(camera.zoom.y)
+
 	if own_ship_selected == true:
 		if event.is_action_pressed("right_click"):
 			$Ship.target = get_viewport().get_canvas_transform().xform_inv(event.position)
@@ -86,38 +118,6 @@ func _input(event):
 				ship_selected.deselect()
 				ship_selected = null
 				own_ship_selected = false
-	else:
-		pass
-#	elif event is InputEventMouseButton:
-#		if event.is_pressed():
-#			# zoom in
-#			if event.button_index == BUTTON_WHEEL_UP:
-#				var zoom_pos = get_global_mouse_position()
-#				camera.zoom.x -= 1
-#				camera.zoom.y -= 1
-#				camera.zoom.x = round(camera.zoom.x)
-#				camera.zoom.y = round(camera.zoom.y)
-#				print("\n", camera.zoom)
-#			# zoom out
-#			elif event.button_index == BUTTON_WHEEL_DOWN:
-#				var zoom_pos = get_global_mouse_position()
-#				camera.zoom.x += 1
-#				camera.zoom.y += 1
-#				camera.zoom.x = round(camera.zoom.x)
-#				camera.zoom.y = round(camera.zoom.y)
-#				print("\n", camera.zoom)
-	if event.is_action_pressed("ui_zoom"):
-		if camera.zoom.x == 1:
-			camera.zoom.x = 2
-			camera.zoom.y = 2
-		elif camera.zoom.x == 2:
-			camera.zoom.x = 4
-			camera.zoom.y = 4
-		elif camera.zoom.x == 4:
-			camera.zoom.x = 8
-			camera.zoom.y = 8
-		elif camera.zoom.x == 8:
-			camera.zoom.x = 1
-			camera.zoom.y = 1
-	elif event.is_action_pressed("logistics_key"):
-		emit_signal("toggle_logistics_menu")
+
+
+
