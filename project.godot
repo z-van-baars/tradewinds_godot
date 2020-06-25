@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Tradewinds_v1"
 run/main_scene="res://Scenes/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://Ships/Galleon/down_right.png"
 
 [display]
 

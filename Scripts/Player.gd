@@ -103,9 +103,10 @@ func _input(event):
 
 	if own_ship_selected == true:
 		if event.is_action_pressed("right_click"):
-			$Ship.target = get_viewport().get_canvas_transform().xform_inv(event.position)
-			$Ship.target = $Ship.target * camera.zoom * camera.zoom
-			$Ship.direction = ($Ship.target - $Ship.position).normalized()
+			var new_target = get_viewport().get_canvas_transform().xform_inv(event.position)
+			var adjusted_target = new_target * camera.zoom * camera.zoom
+			$Ship.set_target(adjusted_target)
+			
 		elif event.is_action_pressed("left_click"):
 			if ship_selected != null:
 				ship_selected.deselect()
@@ -118,6 +119,10 @@ func _input(event):
 				ship_selected.deselect()
 				ship_selected = null
 				own_ship_selected = false
+	elif own_ship_selected == false and ship_selected == null:
+		if event.is_action_pressed("left_click"):
+			var world_pos = get_viewport().get_canvas_transform().xform_inv(event.position)
+			get_tree().root.get_node("Main/Captains").spawn_captain(world_pos)
 
 
 

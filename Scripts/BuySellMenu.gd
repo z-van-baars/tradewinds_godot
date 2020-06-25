@@ -48,13 +48,11 @@ func _on_DragButton_button_up():
 
 
 func _on_LeftArrow_pressed():
-	print("left arrow")
 	quantity = max(0, quantity - 1)
 	update_labels()
 
 
 func _on_RightArrow_pressed():
-	print("right arrow")
 	quantity = min(
 			max_quantity,
 			quantity + 1)
@@ -71,7 +69,6 @@ func _on_RightArrow_pressed():
 
 
 func _on_Cancel_pressed():
-	print("Cancel")
 	hide()
 
 

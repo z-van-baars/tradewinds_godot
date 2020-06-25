@@ -1,9 +1,11 @@
 extends Node2D
 var available_names = []
 var taken_names = []
+var player
 
 func _ready():
 	load_ship_names("res://Ships/ship_names.txt")
+	
 
 func load_ship_names(filename):
 	var cn = File.new()
@@ -18,3 +20,5 @@ func get_name():
 	taken_names.append(r_name)
 	available_names.erase(r_name)
 	return r_name
+
+	

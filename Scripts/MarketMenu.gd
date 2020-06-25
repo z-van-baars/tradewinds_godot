@@ -118,7 +118,6 @@ func _on_Artikel_clicked(artikel_list_id, sell):
 		$MarketArtikels/ArtikelsVbox.get_children()[artikel_to_buy].set_box_visible(false)
 		artikel_to_buy = artikel_list_id
 		$MarketArtikels/ArtikelsVbox.get_children()[artikel_to_buy].set_box_visible(true)
-	print(artikel_to_buy)
 
 func _on_BackButton_pressed():
 	hide()
@@ -170,7 +169,6 @@ func _on_Sell_pressed():
 
 
 func _on_BuySellMenu_purchase(artikel_str, quantity):
-	print(quantity)
 	player.increment_cargo(artikel_str, quantity)
 	player.increment_silver(quantity * -open_city.get_price(artikel_str))
 	open_city.increment_supply(artikel_str, -quantity)

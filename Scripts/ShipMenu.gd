@@ -74,7 +74,6 @@ func _input(event):
 	# selected
 	if (event.is_action_pressed("logistics_key") 
 		or event.is_action_pressed("ui_cancel")):
-		print("Close dat menu")
 		close()
 
 func _on_LogisticsButton_pressed():

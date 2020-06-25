@@ -74,6 +74,10 @@ func zero_target():
 func clear_destination():
 	destination_city = null
 
+func set_target(new_target):
+	target = new_target
+	direction = (target - position).normalized()
+
 func select():
 	selected = true
 	$SelectionBox.visible = true
