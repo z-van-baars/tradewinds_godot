@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -75,6 +75,10 @@
 [ext_resource path="res://Fonts/TimesSS/TIMESS__.ttf" type="DynamicFontData" id=73]
 [ext_resource path="res://Fonts/Prince Valiant/PrinceValiant.tres" type="DynamicFont" id=74]
 [ext_resource path="res://Fonts/TimesSS/TimesHeader18.tres" type="DynamicFont" id=75]
+[ext_resource path="res://Scripts/Battle.gd" type="Script" id=76]
+[ext_resource path="res://Scripts/Encounter.gd" type="Script" id=77]
+[ext_resource path="res://Fonts/Capitalis/Capitalis.tres" type="DynamicFont" id=78]
+[ext_resource path="res://Fonts/Capitalis/CapitalisTypOasis.ttf" type="DynamicFontData" id=79]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -137,6 +141,14 @@
 [sub_resource type="DynamicFont" id=2]
 size = 22
 font_data = ExtResource( 73 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+font_data = ExtResource( 79 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 79 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 30 )
@@ -241,6 +253,7 @@ __meta__ = {
 }
 
 [node name="StatusLabel" type="Label" parent="UILayer/DateBar"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -610,6 +623,199 @@ texture_pressed = ExtResource( 38 )
 texture_hover = ExtResource( 38 )
 
 [node name="SilverLabel" type="Label" parent="UILayer/MarketMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -247.424
+margin_top = 215.205
+margin_right = -47.4244
+margin_bottom = 236.205
+custom_fonts/font = ExtResource( 75 )
+text = "Silver: 0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LootMenu" type="TextureRect" parent="UILayer"]
+pause_mode = 2
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = 250.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DragButton" type="Button" parent="UILayer/LootMenu"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 4.0
+margin_right = 500.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OtherArtikels" type="HBoxContainer" parent="UILayer/LootMenu"]
+margin_left = 34.0
+margin_top = 58.0
+margin_right = 245.0
+margin_bottom = 405.0
+custom_constants/separation = 170
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/LootMenu/OtherArtikels"]
+margin_bottom = 347.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/LootMenu/OtherArtikels"]
+margin_left = 170.0
+margin_right = 170.0
+margin_bottom = 347.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerArtikels" type="HBoxContainer" parent="UILayer/LootMenu"]
+margin_left = 250.0
+margin_top = 58.0
+margin_right = 466.0
+margin_bottom = 405.0
+custom_constants/separation = 170
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtikelsVbox" type="VBoxContainer" parent="UILayer/LootMenu/PlayerArtikels"]
+margin_bottom = 347.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/LootMenu/PlayerArtikels"]
+margin_left = 170.0
+margin_right = 170.0
+margin_bottom = 347.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EntityName" type="Label" parent="UILayer/LootMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -182.0
+margin_top = 2.0
+margin_right = 182.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 74 )
+text = "Whatever Market"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CargoLabel" type="Label" parent="UILayer/LootMenu"]
+margin_left = 313.571
+margin_top = 442.063
+margin_right = 367.571
+margin_bottom = 466.063
+custom_fonts/font = ExtResource( 75 )
+text = "15 / 50"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XButton" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 475.0
+margin_top = 4.0
+margin_right = 495.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 14 )
+
+[node name="MarketUp" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 14.0
+margin_top = 58.0
+margin_right = 34.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 16 )
+
+[node name="MarketDown" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 14.0
+margin_top = 385.0
+margin_right = 34.0
+margin_bottom = 405.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 13 )
+
+[node name="PlayerUp" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 466.0
+margin_top = 58.0
+margin_right = 486.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 16 )
+
+[node name="PlayerDown" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 466.0
+margin_top = 385.0
+margin_right = 486.0
+margin_bottom = 405.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 13 )
+
+[node name="BackButton" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 24.0
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+
+[node name="Sell" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 254.0
+margin_top = 411.0
+margin_right = 304.0
+margin_bottom = 441.0
+texture_normal = ExtResource( 40 )
+texture_pressed = ExtResource( 41 )
+texture_hover = ExtResource( 41 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buy" type="TextureButton" parent="UILayer/LootMenu"]
+margin_left = 39.0
+margin_top = 411.0
+margin_right = 89.0
+margin_bottom = 441.0
+texture_normal = ExtResource( 42 )
+texture_pressed = ExtResource( 38 )
+texture_hover = ExtResource( 38 )
+
+[node name="SilverLabel" type="Label" parent="UILayer/LootMenu"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1018,6 +1224,160 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="EncounterScreen" type="ColorRect" parent="UILayer"]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.113725, 0.219608, 0.298039, 1 )
+script = ExtResource( 77 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FightButton" type="Button" parent="UILayer/EncounterScreen"]
+margin_left = 210.0
+margin_top = 521.0
+margin_right = 580.0
+margin_bottom = 608.0
+
+[node name="FightLabel" type="Label" parent="UILayer/EncounterScreen/FightButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = -13.0
+margin_right = 43.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 3 )
+text = "Fight"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeaveButton" type="Button" parent="UILayer/EncounterScreen"]
+margin_left = 758.0
+margin_top = 521.0
+margin_right = 1128.0
+margin_bottom = 608.0
+
+[node name="LeaveLabel" type="Label" parent="UILayer/EncounterScreen/LeaveButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -46.0
+margin_top = -13.0
+margin_right = 46.0
+margin_bottom = 13.0
+custom_fonts/font = SubResource( 4 )
+text = "Leave"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BattleScreen" type="ColorRect" parent="UILayer"]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0.113725, 0.219608, 0.298039, 1 )
+script = ExtResource( 76 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinButton" type="Button" parent="UILayer/BattleScreen"]
+margin_left = 407.0
+margin_top = 596.0
+margin_right = 550.0
+margin_bottom = 679.0
+
+[node name="WinLabel" type="Label" parent="UILayer/BattleScreen/WinButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -17.5
+margin_top = -9.0
+margin_right = 17.5
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 78 )
+text = "Win"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoseButton" type="Button" parent="UILayer/BattleScreen"]
+margin_left = 613.0
+margin_top = 595.0
+margin_right = 771.0
+margin_bottom = 679.0
+
+[node name="LoseLabel" type="Label" parent="UILayer/BattleScreen/LoseButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -22.0
+margin_top = -9.0
+margin_right = 22.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 78 )
+text = "Lose"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack1Button" type="Button" parent="UILayer/BattleScreen"]
+margin_left = 408.0
+margin_top = 318.0
+margin_right = 580.0
+margin_bottom = 392.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack1Label" type="Label" parent="UILayer/BattleScreen/Attack1Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.5
+margin_top = -9.0
+margin_right = 62.5
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 78 )
+text = "Attack One"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack2Button" type="Button" parent="UILayer/BattleScreen"]
+margin_left = 407.0
+margin_top = 450.0
+margin_right = 579.0
+margin_bottom = 527.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack2Label" type="Label" parent="UILayer/BattleScreen/Attack2Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -9.0
+margin_right = 67.0
+margin_bottom = 9.0
+custom_fonts/font = ExtResource( 78 )
+text = "Attack Two"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OutcomeMessageTimer" type="Timer" parent="UILayer/BattleScreen"]
+wait_time = 3.0
 [connection signal="date_changed" from="Calendar" to="UILayer/DateBar" method="_on_Calendar_date_changed"]
 [connection signal="timeout" from="Calendar/Timer" to="Calendar" method="_on_Timer_timeout"]
 [connection signal="open_city_menu" from="Player" to="UILayer/CityMenu" method="_on_Player_open_city_menu"]
@@ -1041,6 +1401,16 @@ __meta__ = {
 [connection signal="pressed" from="UILayer/MarketMenu/BackButton" to="UILayer/MarketMenu" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/Sell" to="UILayer/MarketMenu" method="_on_Sell_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/Buy" to="UILayer/MarketMenu" method="_on_Buy_pressed"]
+[connection signal="button_down" from="UILayer/LootMenu/DragButton" to="UILayer/LootMenu" method="_on_DragButton_button_down"]
+[connection signal="button_up" from="UILayer/LootMenu/DragButton" to="UILayer/LootMenu" method="_on_DragButton_button_up"]
+[connection signal="pressed" from="UILayer/LootMenu/XButton" to="UILayer/LootMenu" method="_on_XButton_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/MarketUp" to="UILayer/LootMenu" method="_on_MarketUp_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/MarketDown" to="UILayer/LootMenu" method="_on_MarketDown_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/PlayerUp" to="UILayer/LootMenu" method="_on_ShipUp_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/PlayerDown" to="UILayer/LootMenu" method="_on_ShipDown_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/BackButton" to="UILayer/LootMenu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/Sell" to="UILayer/LootMenu" method="_on_Sell_pressed"]
+[connection signal="pressed" from="UILayer/LootMenu/Buy" to="UILayer/LootMenu" method="_on_Buy_pressed"]
 [connection signal="purchase" from="UILayer/BuySellMenu" to="UILayer/MarketMenu" method="_on_BuySellMenu_purchase"]
 [connection signal="sale" from="UILayer/BuySellMenu" to="UILayer/MarketMenu" method="_on_BuySellMenu_sale"]
 [connection signal="button_down" from="UILayer/BuySellMenu/DragButton" to="UILayer/BuySellMenu" method="_on_DragButton_button_down"]
@@ -1054,3 +1424,8 @@ __meta__ = {
 [connection signal="button_down" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_up"]
 [connection signal="pressed" from="UILayer/LogisticsMenu/XButton" to="UILayer/LogisticsMenu" method="_on_XButton_pressed"]
+[connection signal="pressed" from="UILayer/EncounterScreen/FightButton" to="UILayer/BattleScreen" method="_on_FightButton_pressed"]
+[connection signal="pressed" from="UILayer/EncounterScreen/LeaveButton" to="UILayer/EncounterScreen" method="_on_LeaveButton_pressed"]
+[connection signal="pressed" from="UILayer/BattleScreen/WinButton" to="UILayer/BattleScreen" method="_on_WinButton_pressed"]
+[connection signal="pressed" from="UILayer/BattleScreen/LoseButton" to="UILayer/BattleScreen" method="_on_LoseButton_pressed"]
+[connection signal="timeout" from="UILayer/BattleScreen/OutcomeMessageTimer" to="UILayer/DateBar" method="_on_OutcomeMessageTimer_timeout"]

@@ -6,6 +6,8 @@ var tools
 signal toggle_logistics_menu
 signal open_city_menu
 
+var spawn_mode = false
+
 var artikels
 var own_ship_selected = false
 var ship_selected = null
@@ -88,6 +90,14 @@ func _input(event):
 		elif camera.zoom.x == 8:
 			camera.zoom.x = 1
 			camera.zoom.y = 1
+	elif event.is_action_pressed("spawn_key"):
+		get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").visible = true
+		get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").text = "Spawn Mode"
+		spawn_mode = true
+	elif event.is_action_released("spawn_key"):
+		get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").visible = false
+		get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").text = "Paused"
+		spawn_mode = false
 #	elif event.is_action_pressed("scrollwheel_up"):
 #		var zoom_pos = get_global_mouse_position()
 #		camera.zoom.x -= 1
@@ -119,10 +129,12 @@ func _input(event):
 				ship_selected.deselect()
 				ship_selected = null
 				own_ship_selected = false
+
 	elif own_ship_selected == false and ship_selected == null:
-		if event.is_action_pressed("left_click"):
+		if event.is_action_pressed("left_click") and spawn_mode == true:
 			var world_pos = get_viewport().get_canvas_transform().xform_inv(event.position)
 			get_tree().root.get_node("Main/Captains").spawn_captain(world_pos)
 
+	
 
 
