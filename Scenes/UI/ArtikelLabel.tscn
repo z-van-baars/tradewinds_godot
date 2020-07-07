@@ -6,8 +6,8 @@
 [node name="ArtikelLabel" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1110.0
-margin_bottom = -703.0
+margin_right = -1470.0
+margin_bottom = -1050.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -16,7 +16,7 @@ __meta__ = {
 [node name="SelectionBox" type="ColorRect" parent="."]
 visible = false
 margin_top = -1.0
-margin_right = 170.0
+margin_right = 450.0
 margin_bottom = 17.0
 color = Color( 0.470588, 0.337255, 0.14902, 1 )
 __meta__ = {
@@ -26,7 +26,7 @@ __meta__ = {
 [node name="Button" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = -1.0
-margin_right = 170.0
+margin_right = 450.0
 margin_bottom = 19.0
 __meta__ = {
 "_edit_use_anchors_": false

@@ -6,14 +6,17 @@ var player
 var city_menu
 var artikel_label_scene = preload("res://Scenes/UI/ArtikelLabel.tscn")
 var quantity_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")
+var value_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")
 var artikel_to_sell = 0
 var artikel_to_buy = 0
 var city_artikels_list = []
 var player_artikels_list = []
 var market_artikels_column
 var market_quantities_column
+var market_values_column
 var player_artikels_column
 var player_quantities_column
+var player_values_column
 var dragging = false
 var drag_offset = Vector2(0, 0)
 
@@ -22,11 +25,12 @@ func _ready():
 	artikels = get_tree().root.get_node("Main/Artikels")
 	market_artikels_column = $MarketArtikels/ArtikelsVbox
 	market_quantities_column = $MarketArtikels/QuantitiesVbox
+	market_values_column = $MarketArtikels/ValueVbox
 	player_artikels_column = $PlayerArtikels/ArtikelsVbox
 	player_quantities_column = $PlayerArtikels/QuantitiesVbox
+	player_values_column = $PlayerArtikels/ValueVbox
 	player = get_tree().root.get_node("Main/Player")
 	clear_all()
-
 
 func _process(delta):
 	# Right now it's possible to drag the menu offscreen
@@ -47,15 +51,16 @@ func clear_all():
 	player_artikels_list = []
 	for t_column in [
 		market_artikels_column,
-		market_quantities_column]:
+		market_quantities_column,
+		market_values_column]:
 		for child in t_column.get_children():
 			child.queue_free()
 	for t_column in [
 		player_artikels_column,
-		player_quantities_column]:
+		player_quantities_column,
+		player_values_column]:
 		for child in t_column.get_children():
 			child.queue_free()
-
 
 func set_all():
 	clear_all()
@@ -75,12 +80,16 @@ func create_market_labels():
 			city_artikels_list.append(artikel)
 			var alabel = artikel_label_scene.instance()
 			var qlabel = quantity_label_scene.instance()
-			alabel.get_node("Label").text = str(artikel) + "  $" + str(open_city.get_price(artikel))
+			var vlabel = value_label_scene.instance()
+			alabel.get_node("Label").text = str(artikel)
 			alabel.artikel_list_index = list_count
 			alabel.connect_box(self)
 			qlabel.get_node("Label").text = str(open_city.artikel_supply[artikel])
+			vlabel.get_node("Label").text = str(open_city.get_price(artikel))
+			vlabel.get_node("Label").modulate = artikels.get_color(artikel, open_city.get_price(artikel))
 			market_artikels_column.add_child(alabel)
 			market_quantities_column.add_child(qlabel)
+			market_values_column.add_child(vlabel)
 			list_count += 1
 
 func create_player_labels():
@@ -90,13 +99,17 @@ func create_player_labels():
 			player_artikels_list.append(artikel)
 			var alabel = artikel_label_scene.instance()
 			var qlabel = quantity_label_scene.instance()
-			alabel.get_node("Label").text = str(artikel) + "  $" + str(open_city.get_price(artikel))
+			var vlabel = value_label_scene.instance()
+			alabel.get_node("Label").text = str(artikel)
 			alabel.artikel_list_index = list_count
 			alabel.sell = true
 			alabel.connect_box(self)
 			qlabel.get_node("Label").text = str(player.get_cargo_quantity(artikel))
+			vlabel.get_node("Label").text = str(open_city.get_price(artikel))
+			vlabel.get_node("Label").modulate = artikels.get_color(artikel, open_city.get_price(artikel))
 			player_artikels_column.add_child(alabel)
 			player_quantities_column.add_child(qlabel)
+			player_values_column.add_child(vlabel)
 			list_count += 1
 
 func _on_XButton_pressed():

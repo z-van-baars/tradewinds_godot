@@ -146,3 +146,15 @@ var artikel_list = (
 	spices +
 	treasure)
 
+func get_color(artikel, artikel_price):
+	if artikel_price >= base_price[artikel] * 1.3:
+		return Color.red
+	elif artikel_price > base_price[artikel] * 1.1 and artikel_price < base_price[artikel] * 1.3:
+		return Color.firebrick
+	elif artikel_price < base_price[artikel] * 0.9 and artikel_price > base_price[artikel] * 0.7:
+		return Color.darkgreen
+		
+	elif artikel_price <= base_price[artikel] * 0.7:
+		return Color.green
+	return Color.goldenrod
+	
