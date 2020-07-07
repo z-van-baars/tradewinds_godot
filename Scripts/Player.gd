@@ -22,7 +22,8 @@ func _ready():
 	$Ship.initialize_stats("cog")
 	$Ship.connect_signals(
 		self,
-		get_tree().root.get_node("Main/UILayer/InfoCard"))
+		get_tree().root.get_node("Main/UILayer/InfoCard"),
+		get_tree().root.get_node("Main/Dispatcher"))
 	$Ship.connect(
 		"destination_reached",
 		self,
@@ -65,6 +66,9 @@ func _on_Ship_left_click(ship_node):
 	ship_selected = ship_node
 	ship_node.select()
 	own_ship_selected = ship_node.player_ship
+
+func _on_Ship_right_click(ship_node):
+	$Ship.target_entity = ship_node
 
 func _on_Ship_destination_reached(destination_city):
 	emit_signal("open_city_menu", destination_city)
@@ -135,6 +139,6 @@ func _input(event):
 			var world_pos = get_viewport().get_canvas_transform().xform_inv(event.position)
 			get_tree().root.get_node("Main/Captains").spawn_captain(world_pos)
 
-	
+
 
 

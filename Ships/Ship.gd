@@ -16,7 +16,9 @@ var last_direction = Vector2(0, 1)
 var direction : Vector2
 var target : Vector2
 var destination_city = null
+var target_entity = null
 var player_ship = false
+var captain = null
 
 # variable stats, filled out for different ships
 var ship_name
@@ -24,19 +26,19 @@ var hull
 var speed
 var cargo_cap
 
-
-
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")
 	ship_stats = get_tree().root.get_node("Main/ShipStats")
 
-func initialize_stats(hull_class):
+func initialize_stats(hull_class, import_captain=null):
 	ship_name = "The " + get_tree().root.get_node("Main/Ships").get_name()
 	hull = hull_class
 	speed = ship_stats.speed[hull_class]
 	cargo_cap = ship_stats.cargo_cap[hull_class]
+	if import_captain != null:
+		captain = import_captain
 
-func connect_signals(player_node, info_card):
+func connect_signals(player_node, info_card, dispatch_node):
 	self.connect(
 		"left_click",
 		player_node,
@@ -53,6 +55,15 @@ func connect_signals(player_node, info_card):
 		"unhovered",
 		info_card,
 		"_on_Entity_unhovered")
+	self.connect(
+		"target_entity_reached",
+		dispatch_node,
+		"_on_Ship_target_entity_reached")
+	
+func _process(delta):
+	if target_entity != null:
+		if target_entity.position != target:
+			set_target(target_entity.position)
 
 func _physics_process(delta):
 	if abs(direction.x) == 1 and abs(direction.y) == 1:
@@ -63,16 +74,25 @@ func _physics_process(delta):
 			if position.distance_to(destination_city.get_center()) < 40:
 				emit_signal("destination_reached", destination_city)
 				zero_target()
+		elif destination_city == null and target_entity != null:
+			if position.distance_to(target_entity.get_center()) < 10:
+				print("breached the chrysalis")
+				emit_signal("target_entity_reached", target_entity)
+				zero_target()
 		move_and_collide(movement)
 	else:
 		zero_target()
 	animates_ship(direction)
-
+func get_center():
+	return Vector2(position.x, position.y + 3)
 func zero_target():
 	target = position
 
 func clear_destination():
 	destination_city = null
+
+func clear_target_entity():
+	target_entity = null
 
 func set_target(new_target):
 	target = new_target

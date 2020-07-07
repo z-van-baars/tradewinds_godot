@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -79,6 +79,8 @@
 [ext_resource path="res://Scripts/Encounter.gd" type="Script" id=77]
 [ext_resource path="res://Fonts/Capitalis/Capitalis.tres" type="DynamicFont" id=78]
 [ext_resource path="res://Fonts/Capitalis/CapitalisTypOasis.ttf" type="DynamicFontData" id=79]
+[ext_resource path="res://Scripts/Dispatcher.gd" type="Script" id=80]
+[ext_resource path="res://Fonts/Prince Valiant/PrinceValiant.ttf" type="DynamicFontData" id=81]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -149,6 +151,18 @@ font_data = ExtResource( 79 )
 [sub_resource type="DynamicFont" id=4]
 size = 25
 font_data = ExtResource( 79 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 48
+font_data = ExtResource( 81 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 26
+font_data = ExtResource( 73 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 73 )
 
 [node name="Main" type="Node"]
 script = ExtResource( 30 )
@@ -221,6 +235,9 @@ script = ExtResource( 28 )
 
 [node name="Ships" type="Node2D" parent="."]
 script = ExtResource( 72 )
+
+[node name="Dispatcher" type="Node2D" parent="."]
+script = ExtResource( 80 )
 
 [node name="Player" parent="." instance=ExtResource( 21 )]
 
@@ -1226,6 +1243,7 @@ __meta__ = {
 }
 
 [node name="EncounterScreen" type="ColorRect" parent="UILayer"]
+pause_mode = 2
 visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
@@ -1277,7 +1295,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EntityLabel" type="Label" parent="UILayer/EncounterScreen"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -267.0
+margin_top = 20.0
+margin_right = 268.0
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 5 )
+text = "The Whatever"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaptainLabel" type="Label" parent="UILayer/EncounterScreen"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -380.0
+margin_top = 99.0
+margin_right = 381.0
+margin_bottom = 129.0
+custom_fonts/font = SubResource( 6 )
+text = "Captained by Ignatious Thoroughgood"
+align = 1
+
+[node name="MessageLabel" type="Label" parent="UILayer/EncounterScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -434.5
+margin_top = -203.0
+margin_right = 434.5
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 7 )
+text = "Message Goes Here"
+align = 1
+autowrap = true
+
 [node name="BattleScreen" type="ColorRect" parent="UILayer"]
+visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
 color = Color( 0.113725, 0.219608, 0.298039, 1 )
@@ -1380,11 +1438,12 @@ __meta__ = {
 wait_time = 3.0
 [connection signal="date_changed" from="Calendar" to="UILayer/DateBar" method="_on_Calendar_date_changed"]
 [connection signal="timeout" from="Calendar/Timer" to="Calendar" method="_on_Timer_timeout"]
+[connection signal="open_encounter_screen" from="Dispatcher" to="UILayer/EncounterScreen" method="_on_Dispatcher_open_encounter_screen"]
 [connection signal="open_city_menu" from="Player" to="UILayer/CityMenu" method="_on_Player_open_city_menu"]
 [connection signal="toggle_logistics_menu" from="Player" to="UILayer/LogisticsMenu" method="_on_Player_toggle_logistics_menu"]
 [connection signal="pressed" from="UILayer/MapWidget/LogisticsButton" to="UILayer/LogisticsMenu" method="_on_LogisticsButton_pressed"]
-[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]

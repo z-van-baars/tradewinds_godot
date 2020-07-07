@@ -12,8 +12,9 @@ func spawn_captain(world_pos):
 	var new_ship = ship_scene.instance()
 	new_captain.add_child(new_ship)
 	new_ship.position = world_pos
-	new_ship.initialize_stats("galleon")
+	new_ship.initialize_stats("galleon", new_captain)
 	new_ship.connect_signals(
 		player,
-		get_tree().root.get_node("Main/UILayer/InfoCard"))
+		get_tree().root.get_node("Main/UILayer/InfoCard"),
+		get_tree().root.get_node("Main/Dispatcher"))
 
