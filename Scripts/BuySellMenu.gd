@@ -58,13 +58,15 @@ func _on_RightArrow_pressed():
 			quantity + 1)
 	# if we're buying, check that the player can afford this quantity,
 	# if not, reduce quantity to the amount they can afford
-	if artikel_cost < 0:
-		if abs(artikel_cost) < silver:
-			quantity = min(
-				quantity,
-				int(silver / abs(artikel_cost)))
-		else:
-			quantity = 0
+	#  NOTE:  This cap has been removed for the new market functionality,
+	# in order to allow barter with negative balances
+#	if artikel_cost < 0:
+#		if abs(artikel_cost) < silver:
+#			quantity = min(
+#				quantity,
+#				int(silver / abs(artikel_cost)))
+#		else:
+#			quantity = 0
 	update_labels()
 
 

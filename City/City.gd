@@ -43,7 +43,6 @@ func set_random_supply():
 func set_random_prices():
 	for _artikel in artikels.artikel_list:
 		var random_modifier = float(100 - ((randi()%80+1) - 40)) / 100.00
-		print("Random Modifier is " + str(random_modifier))
 		artikel_price[_artikel] = int(artikels.base_price[_artikel] * random_modifier)
 
 func get_price(qartikel):
