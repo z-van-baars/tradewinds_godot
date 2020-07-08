@@ -7,6 +7,9 @@ var city_menu
 var artikel_label_scene = preload("res://Scenes/UI/ArtikelLabel.tscn")
 var quantity_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")
 var value_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")
+var transaction_total = 0
+var artikels_to_buy = {}
+var artikels_to_sell = {}
 var artikel_to_sell = 0
 var artikel_to_buy = 0
 var city_artikels_list = []
@@ -161,17 +164,15 @@ func _on_DragButton_button_up():
 	drag_offset = rect_position - get_global_mouse_position()
 
 
-func _on_Buy_pressed():
-	var artikel_str = city_artikels_list[artikel_to_buy]
-	get_tree().root.get_node("Main/UILayer/BuySellMenu").set_all(
-		artikel_str,
-		open_city.artikel_supply[artikel_str],
-		-open_city.get_price(artikel_str),
-		player.silver)
-	get_tree().root.get_node("Main/UILayer/BuySellMenu").show()
+func _on_QuantityMenu_purchase(artikel_str, quantity):
 
 
-func _on_Sell_pressed():
+func _on_QuantityMenu_sale(artikel_str, quantity):
+
+	
+
+
+func _on_SellButton_pressed():
 	var artikel_str = player_artikels_list[artikel_to_sell]
 	get_tree().root.get_node("Main/UILayer/BuySellMenu").set_all(
 		artikel_str,
@@ -181,15 +182,37 @@ func _on_Sell_pressed():
 	get_tree().root.get_node("Main/UILayer/BuySellMenu").show()
 
 
-func _on_BuySellMenu_purchase(artikel_str, quantity):
-	player.increment_cargo(artikel_str, quantity)
-	player.increment_silver(quantity * -open_city.get_price(artikel_str))
-	open_city.increment_supply(artikel_str, -quantity)
+func _on_BuyButton_pressed():
+	var artikel_str = city_artikels_list[artikel_to_buy]
+	get_tree().root.get_node("Main/UILayer/BuySellMenu").set_all(
+		artikel_str,
+		open_city.artikel_supply[artikel_str],
+		-open_city.get_price(artikel_str),
+		player.silver)
+	get_tree().root.get_node("Main/UILayer/BuySellMenu").show()
+
+
+func _on_QuantityPopup_purchase(artikel_str, quantity):
+
 	set_all()
 
-func _on_BuySellMenu_sale(artikel_str, quantity):
-	player.increment_cargo(artikel_str, -quantity)
-	player.increment_silver(quantity * open_city.get_price(artikel_str))
-	open_city.increment_supply(artikel_str, quantity)
+
+func _on_QuantityPopup_sale():
+
 	set_all()
-	
+
+
+
+
+func _on_DoneButton_pressed():
+	if -transaction_total > player.silver:
+		return
+	for each in artikels_to_sell:
+		player.increment_cargo(artikel_str, -quantity)
+		player.increment_silver(quantity * open_city.get_price(artikel_str))
+		open_city.increment_supply(artikel_str, quantity)
+	for each in artikels_to_purchase:
+		player.increment_cargo(artikel_str, quantity)
+		player.increment_silver(quantity * -open_city.get_price(artikel_str))
+		open_city.increment_supply(artikel_str, -quantity)
+

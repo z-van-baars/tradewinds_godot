@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -81,6 +81,8 @@
 [ext_resource path="res://Fonts/Capitalis/CapitalisTypOasis.ttf" type="DynamicFontData" id=79]
 [ext_resource path="res://Scripts/Dispatcher.gd" type="Script" id=80]
 [ext_resource path="res://Fonts/Prince Valiant/PrinceValiant.ttf" type="DynamicFontData" id=81]
+[ext_resource path="res://Assets/UI/Buttons/blank_regular.png" type="Texture" id=82]
+[ext_resource path="res://Assets/UI/Buttons/blank_hovered.png" type="Texture" id=83]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -463,7 +465,6 @@ texture_hover = ExtResource( 8 )
 
 [node name="MarketMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -566,8 +567,8 @@ __meta__ = {
 }
 
 [node name="dbox1" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
-margin_left = 132.0
-margin_right = 132.0
+margin_left = 80.0
+margin_right = 80.0
 margin_bottom = 532.0
 custom_constants/separation = 20
 __meta__ = {
@@ -575,8 +576,8 @@ __meta__ = {
 }
 
 [node name="dbox2" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
-margin_left = 132.0
-margin_right = 132.0
+margin_left = 160.0
+margin_right = 160.0
 margin_bottom = 532.0
 custom_constants/separation = 20
 __meta__ = {
@@ -584,8 +585,8 @@ __meta__ = {
 }
 
 [node name="dbox3" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
-margin_left = 132.0
-margin_right = 132.0
+margin_left = 240.0
+margin_right = 240.0
 margin_bottom = 532.0
 custom_constants/separation = 20
 __meta__ = {
@@ -593,8 +594,8 @@ __meta__ = {
 }
 
 [node name="QuantitiesVbox" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
-margin_left = 264.0
-margin_right = 264.0
+margin_left = 320.0
+margin_right = 320.0
 margin_bottom = 532.0
 custom_constants/separation = 20
 __meta__ = {
@@ -602,8 +603,8 @@ __meta__ = {
 }
 
 [node name="ValueVbox" type="VBoxContainer" parent="UILayer/MarketMenu/PlayerArtikels"]
-margin_left = 396.0
-margin_right = 396.0
+margin_left = 400.0
+margin_right = 400.0
 margin_bottom = 532.0
 custom_constants/separation = 20
 __meta__ = {
@@ -690,14 +691,74 @@ texture_normal = ExtResource( 15 )
 texture_pressed = ExtResource( 12 )
 texture_hover = ExtResource( 12 )
 
-[node name="Done" type="TextureButton" parent="UILayer/MarketMenu"]
-margin_left = 453.576
-margin_top = 651.419
-margin_right = 523.576
-margin_bottom = 677.419
+[node name="DoneButton" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 454.0
+margin_top = 688.0
+margin_right = 524.0
+margin_bottom = 714.0
 texture_normal = ExtResource( 54 )
 texture_pressed = ExtResource( 63 )
 texture_hover = ExtResource( 63 )
+
+[node name="SellButton" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 561.0
+margin_top = 615.0
+margin_right = 611.0
+margin_bottom = 645.0
+texture_normal = ExtResource( 40 )
+texture_pressed = ExtResource( 41 )
+texture_hover = ExtResource( 41 )
+
+[node name="BuyButton" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 370.0
+margin_top = 615.0
+margin_right = 420.0
+margin_bottom = 645.0
+texture_normal = ExtResource( 42 )
+texture_pressed = ExtResource( 38 )
+texture_hover = ExtResource( 38 )
+
+[node name="Reset" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 423.0
+margin_top = 616.0
+margin_right = 558.0
+margin_bottom = 644.0
+texture_normal = ExtResource( 82 )
+texture_pressed = ExtResource( 83 )
+texture_hover = ExtResource( 83 )
+
+[node name="Label" type="Label" parent="UILayer/MarketMenu/Reset"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.5
+margin_top = -7.0
+margin_right = 50.5
+margin_bottom = 7.0
+text = "Reset"
+align = 1
+
+[node name="Balance" type="TextureButton" parent="UILayer/MarketMenu"]
+margin_left = 423.0
+margin_top = 651.0
+margin_right = 558.0
+margin_bottom = 679.0
+texture_normal = ExtResource( 82 )
+texture_pressed = ExtResource( 82 )
+texture_hover = ExtResource( 82 )
+
+[node name="Label" type="Label" parent="UILayer/MarketMenu/Balance"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.5
+margin_top = -7.0
+margin_right = 50.5
+margin_bottom = 7.0
+text = "0"
+align = 1
 
 [node name="SilverLabel" type="Label" parent="UILayer/MarketMenu"]
 anchor_left = 1.0
@@ -923,7 +984,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuySellMenu" type="TextureRect" parent="UILayer"]
+[node name="QuantityPopup" type="TextureRect" parent="UILayer"]
 pause_mode = 2
 visible = false
 anchor_left = 0.5
@@ -940,7 +1001,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DragButton" type="Button" parent="UILayer/BuySellMenu"]
+[node name="DragButton" type="Button" parent="UILayer/QuantityPopup"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 180.0
 margin_bottom = 160.0
@@ -948,7 +1009,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SilverIcon" type="TextureRect" parent="UILayer/BuySellMenu"]
+[node name="SilverIcon" type="TextureRect" parent="UILayer/QuantityPopup"]
 margin_left = 5.0
 margin_top = 105.0
 margin_right = 25.0
@@ -958,7 +1019,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cancel" type="TextureButton" parent="UILayer/BuySellMenu"]
+[node name="Cancel" type="TextureButton" parent="UILayer/QuantityPopup"]
 margin_left = 15.0
 margin_top = 127.0
 margin_right = 85.0
@@ -967,7 +1028,7 @@ texture_normal = ExtResource( 58 )
 texture_pressed = ExtResource( 56 )
 texture_hover = ExtResource( 56 )
 
-[node name="Done" type="TextureButton" parent="UILayer/BuySellMenu"]
+[node name="Done" type="TextureButton" parent="UILayer/QuantityPopup"]
 margin_left = 96.0
 margin_top = 127.0
 margin_right = 166.0
@@ -976,7 +1037,7 @@ texture_normal = ExtResource( 54 )
 texture_pressed = ExtResource( 63 )
 texture_hover = ExtResource( 63 )
 
-[node name="QuantityLabel" type="Label" parent="UILayer/BuySellMenu"]
+[node name="QuantityLabel" type="Label" parent="UILayer/QuantityPopup"]
 margin_left = 47.0
 margin_top = 62.0
 margin_right = 132.0
@@ -987,7 +1048,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuySellLabel" type="Label" parent="UILayer/BuySellMenu"]
+[node name="BuySellLabel" type="Label" parent="UILayer/QuantityPopup"]
 margin_left = 28.0
 margin_top = 34.0
 margin_right = 151.0
@@ -998,7 +1059,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MaxLabel" type="Label" parent="UILayer/BuySellMenu"]
+[node name="MaxLabel" type="Label" parent="UILayer/QuantityPopup"]
 margin_left = 128.0
 margin_top = 62.0
 margin_right = 157.0
@@ -1009,7 +1070,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ArtikelLabel" type="Label" parent="UILayer/BuySellMenu"]
+[node name="ArtikelLabel" type="Label" parent="UILayer/QuantityPopup"]
 margin_left = 10.0
 margin_top = 7.0
 margin_right = 169.0
@@ -1020,7 +1081,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SilverLabel" type="Label" parent="UILayer/BuySellMenu"]
+[node name="SilverLabel" type="Label" parent="UILayer/QuantityPopup"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1036,7 +1097,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CostLabel" type="Label" parent="UILayer/BuySellMenu"]
+[node name="CostLabel" type="Label" parent="UILayer/QuantityPopup"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -1052,7 +1113,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftArrow" type="TextureButton" parent="UILayer/BuySellMenu"]
+[node name="LeftArrow" type="TextureButton" parent="UILayer/QuantityPopup"]
 margin_left = 3.0
 margin_top = 58.0
 margin_right = 23.0
@@ -1061,7 +1122,7 @@ texture_normal = ExtResource( 60 )
 texture_pressed = ExtResource( 59 )
 texture_hover = ExtResource( 59 )
 
-[node name="RightArrow" type="TextureButton" parent="UILayer/BuySellMenu"]
+[node name="RightArrow" type="TextureButton" parent="UILayer/QuantityPopup"]
 margin_left = 157.0
 margin_top = 58.0
 margin_right = 177.0
@@ -1070,7 +1131,7 @@ texture_normal = ExtResource( 57 )
 texture_pressed = ExtResource( 62 )
 texture_hover = ExtResource( 62 )
 
-[node name="Min" type="TextureButton" parent="UILayer/BuySellMenu"]
+[node name="Min" type="TextureButton" parent="UILayer/QuantityPopup"]
 margin_left = 3.0
 margin_top = 80.0
 margin_right = 43.0
@@ -1079,7 +1140,7 @@ texture_normal = ExtResource( 65 )
 texture_pressed = ExtResource( 61 )
 texture_hover = ExtResource( 61 )
 
-[node name="Max" type="TextureButton" parent="UILayer/BuySellMenu"]
+[node name="Max" type="TextureButton" parent="UILayer/QuantityPopup"]
 margin_left = 137.0
 margin_top = 80.0
 margin_right = 177.0
@@ -1502,8 +1563,8 @@ wait_time = 3.0
 [connection signal="open_city_menu" from="Player" to="UILayer/CityMenu" method="_on_Player_open_city_menu"]
 [connection signal="toggle_logistics_menu" from="Player" to="UILayer/LogisticsMenu" method="_on_Player_toggle_logistics_menu"]
 [connection signal="pressed" from="UILayer/MapWidget/LogisticsButton" to="UILayer/LogisticsMenu" method="_on_LogisticsButton_pressed"]
-[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]
@@ -1518,6 +1579,9 @@ wait_time = 3.0
 [connection signal="pressed" from="UILayer/MarketMenu/PlayerUp" to="UILayer/MarketMenu" method="_on_ShipUp_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/PlayerDown" to="UILayer/MarketMenu" method="_on_ShipDown_pressed"]
 [connection signal="pressed" from="UILayer/MarketMenu/BackButton" to="UILayer/MarketMenu" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/DoneButton" to="UILayer/MarketMenu" method="_on_DoneButton_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/SellButton" to="UILayer/MarketMenu" method="_on_SellButton_pressed"]
+[connection signal="pressed" from="UILayer/MarketMenu/BuyButton" to="UILayer/MarketMenu" method="_on_BuyButton_pressed"]
 [connection signal="button_down" from="UILayer/LootMenu/DragButton" to="UILayer/LootMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/LootMenu/DragButton" to="UILayer/LootMenu" method="_on_DragButton_button_up"]
 [connection signal="pressed" from="UILayer/LootMenu/XButton" to="UILayer/LootMenu" method="_on_XButton_pressed"]
@@ -1528,16 +1592,16 @@ wait_time = 3.0
 [connection signal="pressed" from="UILayer/LootMenu/BackButton" to="UILayer/LootMenu" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="UILayer/LootMenu/Sell" to="UILayer/LootMenu" method="_on_Sell_pressed"]
 [connection signal="pressed" from="UILayer/LootMenu/Buy" to="UILayer/LootMenu" method="_on_Buy_pressed"]
-[connection signal="purchase" from="UILayer/BuySellMenu" to="UILayer/MarketMenu" method="_on_BuySellMenu_purchase"]
-[connection signal="sale" from="UILayer/BuySellMenu" to="UILayer/MarketMenu" method="_on_BuySellMenu_sale"]
-[connection signal="button_down" from="UILayer/BuySellMenu/DragButton" to="UILayer/BuySellMenu" method="_on_DragButton_button_down"]
-[connection signal="button_up" from="UILayer/BuySellMenu/DragButton" to="UILayer/BuySellMenu" method="_on_DragButton_button_up"]
-[connection signal="pressed" from="UILayer/BuySellMenu/Cancel" to="UILayer/BuySellMenu" method="_on_Cancel_pressed"]
-[connection signal="pressed" from="UILayer/BuySellMenu/Done" to="UILayer/BuySellMenu" method="_on_Done_pressed"]
-[connection signal="pressed" from="UILayer/BuySellMenu/LeftArrow" to="UILayer/BuySellMenu" method="_on_LeftArrow_pressed"]
-[connection signal="pressed" from="UILayer/BuySellMenu/RightArrow" to="UILayer/BuySellMenu" method="_on_RightArrow_pressed"]
-[connection signal="pressed" from="UILayer/BuySellMenu/Min" to="UILayer/BuySellMenu" method="_on_Min_pressed"]
-[connection signal="pressed" from="UILayer/BuySellMenu/Max" to="UILayer/BuySellMenu" method="_on_Max_pressed"]
+[connection signal="purchase" from="UILayer/QuantityPopup" to="UILayer/MarketMenu" method="_on_QuantityPopup_purchase"]
+[connection signal="sale" from="UILayer/QuantityPopup" to="UILayer/MarketMenu" method="_on_QuantityPopup_sale"]
+[connection signal="button_down" from="UILayer/QuantityPopup/DragButton" to="UILayer/QuantityPopup" method="_on_DragButton_button_down"]
+[connection signal="button_up" from="UILayer/QuantityPopup/DragButton" to="UILayer/QuantityPopup" method="_on_DragButton_button_up"]
+[connection signal="pressed" from="UILayer/QuantityPopup/Cancel" to="UILayer/QuantityPopup" method="_on_Cancel_pressed"]
+[connection signal="pressed" from="UILayer/QuantityPopup/Done" to="UILayer/QuantityPopup" method="_on_Done_pressed"]
+[connection signal="pressed" from="UILayer/QuantityPopup/LeftArrow" to="UILayer/QuantityPopup" method="_on_LeftArrow_pressed"]
+[connection signal="pressed" from="UILayer/QuantityPopup/RightArrow" to="UILayer/QuantityPopup" method="_on_RightArrow_pressed"]
+[connection signal="pressed" from="UILayer/QuantityPopup/Min" to="UILayer/QuantityPopup" method="_on_Min_pressed"]
+[connection signal="pressed" from="UILayer/QuantityPopup/Max" to="UILayer/QuantityPopup" method="_on_Max_pressed"]
 [connection signal="button_down" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_up"]
 [connection signal="pressed" from="UILayer/LogisticsMenu/XButton" to="UILayer/LogisticsMenu" method="_on_XButton_pressed"]
