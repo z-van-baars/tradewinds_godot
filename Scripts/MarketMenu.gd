@@ -75,11 +75,11 @@ func set_all():
 	# bug! this next line should turn on visibility but it doesn't!
 	# not really a huge deal but I'd like to know why it doesn't work
 	$MarketArtikels/ArtikelsVbox.get_children()[0].set_box_visible(true)
-	$Balance/Label.text = str(transaction_total)
-	if transaction_total > 0:
-		$Balance/Label.modulate = Color.green
-	elif transaction_total < 0:
-		$Balance/Label.modulate = Color.firebrick
+	$Balance.set_all(
+		artikels_to_buy,
+		artikels_to_sell,
+		open_city,
+		transaction_total)
 
 func create_market_labels():
 	var list_count = 0

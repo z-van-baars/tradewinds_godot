@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Fonts/TimesSS/TimesSubtext12.tres" type="DynamicFont" id=1]
+
+[node name="Control" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 124.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Tropical Fruit - 15000000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
