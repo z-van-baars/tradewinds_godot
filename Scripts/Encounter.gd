@@ -2,6 +2,10 @@ extends ColorRect
 
 var entity = null
 var captain = null
+var captains
+
+func _ready():
+	captains = get_tree().root.get_node("Main/Captains")
 
 func set_all(target_entity):
 	entity = target_entity
@@ -9,6 +13,7 @@ func set_all(target_entity):
 	$EntityLabel.text = target_entity.ship_name
 	$CaptainLabel.text = "Captained by " + target_entity.captain.name_str
 	$MessageLabel.text = select_greeting(captain)
+	$Portrait.texture = captains.portraits[captain.portrait_id]
 
 
 func select_greeting(captain):
@@ -23,7 +28,8 @@ func clear_all():
 func _on_LeaveButton_pressed():
 	visible = false
 
-func _on_Dispatcher_open_encounter_screen(entity, target_entity):
+func _on_Dispatcher_open_encounter_screen(target_entity):
+	print("pewp")
 	set_all(target_entity)
 	get_tree().paused = true
 	visible = true

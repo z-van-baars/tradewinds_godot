@@ -37,8 +37,9 @@ func set_all(artikels_to_buy, artikels_to_sell, open_city, transaction_total):
 			new_entry.get_node("Label").modulate = Color.green
 			$Panel/VBoxContainer.add_child(new_entry)
 			total_entries += 1
-	$Panel.rect_size.y = total_entries * 12
-	$Panel/VBoxContainer.rect_size.y = total_entries * 12
+	$Panel.rect_size.y = total_entries * 15
+	$Panel/VBoxContainer.rect_size.y = total_entries * 15
+	
 
 
 func _on_Balance_mouse_entered():

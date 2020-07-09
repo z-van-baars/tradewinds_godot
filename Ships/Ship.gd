@@ -5,6 +5,7 @@ signal right_click
 signal destination_reached
 signal hovered
 signal unhovered
+signal target_entity_reached
 
 var tools
 var ship_stats

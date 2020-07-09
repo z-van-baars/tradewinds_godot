@@ -1,6 +1,8 @@
 extends Node2D
 
 var name_str = " patheces"
+var portrait_id
+var captains
 
 func _ready():
 	$WanderTimer.start()

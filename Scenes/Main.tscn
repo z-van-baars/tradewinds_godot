@@ -1399,10 +1399,10 @@ __meta__ = {
 }
 
 [node name="FightButton" type="Button" parent="UILayer/EncounterScreen"]
-margin_left = 210.0
-margin_top = 521.0
-margin_right = 580.0
-margin_bottom = 608.0
+margin_left = 83.3493
+margin_top = 551.5
+margin_right = 453.349
+margin_bottom = 638.5
 
 [node name="FightLabel" type="Label" parent="UILayer/EncounterScreen/FightButton"]
 anchor_left = 0.5
@@ -1420,10 +1420,10 @@ __meta__ = {
 }
 
 [node name="LeaveButton" type="Button" parent="UILayer/EncounterScreen"]
-margin_left = 758.0
-margin_top = 521.0
-margin_right = 1128.0
-margin_bottom = 608.0
+margin_left = 859.849
+margin_top = 551.5
+margin_right = 1229.85
+margin_bottom = 638.5
 
 [node name="LeaveLabel" type="Label" parent="UILayer/EncounterScreen/LeaveButton"]
 anchor_left = 0.5
@@ -1443,10 +1443,10 @@ __meta__ = {
 [node name="EntityLabel" type="Label" parent="UILayer/EncounterScreen"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -267.0
-margin_top = 20.0
-margin_right = 268.0
-margin_bottom = 87.0
+margin_left = -10.0
+margin_top = 27.0
+margin_right = 525.0
+margin_bottom = 94.0
 custom_fonts/font = SubResource( 5 )
 text = "The Whatever"
 align = 1
@@ -1457,10 +1457,10 @@ __meta__ = {
 [node name="CaptainLabel" type="Label" parent="UILayer/EncounterScreen"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -380.0
-margin_top = 99.0
-margin_right = 381.0
-margin_bottom = 129.0
+margin_left = -90.0
+margin_top = 94.0
+margin_right = 624.0
+margin_bottom = 124.0
 custom_fonts/font = SubResource( 6 )
 text = "Captained by Ignatious Thoroughgood"
 align = 1
@@ -1470,14 +1470,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -434.5
-margin_top = -203.0
-margin_right = 434.5
-margin_bottom = 125.0
+margin_left = -90.0
+margin_top = -220.0
+margin_right = 624.0
+margin_bottom = 108.0
 custom_fonts/font = SubResource( 7 )
 text = "Message Goes Here"
 align = 1
 autowrap = true
+
+[node name="Portrait" type="TextureRect" parent="UILayer/EncounterScreen"]
+margin_left = 20.0
+margin_top = 17.0
+margin_right = 532.0
+margin_bottom = 529.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BattleScreen" type="ColorRect" parent="UILayer"]
 visible = false
@@ -1587,8 +1596,8 @@ wait_time = 3.0
 [connection signal="open_city_menu" from="Player" to="UILayer/CityMenu" method="_on_Player_open_city_menu"]
 [connection signal="toggle_logistics_menu" from="Player" to="UILayer/LogisticsMenu" method="_on_Player_toggle_logistics_menu"]
 [connection signal="pressed" from="UILayer/MapWidget/LogisticsButton" to="UILayer/LogisticsMenu" method="_on_LogisticsButton_pressed"]
-[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
 [connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="UILayer/MainMenu/NewGameButton" to="UILayer/MainMenu" method="_on_NewGameButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/CityMenu" to="UILayer/CityMenu" method="_on_CityMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]

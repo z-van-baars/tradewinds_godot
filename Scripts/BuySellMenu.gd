@@ -86,12 +86,14 @@ func _on_Min_pressed():
 	update_labels()
 
 func _on_Max_pressed():
-	if artikel_cost < 0 and abs(artikel_cost) < silver:
-		quantity = min(
-			max_quantity,
-			int(silver / abs(artikel_cost)))
-	elif artikel_cost < 0 and abs(artikel_cost) > silver:
-		quantity = 0
-	else:
-		quantity = max_quantity
+	# This stuff is now irrelevant because we don't care about costs yet
+#	if artikel_cost < 0 and abs(artikel_cost) < silver:
+#		quantity = min(
+#			max_quantity,
+#			int(silver / abs(artikel_cost)))
+#	elif artikel_cost < 0 and abs(artikel_cost) > silver:
+#		quantity = 0
+#	else:
+#		quantity = max_quantity
+	quantity = max_quantity
 	update_labels()
