@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -84,6 +84,8 @@
 [ext_resource path="res://Assets/UI/Buttons/blank_regular.png" type="Texture" id=82]
 [ext_resource path="res://Assets/UI/Buttons/blank_hovered.png" type="Texture" id=83]
 [ext_resource path="res://Scripts/BalancePanel.gd" type="Script" id=84]
+[ext_resource path="res://Assets/sound/ui/coins_01.wav" type="AudioStream" id=85]
+[ext_resource path="res://Assets/Sound/ui/click.wav" type="AudioStream" id=86]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -407,6 +409,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Sounds" type="Node2D" parent="UILayer/MainMenu"]
+position = Vector2( 470, 284 )
+
+[node name="Coins" type="AudioStreamPlayer" parent="UILayer/MainMenu/Sounds"]
+stream = ExtResource( 85 )
+
+[node name="Click" type="AudioStreamPlayer" parent="UILayer/MainMenu/Sounds"]
+stream = ExtResource( 86 )
+
 [node name="CityMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
 visible = false
@@ -464,6 +475,15 @@ margin_bottom = 173.0
 texture_normal = ExtResource( 11 )
 texture_pressed = ExtResource( 8 )
 texture_hover = ExtResource( 8 )
+
+[node name="Sounds" type="Node2D" parent="UILayer/CityMenu"]
+position = Vector2( -250, -210 )
+
+[node name="Coins" type="AudioStreamPlayer" parent="UILayer/CityMenu/Sounds"]
+stream = ExtResource( 85 )
+
+[node name="Click" type="AudioStreamPlayer" parent="UILayer/CityMenu/Sounds"]
+stream = ExtResource( 86 )
 
 [node name="MarketMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
@@ -799,6 +819,14 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sounds" type="Node2D" parent="UILayer/MarketMenu"]
+
+[node name="Coins" type="AudioStreamPlayer" parent="UILayer/MarketMenu/Sounds"]
+stream = ExtResource( 85 )
+
+[node name="Click" type="AudioStreamPlayer" parent="UILayer/MarketMenu/Sounds"]
+stream = ExtResource( 86 )
 
 [node name="LootMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
@@ -1173,6 +1201,15 @@ texture_normal = ExtResource( 64 )
 texture_pressed = ExtResource( 55 )
 texture_hover = ExtResource( 55 )
 
+[node name="Sounds" type="Node2D" parent="UILayer/QuantityPopup"]
+position = Vector2( -400, -280 )
+
+[node name="Coins" type="AudioStreamPlayer" parent="UILayer/QuantityPopup/Sounds"]
+stream = ExtResource( 85 )
+
+[node name="Click" type="AudioStreamPlayer" parent="UILayer/QuantityPopup/Sounds"]
+stream = ExtResource( 86 )
+
 [node name="LogisticsMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
 visible = false
@@ -1190,39 +1227,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DragButton" type="Button" parent="UILayer/LogisticsMenu"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="ShipTab" type="ColorRect" parent="UILayer/LogisticsMenu"]
 margin_right = 400.0
-margin_bottom = 500.0
+margin_bottom = 498.0
+color = Color( 0.105882, 0.196078, 0.262745, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="XButton" type="TextureButton" parent="UILayer/LogisticsMenu"]
-margin_left = 376.0
-margin_top = 4.0
-margin_right = 396.0
-margin_bottom = 24.0
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 14 )
-texture_hover = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ShipName" type="Label" parent="UILayer/LogisticsMenu"]
+[node name="ShipName" type="Label" parent="UILayer/LogisticsMenu/ShipTab"]
 modulate = Color( 1, 0.811765, 0.407843, 1 )
-margin_left = 215.0
-margin_top = 8.0
-margin_right = 370.0
-margin_bottom = 22.0
+margin_left = 13.0
+margin_top = 4.0
+margin_right = 204.0
+margin_bottom = 18.0
 text = "Ship Name Here"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HullLabel" type="Label" parent="UILayer/LogisticsMenu"]
+[node name="HullLabel" type="Label" parent="UILayer/LogisticsMenu/ShipTab"]
 margin_left = 13.0
 margin_top = 37.0
 margin_right = 173.0
@@ -1232,12 +1257,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SpeedLabel" type="Label" parent="UILayer/LogisticsMenu"]
+[node name="SpeedLabel" type="Label" parent="UILayer/LogisticsMenu/ShipTab"]
 margin_left = 11.0
 margin_top = 87.0
 margin_right = 56.0
 margin_bottom = 101.0
 text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipSprite" type="Sprite" parent="UILayer/LogisticsMenu/ShipTab"]
+position = Vector2( 290, 104 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 52 )
+
+[node name="CargoTab" type="ColorRect" parent="UILayer/LogisticsMenu"]
+margin_right = 400.0
+margin_bottom = 498.0
+color = Color( 0.105882, 0.196078, 0.262745, 1 )
+
+[node name="OfficersTab" type="ColorRect" parent="UILayer/LogisticsMenu"]
+margin_right = 400.0
+margin_bottom = 498.0
+color = Color( 0.105882, 0.196078, 0.262745, 1 )
+
+[node name="CrewTab" type="ColorRect" parent="UILayer/LogisticsMenu"]
+margin_right = 400.0
+margin_bottom = 498.0
+color = Color( 0.105882, 0.196078, 0.262745, 1 )
+
+[node name="MoraleTab" type="ColorRect" parent="UILayer/LogisticsMenu"]
+margin_right = 400.0
+margin_bottom = 498.0
+color = Color( 0.105882, 0.196078, 0.262745, 1 )
+
+[node name="EquipmentTab" type="ColorRect" parent="UILayer/LogisticsMenu"]
+margin_right = 400.0
+margin_bottom = 498.0
+color = Color( 0.105882, 0.196078, 0.262745, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1268,10 +1326,129 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShipSprite" type="Sprite" parent="UILayer/LogisticsMenu"]
-position = Vector2( 290, 104 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 52 )
+[node name="DragButton" type="Button" parent="UILayer/LogisticsMenu"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 400.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XButton" type="TextureButton" parent="UILayer/LogisticsMenu"]
+margin_left = 377.0
+margin_top = 3.0
+margin_right = 397.0
+margin_bottom = 23.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipButton" type="Button" parent="UILayer/LogisticsMenu"]
+margin_right = 59.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UILayer/LogisticsMenu/ShipButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
+text = "Ship"
+align = 1
+
+[node name="Cargo" type="Button" parent="UILayer/LogisticsMenu"]
+margin_left = 60.0
+margin_right = 119.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="UILayer/LogisticsMenu/Cargo"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
+text = "Cargo"
+align = 1
+
+[node name="Officers" type="Button" parent="UILayer/LogisticsMenu"]
+margin_left = 120.0
+margin_right = 179.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="UILayer/LogisticsMenu/Officers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
+text = "Officers"
+align = 1
+
+[node name="Crew" type="Button" parent="UILayer/LogisticsMenu"]
+margin_left = 180.0
+margin_right = 239.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="UILayer/LogisticsMenu/Crew"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
+text = "Crew"
+align = 1
+
+[node name="Morale" type="Button" parent="UILayer/LogisticsMenu"]
+margin_left = 240.0
+margin_right = 299.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="UILayer/LogisticsMenu/Morale"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
+text = "Morale"
+align = 1
+
+[node name="Equipment" type="Button" parent="UILayer/LogisticsMenu"]
+margin_left = 300.0
+margin_right = 359.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="UILayer/LogisticsMenu/Equipment"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
+text = "Equip"
+align = 1
 
 [node name="InfoCard" type="Panel" parent="UILayer"]
 visible = false
@@ -1443,10 +1620,10 @@ __meta__ = {
 [node name="EntityLabel" type="Label" parent="UILayer/EncounterScreen"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 8.0
-margin_top = 17.0
-margin_right = 543.0
-margin_bottom = 84.0
+margin_left = -90.0
+margin_top = 24.0
+margin_right = 616.0
+margin_bottom = 91.0
 custom_fonts/font = SubResource( 5 )
 text = "The Whatever"
 align = 1
@@ -1457,9 +1634,9 @@ __meta__ = {
 [node name="CaptainLabel" type="Label" parent="UILayer/EncounterScreen"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -128.0
+margin_left = -90.0
 margin_top = 100.0
-margin_right = 633.0
+margin_right = 616.0
 margin_bottom = 130.0
 custom_fonts/font = SubResource( 6 )
 text = "Captained by Ignatious Thoroughgood"
@@ -1470,10 +1647,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 8.0
-margin_top = -199.0
-margin_right = 636.0
-margin_bottom = 129.0
+margin_left = -83.0
+margin_top = -215.0
+margin_right = 617.0
+margin_bottom = 178.0
 custom_fonts/font = SubResource( 7 )
 text = "Message Goes Here"
 align = 1
@@ -1484,6 +1661,10 @@ margin_left = 20.0
 margin_top = 24.0
 margin_right = 532.0
 margin_bottom = 536.0
+
+[node name="Panel" type="Panel" parent="UILayer/EncounterScreen/Portrait"]
+margin_right = 512.0
+margin_bottom = 514.0
 
 [node name="BattleScreen" type="ColorRect" parent="UILayer"]
 visible = false
@@ -1638,8 +1819,14 @@ wait_time = 3.0
 [connection signal="button_down" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/LogisticsMenu/DragButton" to="UILayer/LogisticsMenu" method="_on_DragButton_button_up"]
 [connection signal="pressed" from="UILayer/LogisticsMenu/XButton" to="UILayer/LogisticsMenu" method="_on_XButton_pressed"]
-[connection signal="pressed" from="UILayer/EncounterScreen/FightButton" to="UILayer/EncounterScreen" method="_on_FightButton_pressed"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/ShipButton" to="UILayer/LogisticsMenu" method="_on_ShipButton_pressed"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/Cargo" to="UILayer/LogisticsMenu" method="_on_Cargo_pressed"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/Officers" to="UILayer/LogisticsMenu" method="_on_Officers_pressed"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/Crew" to="UILayer/LogisticsMenu" method="_on_Crew_pressed"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/Morale" to="UILayer/LogisticsMenu" method="_on_Morale_pressed"]
+[connection signal="pressed" from="UILayer/LogisticsMenu/Equipment" to="UILayer/LogisticsMenu" method="_on_Equipment_pressed"]
 [connection signal="pressed" from="UILayer/EncounterScreen/FightButton" to="UILayer/BattleScreen" method="_on_FightButton_pressed"]
+[connection signal="pressed" from="UILayer/EncounterScreen/FightButton" to="UILayer/EncounterScreen" method="_on_FightButton_pressed"]
 [connection signal="pressed" from="UILayer/EncounterScreen/LeaveButton" to="UILayer/EncounterScreen" method="_on_LeaveButton_pressed"]
 [connection signal="pressed" from="UILayer/BattleScreen/WinButton" to="UILayer/BattleScreen" method="_on_WinButton_pressed"]
 [connection signal="pressed" from="UILayer/BattleScreen/LoseButton" to="UILayer/BattleScreen" method="_on_LoseButton_pressed"]

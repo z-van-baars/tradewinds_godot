@@ -126,10 +126,12 @@ func _on_XButton_pressed():
 	reset_transaction()
 	clear_all()
 	hide()
+	$Sounds/Click.play()
 
 func _on_MarketButton_pressed():
 	city_menu.hide()
 	show()
+	$Sounds/Click.play()
 
 func _on_Artikel_clicked(artikel_list_id, sell):
 	if sell:
@@ -145,6 +147,7 @@ func _on_BackButton_pressed():
 	reset_transaction()
 	hide()
 	city_menu.show()
+	$Sounds/Click.play()
 
 func _on_MarketUp_pressed():
 	pass # Replace with function body.
@@ -179,6 +182,7 @@ func _on_SellButton_pressed():
 		open_city.get_price(artikel_str),
 		player.silver)
 	get_tree().root.get_node("Main/UILayer/QuantityPopup").show()
+	$Sounds/Click.play()
 
 
 func _on_BuyButton_pressed():
@@ -189,6 +193,7 @@ func _on_BuyButton_pressed():
 		-open_city.get_price(artikel_str),
 		player.silver)
 	get_tree().root.get_node("Main/UILayer/QuantityPopup").show()
+	$Sounds/Click.play()
 
 
 func _on_QuantityPopup_purchase(artikel_str, quantity):
@@ -239,11 +244,13 @@ func _on_DoneButton_pressed():
 		var artikel_str = each
 		var quantity = artikels_to_sell[each]
 	player.increment_silver(transaction_total)
+	$Sounds/Coins.play()
 	clear_transaction()
 	hide()
 	city_menu.show()
 	
 
 func _on_Reset_pressed():
+	$Sounds/Click.play()
 	reset_transaction()
 	set_all()

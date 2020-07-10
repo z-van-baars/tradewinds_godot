@@ -10,11 +10,19 @@ var drag_offset = Vector2(0, 0)
 var player_artikels_list = []
 var player_artikels_column
 var player_quantities_column
+var tabs = [
+	$ShipTab,
+	$CargoTab,
+	$OfficersTab,
+	$CrewTab,
+	$MoraleTab,
+	$EquipmentTab
+]
 
 func _ready():
 	artikels = get_tree().root.get_node("Main/Artikels")
-	player_artikels_column = $PlayerArtikels/ArtikelsVbox
-	player_quantities_column = $PlayerArtikels/QuantitiesVbox
+	player_artikels_column = $CargoTab/PlayerArtikels/ArtikelsVbox
+	player_quantities_column = $CargoTab/PlayerArtikels/QuantitiesVbox
 	player = get_tree().root.get_node("Main/Player")
 	ship = get_tree().root.get_node("Main/Player/Ship")
 
@@ -31,11 +39,12 @@ func _process(delta):
 func set_all():
 	get_tree().paused = true
 	clear_all()
-	$ShipName.text = ship.ship_name
-	$HullLabel.text = ship.hull.capitalize()
-	$SpeedLabel.text = str(ship.speed)
+	$ShipTab/ShipName.text = ship.ship_name
+	$ShipTab/HullLabel.text = ship.hull.capitalize()
+	$ShipTab/SpeedLabel.text = str(ship.speed)
 	create_cargo_labels()
 	# $ShipSprite.texture = load("res://Ships/" + ship.hull + "/down_right_1.png")
+	$ShipTab.show()
 
 func clear_all():
 	var x = get_viewport().size.x / 2 - rect_size.x / 2
@@ -92,6 +101,40 @@ func _on_Player_toggle_logistics_menu():
 	set_all()
 	show()
 
+func hide_all():
+	for each in tabs:
+		each.hide()
+
 
 func _on_XButton_pressed():
+	hide_all()
 	close()
+
+
+func _on_ShipButton_pressed():
+	hide_all()
+	$ShipTab.show()
+
+
+func _on_Cargo_pressed():
+	hide_all()
+	$CargoTab.show()
+
+
+func _on_Officers_pressed():
+	hide_all()
+	$OfficersTab.show()
+
+func _on_Crew_pressed():
+	hide_all()
+	$CrewTab.show()
+
+
+func _on_Morale_pressed():
+	hide_all()
+	$MoraleTab.show()
+
+
+func _on_Equipment_pressed():
+	hide_all()
+	$EquipmentTab.show()

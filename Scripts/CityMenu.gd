@@ -44,6 +44,7 @@ func _on_XButton_pressed():
 	clear_all()
 	market_menu.clear_all()
 	hide()
+	$Sounds/Click.play()
 
 func _on_CityMenu_visibility_changed():
 	clear_all()

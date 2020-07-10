@@ -50,6 +50,7 @@ func _on_DragButton_button_up():
 func _on_LeftArrow_pressed():
 	quantity = max(0, quantity - 1)
 	update_labels()
+	$Sounds/Click.play()
 
 
 func _on_RightArrow_pressed():
@@ -68,10 +69,12 @@ func _on_RightArrow_pressed():
 #		else:
 #			quantity = 0
 	update_labels()
+	$Sounds/Click.play()
 
 
 func _on_Cancel_pressed():
 	hide()
+	$Sounds/Click.play()
 
 
 func _on_Done_pressed():
@@ -80,11 +83,12 @@ func _on_Done_pressed():
 	elif artikel_cost < 0:
 		emit_signal("purchase", artikel_, quantity)
 	hide()
+	$Sounds/Click.play()
 
 func _on_Min_pressed():
 	quantity = 0
 	update_labels()
-
+	$Sounds/Click.play()
 func _on_Max_pressed():
 	# This stuff is now irrelevant because we don't care about costs yet
 #	if artikel_cost < 0 and abs(artikel_cost) < silver:
@@ -97,3 +101,4 @@ func _on_Max_pressed():
 #		quantity = max_quantity
 	quantity = max_quantity
 	update_labels()
+	$Sounds/Click.play()

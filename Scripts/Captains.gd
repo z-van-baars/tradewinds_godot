@@ -46,3 +46,22 @@ func spawn_captain(world_pos):
 		get_tree().root.get_node("Main/UILayer/InfoCard"),
 		get_tree().root.get_node("Main/Dispatcher"))
 
+func choose_random_greeting():
+	var greetings_positive = [
+		"Hello, what can I do for you?",
+		"To what do I owe this pleasure?",
+		"What brings you to these parts?",
+		"Ah, it has been too long!",
+		"Good day!"]
+	var greetings_nuetral = [
+		"What can I do for you?",
+		"What brings you to these parts?",
+		"Is there something I can do for you?",
+		"Hello."]
+	var greetings_negative = [
+		"Let's make this short.",
+		"What is it that you need from me?",
+		"Isn't there someone else you should be bothering?",
+		"Let's get this over with.",
+		"Do you really need to be bothering me right now?"
+	]
