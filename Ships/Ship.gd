@@ -76,10 +76,11 @@ func _physics_process(delta):
 				emit_signal("destination_reached", destination_city)
 				zero_target()
 		elif destination_city == null and target_entity != null:
-			if position.distance_to(target_entity.get_center()) < 10:
+			if position.distance_to(target_entity.get_center()) < 15:
 				print("breached the chrysalis")
 				emit_signal("target_entity_reached", target_entity)
 				zero_target()
+				clear_target_entity()
 		move_and_collide(movement)
 	else:
 		zero_target()

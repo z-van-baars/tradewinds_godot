@@ -20,12 +20,17 @@ func load_portraits(path):
 		var file = dir.get_next()
 		if file == "":
 			break
-		elif not file.begins_with("."):
+		elif not file.begins_with(".") and not file.ends_with(".import"):
 			files.append(file)
 
 	dir.list_dir_end()
-
-	return files
+	var image_files = []
+	for each in files:
+		image_files.append(
+			load("res://Assets/Characters/Portraits/" + each))
+		print(each)
+	return image_files
+		
 
 func spawn_captain(world_pos):
 	var new_captain = captain_scene.instance()
