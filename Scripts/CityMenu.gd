@@ -1,4 +1,6 @@
 extends TextureRect
+
+var sounds
 var open_city
 var market_menu
 var portraits
@@ -7,6 +9,7 @@ var drag_offset = Vector2(0, 0)
 
 func _ready():
 	clear_all()
+	sounds = get_tree().root.get_node("Main/Sounds")
 	portraits = [
 		load("res://Assets/UI/portraits/city_a.png"),
 		load("res://Assets/UI/portraits/city_b.png"),
@@ -44,7 +47,7 @@ func _on_XButton_pressed():
 	clear_all()
 	market_menu.clear_all()
 	hide()
-	$Sounds/Click.play()
+	sounds.get_node("UI/Click_1").play()
 
 func _on_CityMenu_visibility_changed():
 	clear_all()
@@ -64,3 +67,7 @@ func _on_Player_open_city_menu(city_to_open):
 	open_city = city_to_open
 	set_all()
 	show()
+
+
+func _on_MarketButton_pressed():
+	sounds.get_node("UI/Click_1").play()

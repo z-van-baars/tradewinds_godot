@@ -23,6 +23,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HoverBox" type="ColorRect" parent="."]
+visible = false
+margin_top = -1.0
+margin_right = 450.0
+margin_bottom = 17.0
+color = Color( 0.470588, 0.337255, 0.14902, 0.407843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Button" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = -1.0
@@ -42,4 +52,8 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="mouse_entered" from="SelectionBox" to="." method="_on_SelectionBox_mouse_entered"]
+[connection signal="mouse_exited" from="SelectionBox" to="." method="_on_SelectionBox_mouse_exited"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

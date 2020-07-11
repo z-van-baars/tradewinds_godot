@@ -1,6 +1,7 @@
 extends TextureRect
 
 var artikels
+var sounds
 var open_city
 var player
 var city_menu
@@ -26,6 +27,7 @@ var drag_offset = Vector2(0, 0)
 
 func _ready():
 	artikels = get_tree().root.get_node("Main/Artikels")
+	sounds = get_tree().root.get_node("Main/Sounds")
 	market_artikels_column = $MarketArtikels/ArtikelsVbox
 	market_quantities_column = $MarketArtikels/QuantitiesVbox
 	market_values_column = $MarketArtikels/ValueVbox
@@ -126,14 +128,18 @@ func _on_XButton_pressed():
 	reset_transaction()
 	clear_all()
 	hide()
-	$Sounds/Click.play()
+	sounds.get_node("UI/Click_1").play()
 
 func _on_MarketButton_pressed():
 	city_menu.hide()
 	show()
-	$Sounds/Click.play()
+
+func _on_Artikel_mouse_hovered():
+	print("hove")
+	sounds.get_node("UI/Click_2").play()
 
 func _on_Artikel_clicked(artikel_list_id, sell):
+	sounds.get_node("UI/Click_1").play()
 	if sell:
 		$PlayerArtikels/ArtikelsVbox.get_children()[artikel_to_sell].set_box_visible(false)
 		artikel_to_sell = artikel_list_id
@@ -147,7 +153,7 @@ func _on_BackButton_pressed():
 	reset_transaction()
 	hide()
 	city_menu.show()
-	$Sounds/Click.play()
+	sounds.get_node("UI/Click_1").play()
 
 func _on_MarketUp_pressed():
 	pass # Replace with function body.
@@ -182,7 +188,7 @@ func _on_SellButton_pressed():
 		open_city.get_price(artikel_str),
 		player.silver)
 	get_tree().root.get_node("Main/UILayer/QuantityPopup").show()
-	$Sounds/Click.play()
+	sounds.get_node("UI/Click_1").play()
 
 
 func _on_BuyButton_pressed():
@@ -193,7 +199,7 @@ func _on_BuyButton_pressed():
 		-open_city.get_price(artikel_str),
 		player.silver)
 	get_tree().root.get_node("Main/UILayer/QuantityPopup").show()
-	$Sounds/Click.play()
+	sounds.get_node("UI/Click_1").play()
 
 
 func _on_QuantityPopup_purchase(artikel_str, quantity):
@@ -244,13 +250,13 @@ func _on_DoneButton_pressed():
 		var artikel_str = each
 		var quantity = artikels_to_sell[each]
 	player.increment_silver(transaction_total)
-	$Sounds/Coins.play()
+	sounds.get_node("UI/Coins_1").play()
 	clear_transaction()
 	hide()
 	city_menu.show()
 	
 
 func _on_Reset_pressed():
-	$Sounds/Click.play()
+	sounds.get_node("UI/Click_1").play()
 	reset_transaction()
 	set_all()
