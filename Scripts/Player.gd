@@ -19,7 +19,7 @@ func _ready():
 	artikels = get_tree().root.get_node("Main/Artikels")
 	camera = $Ship/Camera2D
 	camera.current = true
-	$Ship.initialize_stats("cog")
+	$Ship.initialize_stats("cog", true, self)
 	$Ship.connect_signals(
 		self,
 		get_tree().root.get_node("Main/UILayer/InfoCard"),
@@ -28,12 +28,13 @@ func _ready():
 		"destination_reached",
 		self,
 		"_on_Ship_destination_reached")
-	$Ship.player_ship = true
+
 	for _artikel in artikels.artikel_list:
 		$Ship.cargo[_artikel] = 0
 	$Ship.cargo["Salted Beef"] = 3
 	$Ship.cargo["Rum"] = 2
 	$Ship.cargo["Bread"] = 5
+	$Ship.generate_random_officers()
 	
 
 func randomize_start(cities):
@@ -77,7 +78,7 @@ func _on_Ship_destination_reached(destination_city):
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-	elif event.is_action_pressed("F_11"):
+	elif event.is_action_pressed("F11"):
 		OS.window_fullscreen = !OS.window_fullscreen
 	elif event.is_action_pressed("logistics_key"):
 		emit_signal("toggle_logistics_menu")

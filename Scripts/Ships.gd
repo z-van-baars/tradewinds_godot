@@ -21,4 +21,24 @@ func get_name():
 	available_names.erase(r_name)
 	return r_name
 
+func get_officer_slots(hull_class):
+	cog_slots = {
+		"Quartermaster": true,
+		"1st Lieutenant": false,
+		"2nd Lieutenant": false,
+		"3rd Lieutenant": false,
+		"Surgeon": false,
+		"Navigator": false,
+		"Master Gunner": false}
+	galleon_slots = {
+		"Quartermaster": true,
+		"1st Lieutenant": false,
+		"2nd Lieutenant": false,
+		"3rd Lieutenant": false,
+		"Surgeon": false,
+		"Navigator": false,
+		"Master Gunner": false}
+	slots_by_class = {
+		"Cog": cog_slots
+		"Galleon": galleon_slots}
 	

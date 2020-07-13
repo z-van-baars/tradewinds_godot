@@ -26,18 +26,23 @@ var ship_name
 var hull
 var speed
 var cargo_cap
+var officer_slots = {}
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")
 	ship_stats = get_tree().root.get_node("Main/ShipStats")
 
-func initialize_stats(hull_class, import_captain=null):
+func initialize_stats(hull_class, is_player_ship, import_captain=null):
 	ship_name = "The " + get_tree().root.get_node("Main/Ships").get_name()
 	hull = hull_class
 	speed = ship_stats.speed[hull_class]
 	cargo_cap = ship_stats.cargo_cap[hull_class]
+	player_ship = is_player_ship
 	if import_captain != null:
 		captain = import_captain
+	officer_slots = ships.get_officer_slots[hull_class]
+func generate_random_officers():
+	for each_office in officer_slots.keys():
 
 func connect_signals(player_node, info_card, dispatch_node):
 	self.connect(
@@ -77,8 +82,12 @@ func _physics_process(delta):
 				zero_target()
 		elif destination_city == null and target_entity != null:
 			if position.distance_to(target_entity.get_center()) < 15:
-				print("breached the chrysalis")
-				emit_signal("target_entity_reached", target_entity)
+				print(target_entity.captain)
+				emit_signal(
+					"target_entity_reached",
+					self,
+					target_entity.captain,
+					target_entity)
 				zero_target()
 				clear_target_entity()
 		move_and_collide(movement)
@@ -89,6 +98,11 @@ func get_center():
 	return Vector2(position.x, position.y + 3)
 func zero_target():
 	target = position
+
+func get_burthen():
+	var tons_burthen = 0
+	for each in cargo.keys():
+		tons_burthen += cargo[each]
 
 func clear_destination():
 	destination_city = null

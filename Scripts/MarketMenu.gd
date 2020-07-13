@@ -135,7 +135,6 @@ func _on_MarketButton_pressed():
 	show()
 
 func _on_Artikel_mouse_hovered():
-	print("hove")
 	sounds.get_node("UI/Click_2").play()
 
 func _on_Artikel_clicked(artikel_list_id, sell):
