@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/345844__aegersum__cannon-artillery-distant-gunshots.wav-65c312cd0e74eda530d97ae913892728.sample"
+path="res://.import/345844__aegersum__cannon-artillery-distant-gunshots.wav-7b83cdff46b7f5808276dc6c19995804.sample"
 
 [deps]
 
-source_file="res://Assets/sound/345844__aegersum__cannon-artillery-distant-gunshots.wav"
-dest_files=[ "res://.import/345844__aegersum__cannon-artillery-distant-gunshots.wav-65c312cd0e74eda530d97ae913892728.sample" ]
+source_file="res://Assets/Sound/345844__aegersum__cannon-artillery-distant-gunshots.wav"
+dest_files=[ "res://.import/345844__aegersum__cannon-artillery-distant-gunshots.wav-7b83cdff46b7f5808276dc6c19995804.sample" ]
 
 [params]
 

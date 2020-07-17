@@ -8,6 +8,7 @@ signal unhovered
 signal target_entity_reached
 
 var tools
+var ships
 var ship_stats
 var selected = false
 
@@ -30,6 +31,7 @@ var officer_slots = {}
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")
+	ships = get_tree().root.get_node("Main/Ships")
 	ship_stats = get_tree().root.get_node("Main/ShipStats")
 
 func initialize_stats(hull_class, is_player_ship, import_captain=null):
@@ -40,10 +42,10 @@ func initialize_stats(hull_class, is_player_ship, import_captain=null):
 	player_ship = is_player_ship
 	if import_captain != null:
 		captain = import_captain
-	officer_slots = ships.get_officer_slots[hull_class]
+	officer_slots = ships.get_officer_slots(hull_class)
 func generate_random_officers():
 	for each_office in officer_slots.keys():
-
+		pass
 func connect_signals(player_node, info_card, dispatch_node):
 	self.connect(
 		"left_click",

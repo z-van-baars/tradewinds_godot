@@ -5,6 +5,7 @@ func _ready():
 	$UILayer/MainMenu.show()
 	get_tree().paused = true
 
+
 func load_game():
 	pass
 
@@ -15,6 +16,7 @@ func new_game():
 	$Player.randomize_start($Cities)
 	$Calendar.set_start_date()
 	$Calendar/Timer.start()
+	$UILayer/ExchangeMenu.show()
 
 
 func _on_NewGameButton_pressed():

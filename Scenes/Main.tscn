@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://Assets/Tile Overlays/very_wet.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tile Overlays/wet.png" type="Texture" id=2]
@@ -88,6 +88,8 @@
 [ext_resource path="res://Assets/Sound/ui/click_2.wav" type="AudioStream" id=86]
 [ext_resource path="res://Assets/Sound/ui/coins_01.wav" type="AudioStream" id=87]
 [ext_resource path="res://Scripts/Characters.gd" type="Script" id=88]
+[ext_resource path="res://Scenes/ExchangeMenu.gd" type="Script" id=89]
+[ext_resource path="res://Assets/UI/tx_menu.png" type="Texture" id=91]
 
 [sub_resource type="TileSet" id=1]
 0/name = "very_dry.png 0"
@@ -823,6 +825,214 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ExchangeMenu" type="TextureRect" parent="UILayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+texture = ExtResource( 91 )
+script = ExtResource( 89 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HoverTimer" type="Timer" parent="UILayer/ExchangeMenu"]
+wait_time = 0.5
+
+[node name="CityName" type="Label" parent="UILayer/ExchangeMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -182.0
+margin_top = 8.00003
+margin_right = 182.0
+margin_bottom = 45.0
+custom_fonts/font = ExtResource( 74 )
+text = "Whatever Market"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 2.26108
+margin_top = 2.00003
+margin_right = 22.2611
+margin_bottom = 22.0
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XButton" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 1257.55
+margin_top = 2.00003
+margin_right = 1277.55
+margin_bottom = 22.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EntityGrid" type="GridContainer" parent="UILayer/ExchangeMenu"]
+margin_left = 44.0
+margin_top = 134.0
+margin_right = 520.0
+margin_bottom = 746.0
+custom_constants/vseparation = 68
+custom_constants/hseparation = 68
+columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TakeAll" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 499.0
+margin_top = 155.0
+margin_right = 519.0
+margin_bottom = 175.0
+texture_normal = ExtResource( 57 )
+texture_pressed = ExtResource( 62 )
+texture_hover = ExtResource( 62 )
+
+[node name="ShipGrid" type="GridContainer" parent="UILayer/ExchangeMenu"]
+margin_left = 890.0
+margin_top = 61.0
+margin_right = 1230.0
+margin_bottom = 673.0
+custom_constants/vseparation = 68
+custom_constants/hseparation = 68
+columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GiveAll" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 822.0
+margin_top = 155.0
+margin_right = 842.0
+margin_bottom = 175.0
+texture_normal = ExtResource( 60 )
+texture_pressed = ExtResource( 59 )
+texture_hover = ExtResource( 59 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExchangeGrid" type="GridContainer" parent="UILayer/ExchangeMenu"]
+margin_left = 539.849
+margin_top = 363.0
+margin_right = 879.849
+margin_bottom = 703.0
+custom_constants/vseparation = 68
+custom_constants/hseparation = 68
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BalanceBox" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 619.0
+margin_top = 287.0
+margin_right = 754.0
+margin_bottom = 315.0
+texture_normal = ExtResource( 82 )
+texture_pressed = ExtResource( 82 )
+texture_hover = ExtResource( 82 )
+script = ExtResource( 84 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmountLabel" type="Label" parent="UILayer/ExchangeMenu/BalanceBox"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.5
+margin_top = -7.0
+margin_right = 50.5
+margin_bottom = 7.0
+text = "0"
+align = 1
+
+[node name="ResetButton" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 550.0
+margin_top = 324.5
+margin_right = 685.0
+margin_bottom = 352.5
+texture_normal = ExtResource( 82 )
+texture_pressed = ExtResource( 83 )
+texture_hover = ExtResource( 83 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UILayer/ExchangeMenu/ResetButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.5
+margin_top = -7.0
+margin_right = 50.5
+margin_bottom = 7.0
+text = "Reset"
+align = 1
+
+[node name="DoneButton" type="TextureButton" parent="UILayer/ExchangeMenu"]
+margin_left = 698.0
+margin_top = 328.0
+margin_right = 768.0
+margin_bottom = 354.0
+texture_normal = ExtResource( 54 )
+texture_pressed = ExtResource( 63 )
+texture_hover = ExtResource( 63 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HoverBox" type="ColorRect" parent="UILayer/ExchangeMenu"]
+visible = false
+margin_right = 240.0
+margin_bottom = 226.0
+color = Color( 0.0778198, 0.0801112, 0.132813, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="UILayer/ExchangeMenu/HoverBox"]
+modulate = Color( 0.894118, 0.737255, 0.12549, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -120.0
+margin_top = 11.0
+margin_right = 118.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 78 )
+text = "NAme Goes Here"
+align = 1
+
+[node name="Label" type="Label" parent="UILayer/ExchangeMenu/HoverBox"]
+margin_top = 52.0
+margin_right = 238.0
+margin_bottom = 98.0
+
+[node name="Label2" type="Label" parent="UILayer/ExchangeMenu/HoverBox"]
+margin_top = 101.0
+margin_right = 238.0
+margin_bottom = 134.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="LootMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
 visible = false
@@ -1198,6 +1408,7 @@ texture_hover = ExtResource( 55 )
 
 [node name="LogisticsMenu" type="TextureRect" parent="UILayer"]
 pause_mode = 2
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -1404,6 +1615,9 @@ align = 1
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 70 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OfficerPortraits" type="GridContainer" parent="UILayer/LogisticsMenu/OfficersTab"]
 margin_left = 20.0
@@ -1999,8 +2213,8 @@ wait_time = 3.0
 [connection signal="button_down" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/CityMenu/DragButton" to="UILayer/CityMenu" method="_on_DragButton_button_up"]
 [connection signal="pressed" from="UILayer/CityMenu/XButton" to="UILayer/CityMenu" method="_on_XButton_pressed"]
-[connection signal="pressed" from="UILayer/CityMenu/MarketButton" to="UILayer/CityMenu" method="_on_MarketButton_pressed"]
 [connection signal="pressed" from="UILayer/CityMenu/MarketButton" to="UILayer/MarketMenu" method="_on_MarketButton_pressed"]
+[connection signal="pressed" from="UILayer/CityMenu/MarketButton" to="UILayer/CityMenu" method="_on_MarketButton_pressed"]
 [connection signal="visibility_changed" from="UILayer/MarketMenu" to="UILayer/MarketMenu" method="_on_MarketMenu_visibility_changed"]
 [connection signal="button_down" from="UILayer/MarketMenu/DragButton" to="UILayer/MarketMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/MarketMenu/DragButton" to="UILayer/MarketMenu" method="_on_DragButton_button_up"]
@@ -2016,6 +2230,7 @@ wait_time = 3.0
 [connection signal="pressed" from="UILayer/MarketMenu/Reset" to="UILayer/MarketMenu" method="_on_Reset_pressed"]
 [connection signal="mouse_entered" from="UILayer/MarketMenu/Balance" to="UILayer/MarketMenu/Balance" method="_on_Balance_mouse_entered"]
 [connection signal="mouse_exited" from="UILayer/MarketMenu/Balance" to="UILayer/MarketMenu/Balance" method="_on_Balance_mouse_exited"]
+[connection signal="timeout" from="UILayer/ExchangeMenu/HoverTimer" to="UILayer/ExchangeMenu" method="_on_HoverTimer_timeout"]
 [connection signal="button_down" from="UILayer/LootMenu/DragButton" to="UILayer/LootMenu" method="_on_DragButton_button_down"]
 [connection signal="button_up" from="UILayer/LootMenu/DragButton" to="UILayer/LootMenu" method="_on_DragButton_button_up"]
 [connection signal="pressed" from="UILayer/LootMenu/XButton" to="UILayer/LootMenu" method="_on_XButton_pressed"]

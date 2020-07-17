@@ -5,6 +5,7 @@ var sounds
 var open_city
 var player
 var city_menu
+
 var artikel_label_scene = preload("res://Scenes/UI/ArtikelLabel.tscn")
 var quantity_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")
 var value_label_scene = preload("res://Scenes/UI/QuantityLabel.tscn")

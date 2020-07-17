@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/cannon_close_3.wav-f902b6353bdc21aa43a2bc451022d45f.sample"
+path="res://.import/cannon_close_3.wav-69bd1c0439b4e5e29ed5bd2f5de5ce85.sample"
 
 [deps]
 
-source_file="res://Assets/sound/cannon_close_3.wav"
-dest_files=[ "res://.import/cannon_close_3.wav-f902b6353bdc21aa43a2bc451022d45f.sample" ]
+source_file="res://Assets/Sound/cannon_close_3.wav"
+dest_files=[ "res://.import/cannon_close_3.wav-69bd1c0439b4e5e29ed5bd2f5de5ce85.sample" ]
 
 [params]
 
