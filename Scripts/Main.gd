@@ -16,7 +16,6 @@ func new_game():
 	$Player.randomize_start($Cities)
 	$Calendar.set_start_date()
 	$Calendar/Timer.start()
-	$UILayer/ExchangeMenu.show()
 
 
 func _on_NewGameButton_pressed():

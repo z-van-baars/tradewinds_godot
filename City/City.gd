@@ -33,6 +33,9 @@ func set_label():
 func increment_supply(artikel_name, quantity):
 	artikel_supply[artikel_name] += quantity
 
+func get_cargo_quantity(artikel_name):
+	return artikel_supply[artikel_name]
+
 func set_random_supply():
 	for _artikel in artikels.artikel_list:
 		artikel_supply[_artikel] = 0
