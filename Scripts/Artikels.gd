@@ -47,7 +47,6 @@ var base_price = {
 	"Cocoa": 425,
 	"Cumin": 360,
 	"Ginger": 440,
-	"Mace": 565,
 	"Mustard": 450,
 	"Nutmeg": 650,
 	"Opium": 410,
@@ -61,6 +60,7 @@ var base_price = {
 	"Gold": 1000,
 	"Ivory": 630,
 	"Pearls": 510,
+	"Porcelain": 250,
 	"Silver": 735,
 }
 
@@ -136,6 +136,7 @@ var treasure = [
 	"Gold",
 	"Ivory",
 	"Pearls",
+	"Porcelain",
 	"Silver"
 ]
 
