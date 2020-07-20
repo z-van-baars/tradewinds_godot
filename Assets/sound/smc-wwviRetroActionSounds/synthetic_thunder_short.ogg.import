@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/synthetic_thunder_short.ogg-078aca3e3d57230624aa467c74a7b11f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/smc-wwviRetroActionSounds/synthetic_thunder_short.ogg"
+dest_files=[ "res://.import/synthetic_thunder_short.ogg-078aca3e3d57230624aa467c74a7b11f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

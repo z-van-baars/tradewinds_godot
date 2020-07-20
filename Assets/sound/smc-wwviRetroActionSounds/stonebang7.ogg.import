@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stonebang7.ogg-7dbb3d88dc5842da9dcc65e1dee3ff2d.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/smc-wwviRetroActionSounds/stonebang7.ogg"
+dest_files=[ "res://.import/stonebang7.ogg-7dbb3d88dc5842da9dcc65e1dee3ff2d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

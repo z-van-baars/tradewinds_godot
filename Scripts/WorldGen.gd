@@ -1,6 +1,6 @@
 extends Node
-var width = 100
-var height = 100
+var width
+var height
 var heightmap = []
 var tempmap = []
 var moisturemap = []
@@ -23,7 +23,9 @@ func _ready():
 	noise.persistence = 0.8
 
 
-func gen_new():
+func gen_new(w=100, h=100):
+	width = w
+	height = h
 	tools.set_map_parameters(width, height)
 	
 	$BiomeMap.clear()

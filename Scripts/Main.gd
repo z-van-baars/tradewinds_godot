@@ -10,7 +10,7 @@ func load_game():
 	pass
 
 func new_game():
-	$WorldGen.gen_new()
+	$WorldGen.gen_new(100, 100)
 	$UILayer/MapWidget.setup_references($WorldGen.biomemap)
 	$UILayer/MapWidget.redraw_minimaps($WorldGen.biomemap)
 	$Player.randomize_start($Cities)

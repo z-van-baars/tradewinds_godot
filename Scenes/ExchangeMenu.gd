@@ -15,6 +15,7 @@ var in_give_zone
 var in_take_zone
 var to_take = {}
 var to_give = {}
+var transaction_total = 0
 var total_profit = {}
 var total_cost = {}
 
@@ -37,6 +38,7 @@ func _input(event):
 	else:
 		if event is InputEventMouseMotion and $HoverTimer.is_stopped() == false:
 			$HoverBox.rect_position = get_viewport().get_mouse_position() - rect_position
+			$HoverTimer.stop()
 			$HoverTimer.start()
 			$HoverBox.hide()
 	if event.is_action_pressed("left_shift"):
@@ -48,25 +50,50 @@ func _input(event):
 	elif event.is_action_released("left_control"):
 		ctrl = false
 		
+func transfer_goods(artikel_str, q, taking):
+	if taking == false:
+		if to_take[artikel_str] > 0:
+			if to_take[artikel_str] > q:
+				to_take[artikel_str] -= q
+			else:
+				to_give[artikel_str] = q - to_take[artikel_str]
+				to_take[artikel_str] = 0
+		elif to_take[artikel_str] == 0:
+			to_give[artikel_str] += q
+		player.increment_cargo(artikel_str, -q)
+		open_city.increment_cargo(artikel_str, q)
+	elif taking == true:
+		if to_give[artikel_str] > 0:
+			if to_give[artikel_str] > q:
+				to_give[artikel_str] -= q
+			else:
+				to_take[artikel_str] = q - to_give[artikel_str]
+				to_give[artikel_str] = 0
+		elif to_give[artikel_str] == 0:
+			to_take[artikel_str] += q
+		player.increment_cargo(artikel_str, q)
+		open_city.increment_cargo(artikel_str, -q)
 
+	total_profit[artikel_str] = to_give[artikel_str] * open_city.get_price(artikel_str)
+	total_cost[artikel_str] = to_take[artikel_str] * open_city.get_price(artikel_str)
+
+	set_all()
 func drop_goods():
 	print("Dropped " + $DragBox.artikel_str + " * " + str($DragBox.quantity) + "!")
 	if in_give_zone:
 		print("into give zone!")
 		if $DragBox.taking == false:
-			to_take[$DragBox.artikel_str] = max(
-				0,
-				to_take[$DragBox.artikel_str] - to_take[$DragBox.artikel_str] * $DragBox.quantity)
-			to_give[$DragBox.artikel_str] += $DragBox.quantity
-			total_profit[$DragBox.artikel_str] += $DragBox.quantity * open_city.get_price($DragBox.artikel_str)
-			set_all()
+			transfer_goods(
+				$DragBox.artikel_str,
+				$DragBox.quantity,
+				$DragBox.taking)
 	if in_take_zone:
 		print("into take zone!")
 		if $DragBox.taking == true:
-			to_give[$DragBox.artikel_str] = max(0, to_give[$DragBox.artikel_str] - to_give[$DragBox.artikel_str] * $DragBox.quantity)
-			to_take[$DragBox.artikel_str] += $DragBox.quantity
-			total_cost[$DragBox.artikel_str] += $DragBox.quantity * open_city.get_price($DragBox.artikel_str)
-			set_all()
+			transfer_goods(
+				$DragBox.artikel_str,
+				$DragBox.quantity,
+				$DragBox.taking)
 
 func load_exchange(load_entity, load_city_menu=null):
 	entity = load_entity
@@ -74,9 +101,20 @@ func load_exchange(load_entity, load_city_menu=null):
 		city_menu = load_city_menu
 		market_exchange = true
 		open_city = load_city_menu.open_city
-	reset_exchange()
+	clear_exchange()
 
-func reset_exchange():
+func revert_exchange():
+	for each in to_give:
+		if to_give[each] > 0:
+			player.increment_cargo(each, to_give[each])
+			open_city.increment_cargo(each, -to_give[each])
+	for each in to_take:
+		if to_take[each] > 0:
+			open_city.increment_cargo(each, to_take[each])
+			player.increment_cargo(each, -to_take[each])
+	clear_exchange()
+
+func clear_exchange():
 	for each in artikels.artikel_list:
 		to_take[each] = 0
 		to_give[each] = 0
@@ -137,7 +175,7 @@ func set_all():
 			player.get_cargo_quantity(each),
 			open_city.get_price(each))
 		new_box.connect_signals(self)
-
+	transaction_total = 0
 	for each in to_take_list:
 		var new_box = a_box_scene.instance()
 		$ExchangeGrid.add_child(new_box)
@@ -147,6 +185,7 @@ func set_all():
 			total_cost[each])
 		new_box.set_price_color(Color.red)
 		new_box.connect_signals(self)
+		transaction_total += total_cost[each]
 	for each in to_give_list:
 		var new_box = a_box_scene.instance()
 		$ExchangeGrid.add_child(new_box)
@@ -154,8 +193,23 @@ func set_all():
 			each,
 			to_give[each],
 			total_profit[each])
+		new_box.in_exchange = true
 		new_box.set_price_color(Color.green)
 		new_box.connect_signals(self)
+		transaction_total -= total_profit[each]
+	$BalanceBox/AmountLabel.text = str(-transaction_total)
+	if transaction_total > 0:
+		$BalanceBox/AmountLabel.modulate = Color.red
+	elif transaction_total < 0:
+		$BalanceBox/AmountLabel.modulate = Color.green
+	else:
+		$BalanceBox/AmountLabel.modulate = Color.gold
+	
+	$SilverRemainingLabel.text = str(player.silver - transaction_total)
+	if player.silver - transaction_total < 0:
+		$SilverRemainingLabel.modulate = Color.red
+	else:
+		$SilverRemainingLabel.modulate = Color.gold
 
 func _on_ArtikelBox_hovered(artikel_box_node):
 	if dragging == false:
@@ -168,6 +222,8 @@ func _on_ArtikelBox_clicked(artikel_box_node):
 		q = 5
 	if ctrl == true:
 		q = artikel_box_node.quantity
+		transfer_goods(artikel_box_node.artikel_str, q, artikel_box_node.taking)
+		return
 	q = min(q, artikel_box_node.quantity)
 	dragging = true
 	$HoverTimer.stop()
@@ -196,19 +252,15 @@ func _on_BackButton_pressed():
 		city_menu.show()
 
 func _on_GiveZone_mouse_entered():
-	print("mouse in give zone")
 	in_give_zone = true
 
 func _on_GiveZone_mouse_exited():
-	print("mouse left give zone")
 	in_give_zone = false
 
 func _on_TakeZone_mouse_entered():
-	print("mouse in take zone")
 	in_take_zone = true
 
 func _on_TakeZone_mouse_exited():
-	print("mouse left take zone")
 	in_take_zone = false
 
 
@@ -217,5 +269,19 @@ func _on_DropTimer_timeout():
 
 
 func _on_ResetButton_pressed():
-	reset_exchange()
+	sounds.get_node("UI/Click_1").play()
+	revert_exchange()
 	set_all()
+
+func _on_DoneButton_pressed():
+	if transaction_total > player.silver:
+		sounds.get_node("UI/Negative_1").play()
+		return
+	if to_give.size() == 0 and to_take.size() == 0:
+		sounds.get_node("UI/Click_1").play()
+		hide()
+	player.silver -= transaction_total
+	sounds.get_node("UI/Coins_1").play()
+	clear_exchange()
+	set_all()
+	

@@ -23,23 +23,23 @@ func initialize():
 	tools = get_tree().root.get_node("Main/Tools")
 	artikels = get_tree().root.get_node("Main/Artikels")
 	set_bounding_box()
-	set_random_supply()
+	set_random_cargo()
 	set_random_prices()
 	set_label()
 
 func set_label():
 	$BBox/Label/NameLabel.text = city_name.capitalize()
 
-func increment_supply(artikel_name, quantity):
+func increment_cargo(artikel_name, quantity):
 	artikel_supply[artikel_name] += quantity
 
 func get_cargo_quantity(artikel_name):
 	return artikel_supply[artikel_name]
 
-func set_random_supply():
+func set_random_cargo():
 	for _artikel in artikels.artikel_list:
 		artikel_supply[_artikel] = 0
-	for i in range(20):
+	for i in range(25):
 		var r_artikel = tools.r_choice(artikels.artikel_list)
 		artikel_supply[r_artikel] += randi()%10+1
 

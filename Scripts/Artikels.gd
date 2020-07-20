@@ -23,15 +23,18 @@ var base_price = {
 	"Wine": 125,
 	"Rope": 75,
 	"Ammunition": 125,
+	"Bronze": 400,
 	"Cannon Balls": 150,
 	"Canvas": 30,
 	"Clothes": 75,
 	"Fine Clothes": 350,
 	"Gunpowder": 200,
 	"Small Arms": 250,
+	"Copper": 300,
 	"Cotton": 100,
 	"Dyes": 150,
 	"Hemp": 50,
+	"Incense": 500,
 	"Iron": 200,
 	"Leather": 80,
 	"Linen": 125,
@@ -39,6 +42,7 @@ var base_price = {
 	"Saltpeter": 120,
 	"Silk": 325,
 	"Timber": 80,
+	"Tin": 500,
 	"Wool": 30,
 	"Allspice": 450,
 	"Cardomom": 375,
@@ -55,7 +59,6 @@ var base_price = {
 	"Tobacco": 645,
 	"Turmeric": 455,
 	"Vanilla": 605,
-	"Copper": 300,
 	"Gems": 715,
 	"Gold": 1000,
 	"Ivory": 630,
@@ -100,9 +103,11 @@ var manufactured_goods = [
 
 
 var raw_materials = [
+	"Copper",
 	"Cotton",
 	"Hemp",
 	"Iron",
+	"Incense",
 	"Leather",
 	"Linen",
 	"Pelts",
@@ -130,7 +135,6 @@ var spices = [
 	"Vanilla"
 ]
 var treasure = [
-	"Copper",
 	"Gems",
 	"Gold",
 	"Ivory",

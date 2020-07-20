@@ -8,6 +8,7 @@ var artikel_str
 var taking = false
 signal hovered
 signal clicked
+var in_exchange = false
 
 func _ready():
 	artikels = get_tree().root.get_node("Main/Artikels")
@@ -32,7 +33,8 @@ func load_artikel(name_str, q, p, to_take=false):
 	set_all()
 
 func set_all():
-	$Backing/ArtikelTexture.texture = load("res://Assets/Artikel/" + artikel_str + ".png")
+	var formatted_string = artikel_str.replace(" ", "_")
+	$Backing/ArtikelTexture.texture = load("res://Assets/Artikel/" + formatted_string + ".png")
 	$Backing/QuantityLabel.text = str(quantity)
 	if quantity > 999:
 		$Backing/QuantityBacking.rect_size.x = 42
@@ -58,5 +60,5 @@ func _on_Backing_mouse_exited():
 
 
 func _on_Backing_gui_input(event):
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click") and in_exchange == false:
 		emit_signal("clicked", self)

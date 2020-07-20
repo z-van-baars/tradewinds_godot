@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/negative_01.wav-dfd4a7dca15aa5def480b7a7676c73ca.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/ui/negative_01.wav"
+dest_files=[ "res://.import/negative_01.wav-dfd4a7dca15aa5def480b7a7676c73ca.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

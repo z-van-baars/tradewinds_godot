@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tesla_tower.ogg-1bf3aafd2fa109c1513e93c70511d766.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/smc-wwviRetroActionSounds/tesla_tower.ogg"
+dest_files=[ "res://.import/tesla_tower.ogg-1bf3aafd2fa109c1513e93c70511d766.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

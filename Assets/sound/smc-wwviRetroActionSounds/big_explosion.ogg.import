@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/big_explosion.ogg-4a07ca897dd8033650d53d961e9d5b26.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/smc-wwviRetroActionSounds/big_explosion.ogg"
+dest_files=[ "res://.import/big_explosion.ogg-4a07ca897dd8033650d53d961e9d5b26.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
