@@ -120,7 +120,6 @@ var spices = [
 	"Cocoa",
 	"Cumin",
 	"Ginger",
-	"Mace",
 	"Mustard",
 	"Nutmeg",
 	"Opium",

@@ -39,7 +39,7 @@ func get_cargo_quantity(artikel_name):
 func set_random_supply():
 	for _artikel in artikels.artikel_list:
 		artikel_supply[_artikel] = 0
-	for i in range(15):
+	for i in range(20):
 		var r_artikel = tools.r_choice(artikels.artikel_list)
 		artikel_supply[r_artikel] += randi()%10+1
 
