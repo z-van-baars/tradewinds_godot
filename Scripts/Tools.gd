@@ -9,6 +9,17 @@ func set_map_parameters(map_width, map_height):
 func r_choice(some_array):
 	return some_array[randi() % some_array.size()]
 
+func shuffleList(list):
+	var shuffledList = []
+	var indexList = range(list.size())
+	for i in range(list.size()):
+		randomize()
+		var x = randi()%indexList.size()
+		shuffledList.append(list[x])
+		indexList.remove(x)
+		list.remove(x)
+	return shuffledList
+
 func filter_tiles(tile_list, water=false):
 	var water_tiles = []
 	var land_tiles = []

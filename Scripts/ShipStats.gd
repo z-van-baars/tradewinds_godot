@@ -73,8 +73,8 @@ var all_hulls = [
 	"cog"
 ]
 var speed = {
-	"galleon": 100,
-	"cog": 75
+	"galleon": 1000,
+	"cog": 750
 }
 var cargo_cap = {
 	"galleon": 500,

@@ -5,6 +5,12 @@ var heightmap = []
 var tempmap = []
 var moisturemap = []
 var biomemap = []
+var rivermap = []
+var river_seeds = []
+var river_start_candidates = []
+var river_start_height_cutoff = 0.60
+var n_rivers
+var rivers = []
 
 var tools
 var cities
@@ -34,10 +40,14 @@ func gen_new(w=100, h=100):
 	generate_heightmap()
 	generate_tempmap()
 	generate_moisturemap()
+	n_rivers = int(sqrt((width + height) / 2))
+	run_rivers()
+	$RiverLayer.rivers = rivers
 	set_biomes()
 	$TempMap.set_temp(self)
 	$MoistureMap.set_moisture(self)
 	$BiomeMap.set_biome_type(self)
+	draw_rivers()
 	var map_arr_list = [
 		heightmap,
 		tempmap,
@@ -50,6 +60,11 @@ func gen_new(w=100, h=100):
 	# $PreviewContainer.heightmap_preview(heightmap)
 	get_tree().root.get_node("Main/UILayer/LoadSplash").hide()
 
+func draw_rivers():
+	for y in range(height):
+		for x in range(width):
+			if rivermap[y][x][0] == true:
+				$VegetationMap.set_cell(x, y, 3)
 
 func get_noise(nx, ny):
 	# rescale from -1.0:+1/0 to 0.0:1.0
@@ -84,6 +99,9 @@ func generate_heightmap():
 			# add in the egde disincentive
 			var rand_height_edge_biased = rand_height_2 + a - b * pow(d, c)
 			var rand_height_final = max(0, rand_height_edge_biased)
+			if rand_height_final > river_start_height_cutoff:
+				print(rand_height_final)
+				river_start_candidates.append(Vector2(x, y))
 			row.append(rand_height_final)
 		heightmap.append(row)
 
@@ -110,7 +128,89 @@ func get_temperature(x, y, pole_distances):
 	if temp5 < 0:
 		print(temp5)
 	return temp5
+func check_distance(point_to_check, existing_points, d_threshold):
+	# Returns True if any point is within a given range of the point to check
+	# Else False
+	for point in existing_points:
+		if tools.distance(point_to_check.x, point_to_check.y,
+						  point.x, point.y) > d_threshold:
+			return true
+	return false
+		
+func choose_river_seeds():
+	var shuffled_seeds = tools.shuffleList(river_start_candidates)
+	var set_seeds = []
+	print(shuffled_seeds)
+	print("Number of rivers: " + str(n_rivers))
+	for r in range(n_rivers):
+		var chosen = false
+		while chosen == false:
+			var start_point = shuffled_seeds[0]
+			if check_distance(start_point, set_seeds, n_rivers) == false:
+				set_seeds.append(start_point)
+				chosen = true
+			shuffled_seeds.erase(start_point)
+	return set_seeds
 
+func init_rivermap():
+	for y in range(height):
+		var row = []
+		for x in range(width):
+			row.append([false, [], null])
+		rivermap.append(row)
+
+func find_flowpoint(start_tile):
+	var neighbors = tools.get_neighbor_tiles(start_tile)
+	var lowest_neighbor = [999999, Vector2.ZERO]
+	
+	for neighbor in neighbors:
+		if heightmap[neighbor.y][neighbor.x] < lowest_neighbor[0]:
+			lowest_neighbor = [heightmap[neighbor.y][neighbor.x], neighbor]
+	return lowest_neighbor[1]
+
+func mark_flowpoint(start_tile, flowpoint):
+	var start_sources = rivermap[start_tile.y][start_tile.x][1]
+	rivermap[start_tile.y][start_tile.x] = [
+		true,
+		start_sources,
+		flowpoint]
+	var flowpoint_sources = rivermap[flowpoint.y][flowpoint.y][1]
+	flowpoint_sources.append(start_tile)
+	rivermap[flowpoint.y][flowpoint.x] = [
+		true,
+		flowpoint_sources,
+		null]
+
+func run_rivers():
+	print("Running rivers...")
+	init_rivermap()
+	print("Finding river seeds...")
+	var river_seeds = choose_river_seeds()
+	print(river_seeds)
+	for river_seed in river_seeds:
+		var new_river = []
+
+		print("Running a river...")
+		var river_length = 0
+		var flowing = true
+		var active_tile = river_seed
+		rivermap[active_tile.y][active_tile.x] = [true, [], null]
+		print(active_tile.x)
+		while flowing:
+			var coord_pair = $BiomeMap.map_to_world(Vector2(active_tile.x, active_tile.y))
+			new_river.append(Vector2(coord_pair.x, coord_pair.y - 58))
+			river_length += 1
+			var flowpoint = find_flowpoint(active_tile)
+			if (rivermap[flowpoint.y][flowpoint.x][0] == true
+				or heightmap[flowpoint.y][flowpoint.x] <= 0.55):
+				flowing = false
+			mark_flowpoint(active_tile, flowpoint)
+			active_tile = flowpoint
+		print("... done, length - " + str(river_length))
+		rivers.append(new_river)
+
+	
+		
 func set_pole_distances():
 	var npoints = int(sqrt(sqrt(width * height)))
 	var slope = Vector2(width / npoints, height / npoints)
@@ -172,9 +272,9 @@ func set_biomes():
 				row.append(str_biome)
 			elif 0.55 >= heightmap[y][x] and heightmap[y][x] > 0.50:
 				row.append("shallows")
-			elif 0.50 >= heightmap[y][x] and heightmap[y][x] > 0.38:
+			elif 0.50 >= heightmap[y][x] and heightmap[y][x] > 0.45:
 				row.append("sea")
-			elif 0.38 >= heightmap[y][x]:
+			elif 0.45 >= heightmap[y][x]:
 				row.append("ocean")
 		biomemap.append(row)
 	print(" ")
