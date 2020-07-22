@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/harpsichord_01.wav-86a82912ad9caf391fe7a028066f8714.sample"
+path="res://.import/harpsichord_01.wav-1c41db7bf2280d1203df6a497ccee56f.sample"
 
 [deps]
 
-source_file="res://Assets/Sound/ui/harpsichord_01.wav"
-dest_files=[ "res://.import/harpsichord_01.wav-86a82912ad9caf391fe7a028066f8714.sample" ]
+source_file="res://Assets/sound/ui/harpsichord_01.wav"
+dest_files=[ "res://.import/harpsichord_01.wav-1c41db7bf2280d1203df6a497ccee56f.sample" ]
 
 [params]
 

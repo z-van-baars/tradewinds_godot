@@ -20,6 +20,16 @@ func shuffleList(list):
 		list.remove(x)
 	return shuffledList
 
+func check_distance_above(point_to_check, existing_points, d_threshold):
+	# Returns True if any point is within a given range of the point to check
+	# Else False
+	for point in existing_points:
+		if distance(point_to_check.x, point_to_check.y,
+					point.x, point.y) < d_threshold:
+			return true
+	return false
+
+
 func filter_tiles(tile_list, water=false):
 	var water_tiles = []
 	var land_tiles = []

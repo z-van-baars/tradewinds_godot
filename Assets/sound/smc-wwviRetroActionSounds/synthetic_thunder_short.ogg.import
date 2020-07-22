@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/synthetic_thunder_short.ogg-078aca3e3d57230624aa467c74a7b11f.oggstr"
+path="res://.import/synthetic_thunder_short.ogg-60a394d25ed96744a27ca7f085e4ddd8.oggstr"
 
 [deps]
 
-source_file="res://Assets/Sound/smc-wwviRetroActionSounds/synthetic_thunder_short.ogg"
-dest_files=[ "res://.import/synthetic_thunder_short.ogg-078aca3e3d57230624aa467c74a7b11f.oggstr" ]
+source_file="res://Assets/sound/smc-wwviRetroActionSounds/synthetic_thunder_short.ogg"
+dest_files=[ "res://.import/synthetic_thunder_short.ogg-60a394d25ed96744a27ca7f085e4ddd8.oggstr" ]
 
 [params]
 

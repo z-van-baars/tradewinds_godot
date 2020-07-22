@@ -50,7 +50,6 @@ func load_portraits(path):
 	for each in files:
 		image_files.append(
 			load("res://Assets/Characters/Portraits/" + each))
-		print(each)
 	return image_files
 
 func spawn_character():

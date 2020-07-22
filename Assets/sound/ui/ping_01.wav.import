@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/ping_01.wav-07bcaf531d69c3d7960c5242d30fee8c.sample"
+path="res://.import/ping_01.wav-4d21d49d9cef9cdf58e1255ddbcab2a1.sample"
 
 [deps]
 
-source_file="res://Assets/Sound/ui/ping_01.wav"
-dest_files=[ "res://.import/ping_01.wav-07bcaf531d69c3d7960c5242d30fee8c.sample" ]
+source_file="res://Assets/sound/ui/ping_01.wav"
+dest_files=[ "res://.import/ping_01.wav-4d21d49d9cef9cdf58e1255ddbcab2a1.sample" ]
 
 [params]
 

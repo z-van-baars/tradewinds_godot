@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/synthetic_gunshot_2.ogg-a02277d114ce65eb1965448689b9e2ec.oggstr"
+path="res://.import/synthetic_gunshot_2.ogg-5c8140b9411f99411bb9c563b51a4262.oggstr"
 
 [deps]
 
-source_file="res://Assets/Sound/smc-wwviRetroActionSounds/synthetic_gunshot_2.ogg"
-dest_files=[ "res://.import/synthetic_gunshot_2.ogg-a02277d114ce65eb1965448689b9e2ec.oggstr" ]
+source_file="res://Assets/sound/smc-wwviRetroActionSounds/synthetic_gunshot_2.ogg"
+dest_files=[ "res://.import/synthetic_gunshot_2.ogg-5c8140b9411f99411bb9c563b51a4262.oggstr" ]
 
 [params]
 

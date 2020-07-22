@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/stonebang7.ogg-7dbb3d88dc5842da9dcc65e1dee3ff2d.oggstr"
+path="res://.import/stonebang7.ogg-c5b3acedc40f5e912b898ced29c893f0.oggstr"
 
 [deps]
 
-source_file="res://Assets/Sound/smc-wwviRetroActionSounds/stonebang7.ogg"
-dest_files=[ "res://.import/stonebang7.ogg-7dbb3d88dc5842da9dcc65e1dee3ff2d.oggstr" ]
+source_file="res://Assets/sound/smc-wwviRetroActionSounds/stonebang7.ogg"
+dest_files=[ "res://.import/stonebang7.ogg-c5b3acedc40f5e912b898ced29c893f0.oggstr" ]
 
 [params]
 

@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/big_explosion.ogg-4a07ca897dd8033650d53d961e9d5b26.oggstr"
+path="res://.import/big_explosion.ogg-fbe8fc97a8151c79a3e3ecca7c171743.oggstr"
 
 [deps]
 
-source_file="res://Assets/Sound/smc-wwviRetroActionSounds/big_explosion.ogg"
-dest_files=[ "res://.import/big_explosion.ogg-4a07ca897dd8033650d53d961e9d5b26.oggstr" ]
+source_file="res://Assets/sound/smc-wwviRetroActionSounds/big_explosion.ogg"
+dest_files=[ "res://.import/big_explosion.ogg-fbe8fc97a8151c79a3e3ecca7c171743.oggstr" ]
 
 [params]
 

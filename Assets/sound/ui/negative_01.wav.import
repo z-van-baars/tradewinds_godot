@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/negative_01.wav-dfd4a7dca15aa5def480b7a7676c73ca.sample"
+path="res://.import/negative_01.wav-23640f089bd1985e787ce393fd67ac28.sample"
 
 [deps]
 
-source_file="res://Assets/Sound/ui/negative_01.wav"
-dest_files=[ "res://.import/negative_01.wav-dfd4a7dca15aa5def480b7a7676c73ca.sample" ]
+source_file="res://Assets/sound/ui/negative_01.wav"
+dest_files=[ "res://.import/negative_01.wav-23640f089bd1985e787ce393fd67ac28.sample" ]
 
 [params]
 
