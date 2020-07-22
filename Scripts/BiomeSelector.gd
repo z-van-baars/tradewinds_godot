@@ -25,6 +25,11 @@ var water_biomes = [
 	"sea"
 ]
 
+var water_indexes = [
+	28, 29, 30, 31,
+	36, 37, 38, 39,
+	40, 41, 42, 43]
+
 var biome_strings = {
 	"very cold": {
 		"very dry": "tundra",

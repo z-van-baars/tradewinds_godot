@@ -67,14 +67,13 @@ func pick_cities(l_coastal_tiles):
 	for n in range(n_cities):
 		var choice = l_coastal_tiles[randi() % l_coastal_tiles.size()]
 		var new_city = city_scene.instance()
-		new_city.tile_x = choice.x
-		new_city.tile_y = choice.y
+		new_city.map_tile = Vector2(choice.x, choice.y)
 		add_child(new_city)
 		new_city.initialize()
 		new_city.connect_signals(
 			get_tree().root.get_node("Main/Player"),
 			get_tree().root.get_node("Main/UILayer/InfoCard"))
 		get_tree().root.get_node("Main/WorldGen/CityMap").set_cell(
-			new_city.tile_x,
-			new_city.tile_y,
+			new_city.map_tile.x,
+			new_city.map_tile.y,
 			tools.r_choice(city_tiles))

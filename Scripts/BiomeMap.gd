@@ -24,6 +24,7 @@ var biome_tiles = {
 
 
 
+
 func set_maps(worldgen):
 	tools = get_tree().root.get_node("Main/Tools")
 	worldgen = worldgen

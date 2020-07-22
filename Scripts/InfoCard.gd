@@ -23,7 +23,8 @@ func _on_Entity_hovered(entity_type, stats):
 		$HullLabel.visible = true
 		$SpeedLabel.text = "Speed - " + str(stats[2])
 		$SpeedLabel.visible = true
-
+		$StateLabel.text = "State - " + stats[3]
+		$StateLabel.visible = true
 func _on_Entity_unhovered():
 	visible = false
 	for each in get_children():

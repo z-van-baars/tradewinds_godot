@@ -14,6 +14,7 @@ func new_game():
 	$UILayer/MapWidget.setup_references($WorldGen.biomemap)
 	$UILayer/MapWidget.redraw_minimaps($WorldGen.biomemap)
 	$Player.randomize_start($Cities)
+	$Captains.generate_random_captains($Cities.get_children(), 1)
 	$Calendar.set_start_date()
 	$Calendar/Timer.start()
 

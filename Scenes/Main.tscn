@@ -1979,6 +1979,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StateLabel" type="Label" parent="UILayer/InfoCard"]
+visible = false
+margin_left = 4.0
+margin_top = 129.0
+margin_right = 259.0
+margin_bottom = 150.0
+custom_fonts/font = ExtResource( 75 )
+text = "State - "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SpeedLabel" type="Label" parent="UILayer/InfoCard"]
 visible = false
 anchor_left = 0.5

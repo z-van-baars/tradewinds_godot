@@ -23,11 +23,8 @@ func _ready():
 	$Ship.connect_signals(
 		self,
 		get_tree().root.get_node("Main/UILayer/InfoCard"),
-		get_tree().root.get_node("Main/Dispatcher"))
-	$Ship.connect(
-		"destination_reached",
-		self,
-		"_on_Ship_destination_reached")
+		get_tree().root.get_node("Main/Dispatcher"),
+		self)
 
 	for _artikel in artikels.artikel_list:
 		$Ship.cargo[_artikel] = 0
@@ -39,9 +36,7 @@ func _ready():
 
 func randomize_start(cities):
 	var r_city = tools.r_choice(cities.get_children())
-	var neighbor_tiles = tools.get_neighbor_tiles(
-		Vector2(r_city.tile_x,
-				r_city.tile_y))
+	var neighbor_tiles = tools.get_neighbor_tiles(r_city.map_tile)
 	# filter tiles around a random start city for water only
 	var f_neighbor_tiles = tools.filter_tiles(neighbor_tiles, true)
 	var r_start = tools.r_choice(neighbor_tiles)

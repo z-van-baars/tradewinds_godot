@@ -7,7 +7,7 @@ var heightmap: Array
 var n_rivers: int
 var rivermap: Array = []
 var rivers: Array = []
-var river_start_height_cutoff = 0.6125
+var river_start_height_cutoff = 0.605
 
 func _ready():
 	tools = get_tree().root.get_node("Main/Tools")

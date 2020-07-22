@@ -7,4 +7,8 @@ script = ExtResource( 1 )
 
 [node name="WanderTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="CityTimer" type="Timer" parent="."]
+wait_time = 3.0
 [connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
+[connection signal="timeout" from="CityTimer" to="." method="_on_CityTimer_timeout"]

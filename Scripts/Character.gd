@@ -1,5 +1,6 @@
 extends Node2D
 
+var tools
 var player
 var characters
 var disposition
@@ -10,6 +11,7 @@ var title= " ~ "
 
 func _ready():
 	player = get_tree().root.get_node("Main/Player")
+	tools = get_tree().root.get_node("Main/Tools")
 	characters = get_tree().root.get_node("Main/Characters")
 
 func initialize():

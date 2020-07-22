@@ -23,6 +23,7 @@ var player_ship = false
 var captain = null
 
 # variable stats, filled out for different ships
+var state = "Idle"
 var ship_name
 var hull
 var speed
@@ -46,7 +47,7 @@ func initialize_stats(hull_class, is_player_ship, import_captain=null):
 func generate_random_officers():
 	for each_office in officer_slots.keys():
 		pass
-func connect_signals(player_node, info_card, dispatch_node):
+func connect_signals(player_node, info_card, dispatch_node, captain_node):
 	self.connect(
 		"left_click",
 		player_node,
@@ -67,6 +68,10 @@ func connect_signals(player_node, info_card, dispatch_node):
 		"target_entity_reached",
 		dispatch_node,
 		"_on_Ship_target_entity_reached")
+	self.connect(
+		"destination_reached",
+		captain_node,
+		"_on_Ship_destination_reached")
 	
 func _process(delta):
 	if target_entity != null:
@@ -179,7 +184,8 @@ func _on_BBox_mouse_entered():
 		1,
 		[ship_name,
 		 hull,
-		 speed])
+		 speed,
+		 state])
 
 
 func _on_BBox_mouse_exited():

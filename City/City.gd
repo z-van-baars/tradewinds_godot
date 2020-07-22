@@ -9,8 +9,7 @@ var tools
 var city_tilemap
 var artikels
 
-var tile_x = 0
-var tile_y = 0
+var map_tile
 
 var city_name = "~"
 var portrait_id = randi()%3+0
@@ -56,7 +55,7 @@ func get_center():
 
 func set_bounding_box():
 	city_tilemap = get_tree().root.get_node("Main/WorldGen/CityMap")
-	$BBox.position = city_tilemap.map_to_world(Vector2(tile_x, tile_y))
+	$BBox.position = city_tilemap.map_to_world(map_tile)
 	$SelectionBox.position = $BBox.position
 
 
