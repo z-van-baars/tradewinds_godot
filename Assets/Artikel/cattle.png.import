@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cattle.png-0b2db49dd053aefdfc6be7a960178122.stex"
+path="res://.import/Cattle.png-859d0333da454d20c6f007b54d1df10f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/cattle.png"
-dest_files=[ "res://.import/cattle.png-0b2db49dd053aefdfc6be7a960178122.stex" ]
+source_file="res://Assets/Artikel/Cattle.png"
+dest_files=[ "res://.import/Cattle.png-859d0333da454d20c6f007b54d1df10f.stex" ]
 
 [params]
 

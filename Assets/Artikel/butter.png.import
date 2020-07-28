@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/butter.png-dfb1c8242f589258c0cb167620cf32fb.stex"
+path="res://.import/Butter.png-24084a4ab4fecb0c67090a21b99a8fab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/butter.png"
-dest_files=[ "res://.import/butter.png-dfb1c8242f589258c0cb167620cf32fb.stex" ]
+source_file="res://Assets/Artikel/Butter.png"
+dest_files=[ "res://.import/Butter.png-24084a4ab4fecb0c67090a21b99a8fab.stex" ]
 
 [params]
 

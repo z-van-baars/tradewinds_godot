@@ -10,11 +10,11 @@ func load_game():
 	pass
 
 func new_game():
-	$WorldGen.gen_new(100, 100)
+	$WorldGen.gen_new(300, 300)
 	$UILayer/MapWidget.setup_references($WorldGen.biomemap)
 	$UILayer/MapWidget.redraw_minimaps($WorldGen.biomemap)
 	$Player.randomize_start($Cities)
-	$Captains.generate_random_captains($Cities.get_children(), 1)
+	$Captains.generate_random_captains($Cities.get_children(), 10)
 	$Calendar.set_start_date()
 	$Calendar/Timer.start()
 

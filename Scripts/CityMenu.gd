@@ -44,7 +44,6 @@ func _on_XButton_pressed():
 	get_tree().root.get_node("Main/UILayer/DateBar/StatusLabel").hide()
 	get_tree().paused = false
 	clear_all()
-	market_menu.clear_all()
 	hide()
 	sounds.get_node("UI/Click_1").play()
 

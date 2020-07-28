@@ -43,7 +43,7 @@ func reset_ship_tab():
 	$ShipTab/ShipName.text = ship.ship_name
 	$ShipTab/HullLabel.text = ship.hull.capitalize()
 	$ShipTab/SpeedLabel.text = str(ship.speed)
-	$ShipTab/CargoLabel.text = str(ship.get_burthen) + " / " + str(ship.cargo_cap)
+	$ShipTab/CargoLabel.text = str(ship.get_burthen()) + " / " + str(ship.cargo_cap)
 
 func reset_cargo_tab():
 	create_cargo_labels()

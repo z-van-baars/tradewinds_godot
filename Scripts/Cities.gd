@@ -77,3 +77,7 @@ func pick_cities(l_coastal_tiles):
 			new_city.map_tile.x,
 			new_city.map_tile.y,
 			tools.r_choice(city_tiles))
+
+func _on_Calendar_week_end():
+	for each_city in get_children():
+		each_city.production()

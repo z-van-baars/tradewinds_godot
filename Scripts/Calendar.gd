@@ -1,6 +1,7 @@
 extends Node2D
 
 signal date_changed
+signal week_end
 var year
 var month
 var day
@@ -11,6 +12,7 @@ var day_str
 
 var game_speed = 10
 var time = 0
+var week_timer = 0
 
 var days = {
 	"January": 31,
@@ -64,7 +66,12 @@ func set_strings():
 	month_str = month_strings[month]
 	year_str = str(year)
 
+
 func advance_day():
+	week_timer += 1
+	if week_timer == 7:
+		week_timer = 0
+		emit_signal("week_end")
 	if day < days[month_str]:
 		day += 1
 	else:

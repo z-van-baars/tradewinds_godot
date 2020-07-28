@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coffee.png-decde7158d60387647740591812c834c.stex"
+path="res://.import/Coffee.png-748bccd97047cad1ffb1e87e304bb41c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/coffee.png"
-dest_files=[ "res://.import/coffee.png-decde7158d60387647740591812c834c.stex" ]
+source_file="res://Assets/Artikel/Coffee.png"
+dest_files=[ "res://.import/Coffee.png-748bccd97047cad1ffb1e87e304bb41c.stex" ]
 
 [params]
 

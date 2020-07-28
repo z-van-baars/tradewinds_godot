@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cannon_balls.png-9b53abf6eec15c1a66a1b916a182ebc2.stex"
+path="res://.import/Cannon_balls.png-05a6ef630ccde7e89973b55fe88dde3a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/cannon_balls.png"
-dest_files=[ "res://.import/cannon_balls.png-9b53abf6eec15c1a66a1b916a182ebc2.stex" ]
+source_file="res://Assets/Artikel/Cannon_balls.png"
+dest_files=[ "res://.import/Cannon_balls.png-05a6ef630ccde7e89973b55fe88dde3a.stex" ]
 
 [params]
 

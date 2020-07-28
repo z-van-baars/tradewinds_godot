@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cinnamon.png-19f2c4a19ab5d5f27a101aeabb4455b7.stex"
+path="res://.import/Cinnamon.png-e1e80f1df15df5584276138184ddb742.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/cinnamon.png"
-dest_files=[ "res://.import/cinnamon.png-19f2c4a19ab5d5f27a101aeabb4455b7.stex" ]
+source_file="res://Assets/Artikel/Cinnamon.png"
+dest_files=[ "res://.import/Cinnamon.png-e1e80f1df15df5584276138184ddb742.stex" ]
 
 [params]
 

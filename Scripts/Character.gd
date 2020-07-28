@@ -17,7 +17,7 @@ func _ready():
 func initialize():
 	portrait_id = (
 		characters.available_portrait_ids[randi() % characters.available_portrait_ids.size()])
-	characters.available_portrait_ids.erase(portrait_id)
+	#characters.available_portrait_ids.erase(portrait_id)
 	name_str = characters.first_names[randi() % characters.first_names.size()]
 	name_str = name_str + characters.surnames[randi() % characters.surnames.size()]
 	randomize_stats()

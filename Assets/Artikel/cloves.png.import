@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cloves.png-1d29cf4a89084fa9d476cf997276c171.stex"
+path="res://.import/Cloves.png-17b49a0a8a09a5d753a614086fc5ac3a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/cloves.png"
-dest_files=[ "res://.import/cloves.png-1d29cf4a89084fa9d476cf997276c171.stex" ]
+source_file="res://Assets/Artikel/Cloves.png"
+dest_files=[ "res://.import/Cloves.png-17b49a0a8a09a5d753a614086fc5ac3a.stex" ]
 
 [params]
 

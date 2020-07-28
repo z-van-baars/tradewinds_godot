@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cardomom.png-dd69ef1d9ed61d665ba091fa7c07968c.stex"
+path="res://.import/Cardomom.png-0f4f7a41f042af507f3764a4e2963ba8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/cardomom.png"
-dest_files=[ "res://.import/cardomom.png-dd69ef1d9ed61d665ba091fa7c07968c.stex" ]
+source_file="res://Assets/Artikel/Cardomom.png"
+dest_files=[ "res://.import/Cardomom.png-0f4f7a41f042af507f3764a4e2963ba8.stex" ]
 
 [params]
 

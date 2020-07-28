@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ammunition.png-85463257bc3173909fcbb42c89c02114.stex"
+path="res://.import/Ammunition.png-d85a1bb603905838c4e144daf5e844b0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/ammunition.png"
-dest_files=[ "res://.import/ammunition.png-85463257bc3173909fcbb42c89c02114.stex" ]
+source_file="res://Assets/Artikel/Ammunition.png"
+dest_files=[ "res://.import/Ammunition.png-d85a1bb603905838c4e144daf5e844b0.stex" ]
 
 [params]
 

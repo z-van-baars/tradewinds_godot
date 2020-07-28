@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/canvas.png-8b9249fd8fdd9d90d094dcfed2f37573.stex"
+path="res://.import/Canvas.png-9f8af6befa3d61347433c771271e48f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/canvas.png"
-dest_files=[ "res://.import/canvas.png-8b9249fd8fdd9d90d094dcfed2f37573.stex" ]
+source_file="res://Assets/Artikel/Canvas.png"
+dest_files=[ "res://.import/Canvas.png-9f8af6befa3d61347433c771271e48f1.stex" ]
 
 [params]
 

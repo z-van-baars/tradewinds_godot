@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/allspice.png-0ea582cd06060e649e9be14259e230c1.stex"
+path="res://.import/Allspice.png-e109d6f11e175dcfe8ec1b643f9b3068.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Artikel/allspice.png"
-dest_files=[ "res://.import/allspice.png-0ea582cd06060e649e9be14259e230c1.stex" ]
+source_file="res://Assets/Artikel/Allspice.png"
+dest_files=[ "res://.import/Allspice.png-e109d6f11e175dcfe8ec1b643f9b3068.stex" ]
 
 [params]
 

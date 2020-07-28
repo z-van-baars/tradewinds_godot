@@ -31,11 +31,12 @@ func _on_CityTimer_timeout():
 	var r_city = tools.r_choice(get_tree().root.get_node("Main/Cities").get_children())
 	$Ship.set_target(
 		get_tree().root.get_node("Main/WorldGen/BiomeMap").map_to_world(r_city.map_tile))
+	$Ship.destination_city = r_city
 
-
-func _on_Ship_destination_reached():
+func _on_Ship_destination_reached(destination_city):
 	state = "Idle"
 	if randi()%100 < 30:
+		$WanderTimer.wait_time = randi()%10
 		$WanderTimer.start()
 	else:
 		$CityTimer.start()
